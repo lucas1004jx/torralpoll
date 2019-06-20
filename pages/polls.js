@@ -54,13 +54,8 @@ class Question extends Component {
         const { url: { query: { id } } } = this.props;
         const options= this.state.poll.options;
         console.log({ poll: this.state.poll})
-<<<<<<< HEAD
         let winner = options && options[0] ;
         options && options.forEach(option => {
-=======
-        let winner = this.state.poll.options[0];
-        this.state.poll.options.forEach(option => {
->>>>>>> c1c25ecfbfb9bd3984a5a51f5d17d2d54fd61ba5
             console.log({ option });
             console.log({ winner });
             if (option.votes.length > winner.votes.length) {
@@ -94,11 +89,7 @@ class Question extends Component {
                 </div>
                  <div className="left">
                 <ul className="lists">
-<<<<<<< HEAD
                     {options && options.map((option,i)=>
-=======
-                    {options.map((option,i)=>
->>>>>>> c1c25ecfbfb9bd3984a5a51f5d17d2d54fd61ba5
                         <Checkbox
                         option={option.name}
                         key={i}

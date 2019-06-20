@@ -13,7 +13,7 @@ const Home = () =>{
         <Layout classnames='home-page' hideHeader>
         <h1>torralpoll!</h1>
            <figure>
-            <img src="../static/svg/graphic.svg" />
+            <img src="/static/svg/graphic.svg" />
            </figure>
            <div className="create-button">
                <div className="intro">

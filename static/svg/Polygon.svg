@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="57px" viewBox="0 0 50 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Polygon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home" transform="translate(-23.000000, -13.000000)" stroke="#17AD8D" stroke-width="3">
+            <g id="navbar" transform="translate(14.000000, 9.000000)">
+                <g id="gs_icon" transform="translate(34.000000, 32.500000) rotate(-330.000000) translate(-34.000000, -32.500000) translate(8.000000, 10.000000)">
+                    <polygon id="Polygon" points="39 0 52 22.5 39 45 13 45 0 22.5 13 0"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -15,7 +15,7 @@ class Question extends Component {
     componentDidMount() {
         const { url: { query: { id } } } = this.props;
         axios
-            .get(`https://torralbot-api.herokuapp.com/${id}/details`)
+            .get(`https://torralbot-back.herokuapp.com/${id}/details`)
             .then(response => {
                 const poll = response.data;
                 this.setState({ poll })
@@ -23,7 +23,7 @@ class Question extends Component {
             .catch(err => console.log('error', err));
         setInterval(() => {
             axios
-                .get(`https://torralbot-api.herokuapp.com/${id}/details`)
+                .get(`https://torralbot-back.herokuapp.com/${id}/details`)
                 .then(response => {
                     const poll = response.data;
                     this.setState({ poll })
@@ -35,7 +35,7 @@ class Question extends Component {
     onSubmit = () => {
         const { url: { query: { id } } } = this.props;
         axios
-        .post(`https://torralbot-api.herokuapp.com/${id}/vote`, {
+        .post(`https://torralbot-back.herokuapp.com/${id}/vote`, {
             user: this.state.name,
             option: this.state.selectedOption,
                 

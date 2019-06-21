@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Input, Button, Checkbox, Layout} from '../componentes';
+import {Input, Button, Checkbox, Layout} from '../components';
 
 
 const CreatePolling = () => {

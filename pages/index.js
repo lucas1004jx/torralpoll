@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {Layout, Button} from '../componentes';
+import {Layout, Button} from '../components';
 
 const Home = () =>{ 
 

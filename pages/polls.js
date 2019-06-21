@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Checkbox, Layout, Button } from '../componentes'
+import { Checkbox, Layout, Button } from '../components'
 
 class Question extends Component {
     constructor(props) {

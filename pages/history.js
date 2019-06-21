@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, List } from '../componentes';
+import { Layout, List } from '../components';
 
 
 const History = ({lists})=>{

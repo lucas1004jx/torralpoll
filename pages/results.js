@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import * as d3 from 'd3';
-import {Layout} from '../componentes';
+import {Layout} from '../components';
 
 // class Results extends Component {
 //     render() {

@@ -31,7 +31,10 @@ class Question extends Component {
                 .catch(err => console.log('error', err));
         }, 3000);
     }
-    
+    onSelect = (value)=>{
+        console.log('value',value);
+        this.setState({selectedOption:value})
+    }
     onSubmit = () => {
         const { url: { query: { id } } } = this.props;
         axios
@@ -53,11 +56,11 @@ class Question extends Component {
     render() {
         const { url: { query: { id } } } = this.props;
         const options= this.state.poll.options;
-        console.log({ poll: this.state.poll})
+       // console.log({ poll: this.state.poll})
         let winner = options && options[0] ;
         options && options.forEach(option => {
-            console.log({ option });
-            console.log({ winner });
+           // console.log({ option });
+           // console.log({ winner });
             if (option.votes.length > winner.votes.length) {
                 winner = option
             }
@@ -94,7 +97,7 @@ class Question extends Component {
                         option={option.name}
                         key={i}
                         checked={this.state.selectedOption === option.name}
-                        onSelect={(value) => this.setState({ selectedOption: value })}
+                        onSelect={()=>this.onSelect(option.name)}
                         />
                         )}
                 </ul>

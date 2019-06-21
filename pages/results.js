@@ -1,6 +1,6 @@
 
 //import * as d3 from 'd3';
-import {Layout} from '../components';
+import { Layout } from '../components';
 
 // class Results extends Component {
 //     render() {

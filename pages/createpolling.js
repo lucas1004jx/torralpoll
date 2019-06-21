@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import {Input, Button, Checkbox, Layout} from '../components';
+import { Input, Button, Checkbox, Layout } from '../components';
 
 
 const CreatePolling = () => {
 
-  const [singleChoice,setSingleChoice] = useState(true);
+  const [singleChoice, setSingleChoice] = useState(true);
   const [secretBallot, setScreteBallot] = useState(true);
-  const [choiceItems,setChoiceItems] = useState(4);
+  const [choiceItems, setChoiceItems] = useState(4);
     
   const handleChoice = () => {
     setSingleChoice(!singleChoice);

@@ -1,13 +1,13 @@
 import Link from 'next/link';
-import {Layout, Button} from '../components';
+import { Layout, Button } from '../components';
 
 const Home = () =>{ 
 
   const btnStyle = {
     background: '#fff',
     color: '#17AD8D',
-    fontWeight:'500',
-    fontSize:'20px'
+    fontWeight: '500',
+    fontSize: '20px'
   };
   return (
     <Layout classnames='home-page' hideHeader>

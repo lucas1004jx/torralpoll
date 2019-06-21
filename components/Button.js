@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Button = ({name,...props}) =>(
-    <button {...props}>
+const Button = ({ name, ...props }) =>(
+  <button {...props}>
     {name}
     
-    <style jsx>{`
+    <style jsx>
+      {`
         button{
             background:var(--main-color);
             color:#fff;
@@ -16,8 +17,8 @@ const Button = ({name,...props}) =>(
             cursor:pointer;
         }
       `}
-      </style>
-    </button>
-)
+    </style>
+  </button>
+);
 
 export default Button;

@@ -1,17 +1,23 @@
 import React from 'react';
 import{ Nav }from './index';
 
-const Layout = ({title,children, classnames, author, hideHeader}) =>(
-    <main className={classnames}>
-        <Nav/>
-        {!hideHeader &&
-            <div className="title">
-                <h1>{title}</h1>
-               {author && <span className="author">@{author}</span>}
-            </div>
-        }
-        {children}
-        <style jsx global>{`
+const Layout = ({ title, children, classnames, author, hideHeader }) =>(
+  <main className={classnames}>
+    <Nav />
+    {!hideHeader && (
+      <div className="title">
+        <h1>{title}</h1>
+        {author && (
+          <span className="author">
+@
+            {author}
+          </span>
+        )}
+      </div>
+    )}
+    {children}
+    <style jsx global>
+      {`
             :root{
                 --main-color: #17AD8D;
                 --inActive-color:#979797;
@@ -52,7 +58,7 @@ const Layout = ({title,children, classnames, author, hideHeader}) =>(
         
         `}
     </style>
-    </main>
-)
+  </main>
+);
 
 export default Layout;

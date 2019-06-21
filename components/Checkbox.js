@@ -3,20 +3,21 @@ import { Icons } from './index';
 
 
 const Checkbox = ({ option, checked, onSelect }) => {
-const polygonStyle = {
-    width:20,
-    height:'auto',
+  const polygonStyle = {
+    width: 20,
+    height: 'auto',
     fill: checked ? 'var(--main-color)' : 'var(--inActive-color)',
-    transform:checked ? 'rotate(360deg) scale(1.1)' : 'rotate(0deg) scale(1)'
-}
-return (
-<div className={`option ${checked ? 'checked' :''}`}>
-    <div className="polygon">
-     <Icons name='polygon' style={polygonStyle}/> 
-    </div>
-    <input type="radio" id={option} value={option} checked={checked} onChange={onSelect} />
-    <label htmlFor={option}>{option}</label>
-     <style jsx>{`
+    transform: checked ? 'rotate(360deg) scale(1.1)' : 'rotate(0deg) scale(1)'
+  };
+  return (
+    <div className={`option ${checked ? 'checked' :''}`}>
+      <div className="polygon">
+        <Icons name='polygon' style={polygonStyle} /> 
+      </div>
+      <input type="radio" id={option} value={option} checked={checked} onChange={onSelect} name={option} />
+      <label htmlFor={option}>{option}</label>
+      <style jsx>
+        {`
        label,input,.option{
             cursor:pointer;
         }
@@ -78,8 +79,8 @@ return (
         
       `}
       </style>
-</div>
-)
-}
+    </div>
+  );
+};
 
 export default Checkbox;

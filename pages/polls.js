@@ -3,6 +3,13 @@ import axios from 'axios';
 import { Checkbox, Layout, Button } from '../components'
 
 class Question extends Component {
+    static async getInitialProps({query}){
+        const id = query.id;
+        const poll = await axios.get(`https://torralbot-back.herokuapp.com/${id}/details`).then(res=>res.data);
+        return {...poll}
+    }
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -21,15 +28,15 @@ class Question extends Component {
                 this.setState({ poll })
             })
             .catch(err => console.log('error', err));
-        setInterval(() => {
-            axios
-                .get(`https://torralbot-back.herokuapp.com/${id}/details`)
-                .then(response => {
-                    const poll = response.data;
-                    this.setState({ poll })
-                })
-                .catch(err => console.log('error', err));
-        }, 3000);
+        // setInterval(() => {
+        //     axios
+        //         .get(`https://torralbot-back.herokuapp.com/${id}/details`)
+        //         .then(response => {
+        //             const poll = response.data;
+        //             this.setState({ poll })
+        //         })
+        //         .catch(err => console.log('error', err));
+        // }, 3000);
     }
     onSelect = (value)=>{
         console.log('value',value);
@@ -56,7 +63,7 @@ class Question extends Component {
     render() {
         const { url: { query: { id } } } = this.props;
         const options= this.state.poll.options;
-       // console.log({ poll: this.state.poll})
+        //console.log({ poll: this.state.poll})
         let winner = options && options[0] ;
         options && options.forEach(option => {
            // console.log({ option });

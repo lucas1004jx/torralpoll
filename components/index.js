@@ -5,6 +5,7 @@ import Input from './Input';
 import List from './List';
 import Layout from './Layout';
 import Nav from './Navbar';
+import Tag from './Tag';
 
 export {
   Button,
@@ -13,5 +14,6 @@ export {
   Input,
   Layout,
   List,
-  Nav
+  Nav,
+  Tag
 };

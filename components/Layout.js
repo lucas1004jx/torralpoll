@@ -22,6 +22,9 @@ const Layout = ({ title, children, classnames, author, hideHeader }) =>(
                 --main-color: #17AD8D;
                 --inActive-color:#979797;
                 --dark-color: #263C47;
+                --tag-all:#FAC314;
+                --tag-active:#079AE0;
+                --tag-closed:#B85346;
             }
             body{
                 font-family:Helvetica Neue, sans-serif;

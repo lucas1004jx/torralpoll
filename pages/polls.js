@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import { Checkbox, Layout, Button, List } from '../components';
+import { Checkbox, Layout, Button, List, Tag } from '../components';
 
 class Question extends Component {
 
@@ -22,6 +22,7 @@ class Question extends Component {
     state = {
       selectedOption: null,
       voteSent: false,
+      status: 'all'
     };
  
  
@@ -49,9 +50,11 @@ class Question extends Component {
         .catch(err => console.log('error', err));
     }
 
-
+  handleFilter = (status) =>{
+    this.setState({ status });
+  }
     renderPollDetail = () =>{
-      const { options, name } = this.props.poll;
+      const { options, name, active } = this.props.poll;
       if (this.state.voteSent) {
         return (
           <Layout title="question" classnames="question-page" hideHeader>
@@ -75,6 +78,7 @@ class Question extends Component {
             <div className="description">
               {name}
             </div>
+            
             <div className="left">
               <ul className="lists">
                 {options && options.map((option, i)=> (
@@ -97,7 +101,7 @@ class Question extends Component {
             <div className="submit-button">
               <span className="voteAs">Vote</span>
               <input className="nameInput" type="text" placeholder="name" onChange={(event) => this.setState({ name: event.target.value })} />
-              <Button name='submit' onClick={this.onSubmit} />
+              { active ? <Button name='submit' onClick={this.onSubmit} /> : ''}
               <Link href="/polls">
                 <a>
                   <Button name='back to list' />  
@@ -193,11 +197,36 @@ class Question extends Component {
 
     renderPollList = () => {
       const { polls: { polls } } = this.props;
+      const { status } = this.state;
+      const activePolls = polls.filter(poll => poll.active);
+      const closedPolls = polls.filter(poll => !poll.active);
       return (
         <Layout title='Poll list'>
-          {polls.map(poll => (
-            <List content={poll.name} href={`/polls?id=${poll._id}`} />
+          <div className="filter">
+            <Tag name='all' status='all' onClick={()=>this.handleFilter('all')} />
+            <Tag name='in process' status='active' onClick={()=>this.handleFilter('active')} />
+            <Tag name='done' status='closed' onClick={()=>this.handleFilter('closed')} />
+              
+          </div>
+          {status === 'all' && polls.map(poll => (
+            <List content={poll.name} tag={poll.active ? 'active':'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
           ))}
+          {status === 'active' && activePolls.map(poll => (
+            <List content={poll.name} tag={poll.active ? 'active':'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
+          ))}
+          {status === 'closed' && closedPolls.map(poll => (
+            <List content={poll.name} tag={poll.active ? 'active':'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
+          ))}
+          <style jsx>
+            {`
+            .filter{
+              margin-bottom:15px;
+              border-bottom:2px solid var(--inActive-color);
+              padding-bottom:15px;
+            }
+          `}
+
+          </style>
         </Layout>
       );
     }

@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { Icons } from './index';
+import { Icons, Tag } from './index';
 
-const List = ({ content, href }) =>{
+const List = ({ content, href, tag }) =>{
   const iconStyle = {
     width: 20,
     height: 'auto',
@@ -10,30 +10,45 @@ const List = ({ content, href }) =>{
   };
   return ( 
     <div className="list">
-      <div className="list-icon">
-        <Icons name='polygon' style={iconStyle} />
-      </div>
-      
-      <div className="list-content">
-        <Link href={href}>
-          <a>
+      <Link href={href}>
+        <a>
+          <div className="list-icon">
+            <Icons name='polygon' style={iconStyle} />
+          </div>
+          <div className="tag">
+            <Tag name={tag} status={tag} style={{ width: '60px' }} />
+          </div>
+          <div className="list-content">
             {content}
-          </a>
-        </Link>
-        
-      </div>
+          </div>
+        </a>
+      </Link>
       <style jsx>
         {`
            
             .list{
-                cursor:pointer;
                 list-style:none;
                 position:relative;
                 padding-left:25px;
-                margin-bottom:15px;
+                padding-right:120px;
+                margin-bottom:25px;
+                cursor:pointer;
+               
+            }
+            .list a{
+                text-decoration:none;
+                color:var(--dark-color);
             }
             .list-content{
-                font-size:22px;
+                font-size:22px;;
+            }
+            .list-content:after{
+                content:"";
+                display:block;
+                width:0%;
+                height:2px;
+                background:var(--tag-${tag});
+                transition:width 0.5s linear;
             }
             .list-content:first-letter{
                 text-transform:capitalize;
@@ -42,6 +57,13 @@ const List = ({ content, href }) =>{
                 position:absolute;
                 left:0;
                 top:0;
+            }
+            .tag{
+                position:absolute;
+                right:0;
+            }
+            .list-content:hover:after{
+                width:100%;
             }
       `}
       </style>

@@ -209,13 +209,13 @@ class Question extends Component {
               
           </div>
           {status === 'all' && polls.map(poll => (
-            <List content={poll.name} tag={poll.active ? 'active':'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
+            <List content={poll.name} status={poll.active ? 'active':'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
           ))}
           {status === 'active' && activePolls.map(poll => (
-            <List content={poll.name} tag={poll.active ? 'active':'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
+            <List content={poll.name} status={poll.active ? 'active':'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
           ))}
           {status === 'closed' && closedPolls.map(poll => (
-            <List content={poll.name} tag={poll.active ? 'active':'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
+            <List content={poll.name} status={poll.active ? 'active':'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
           ))}
           <style jsx>
             {`

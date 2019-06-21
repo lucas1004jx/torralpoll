@@ -2,21 +2,21 @@ import React from 'react';
 import Link from 'next/link';
 import { Icons, Tag } from './index';
 
-const List = ({ content, href, tag }) =>{
+const List = ({ content, href, status }) =>{
   const iconStyle = {
     width: 20,
     height: 'auto',
-    fill: 'var(--main-color)' 
+    fill: `${status === 'active' ?  'var(--main-color)' :'var(--inActive-color)'}`
   };
   return ( 
-    <div className="list">
+    <div className={`list ${status ==='closed' ? 'closed' : ''}`}>
       <Link href={href}>
         <a>
           <div className="list-icon">
             <Icons name='polygon' style={iconStyle} />
           </div>
           <div className="tag">
-            <Tag name={tag} status={tag} style={{ width: '60px' }} />
+            <Tag name={status} status={status} style={{ width: '60px' }} />
           </div>
           <div className="list-content">
             {content}
@@ -37,17 +37,21 @@ const List = ({ content, href, tag }) =>{
             }
             .list a{
                 text-decoration:none;
-                color:var(--dark-color);
+               
             }
             .list-content{
-                font-size:22px;;
+                font-size:22px;
+                color:var(--dark-color);
+            }
+            .list.closed .list-content{
+                color:var(--inActive-color);
             }
             .list-content:after{
                 content:"";
                 display:block;
                 width:0%;
                 height:2px;
-                background:var(--tag-${tag});
+                background:var(--tag-${status});
                 transition:width 0.5s linear;
             }
             .list-content:first-letter{

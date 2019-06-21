@@ -61,7 +61,11 @@ class Question extends Component {
               {' '}
               <span className="blink">ANYONE</span>
             </h3>
-            <Button>back to list</Button>
+            <Link href="/polls">
+              <a>
+                <Button name='back to list' />  
+              </a>
+            </Link>
           </Layout>
         );
       }

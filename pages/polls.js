@@ -1,128 +1,145 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Checkbox, Layout, Button } from '../components'
+import { Checkbox, Layout, Button } from '../components';
 
 class Question extends Component {
-    static async getInitialProps({query}){
-        const id = query.id;
-        const poll = await axios.get(`https://torralbot-back.herokuapp.com/${id}/details`).then(res=>res.data);
-        return {...poll}
-    }
+  static async getInitialProps({query}){
+    const id = query.id;
+    const poll = await axios.get(`https://torralbot-back.herokuapp.com/${id}/details`).then(res=>res.data);
+    return {...poll};
+  }
 
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            poll: { options: [] },
-            selectedOption: null,
-            voteSent: false,
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      poll:{ options: [] },
+      selectedOption: null,
+      voteSent: false,
+    };
+  }
 
-    componentDidMount() {
-        const { url: { query: { id } } } = this.props;
-        axios
-            .get(`https://torralbot-back.herokuapp.com/${id}/details`)
-            .then(response => {
-                const poll = response.data;
-                this.setState({ poll })
-            })
-            .catch(err => console.log('error', err));
-        // setInterval(() => {
-        //     axios
-        //         .get(`https://torralbot-back.herokuapp.com/${id}/details`)
-        //         .then(response => {
-        //             const poll = response.data;
-        //             this.setState({ poll })
-        //         })
-        //         .catch(err => console.log('error', err));
-        // }, 3000);
-    }
+  componentDidMount() {
+    const { url: { query: { id } } } = this.props;
+    axios
+      .get(`https://torralbot-back.herokuapp.com/${id}/details`)
+      .then(response => {
+        const poll = response.data;
+        this.setState({ poll });
+      })
+      .catch(err => console.log('error', err));
+    // setInterval(() => {
+    //     axios
+    //         .get(`https://torralbot-back.herokuapp.com/${id}/details`)
+    //         .then(response => {
+    //             const poll = response.data;
+    //             this.setState({ poll })
+    //         })
+    //         .catch(err => console.log('error', err));
+    // }, 3000);
+  }
     onSelect = (value)=>{
-        console.log('value',value);
-        this.setState({selectedOption:value})
+      console.log('value',value);
+      this.setState({selectedOption:value});
     }
+    
     onSubmit = () => {
-        const { url: { query: { id } } } = this.props;
-        axios
+      const { url: { query: { id } } } = this.props;
+      const {name, selectedOption} = this.state;
+      axios
         .post(`https://torralbot-back.herokuapp.com/${id}/vote`, {
-            user: this.state.name,
-            option: this.state.selectedOption,
+          user: name,
+          option: selectedOption,
                 
-            })
-            .then(response => {
-                if (response.data && response.data.res && response.data.res.indexOf('Error') !== -1) {
-                    this.setState({ errorMessage: 'You have already voted'})
-                } else {
-                    this.setState({ voteSent: true });
-                }
-            })
-            .catch(err => console.log('error', err));
+        })
+        .then(response => {
+          if (response.data && response.data.res && response.data.res.indexOf('Error') !== -1) {
+            this.setState({ errorMessage: 'You have already voted'});
+          } else {
+            this.setState({ voteSent: true });
+          }
+        })
+        .catch(err => console.log('error', err));
     }
 
     render() {
-        const { url: { query: { id } } } = this.props;
-        const options= this.state.poll.options;
-        //console.log({ poll: this.state.poll})
-        let winner = options && options[0] ;
-        options && options.forEach(option => {
-           // console.log({ option });
-           // console.log({ winner });
-            if (option.votes.length > winner.votes.length) {
-                winner = option
-            }
-        })
-        if (!this.state.poll.active && winner) {
-            return (
-                <Layout title="question" classnames="question-page" hideHeader>
-                    <h3>This poll is closed</h3>
-                    <h3>Future has already been written</h3>
-                    <div className="success">
-                        <h3 className="selected">Selected option is {winner.name} with {winner.votes.length} vote</h3>
-                    </div>
-                </Layout>
-            );
+      //const { url: { query: { id } } } = this.props;
+      const options= this.state.poll.options;
+      //console.log({ poll: this.state.poll})
+      let winner = options && options[0] ;
+      options && options.forEach(option => {
+        // console.log({ option });
+        // console.log({ winner });
+        if (option.votes.length > winner.votes.length) {
+          winner = option;
         }
-        if (this.state.voteSent) {
-            return (
-                <Layout title="question" classnames="question-page" hideHeader>
-                <h3>Thanks for your vote! It was received and securely stored.</h3>
-                <h3>It cannot be changed by <span className="blink">ANYONE</span></h3>
-                </Layout>
-            );
-        }
+      });
+      if (!this.state.poll.active && winner) {
         return (
-            <Layout title="question" classnames="question-page" author='author'>
-            <div className="page-inner">
-                <div className="description">
-                    {this.state.poll.name}
-                </div>
-                 <div className="left">
-                <ul className="lists">
-                    {options && options.map((option,i)=>
-                        <Checkbox
-                        option={option.name}
-                        key={i}
-                        checked={this.state.selectedOption === option.name}
-                        onSelect={()=>this.onSelect(option.name)}
-                        />
-                        )}
-                </ul>
-                </div>
-                {this.state.errorMessage &&
-                    <div className="alert">
-                        {this.state.errorMessage}
-                        {'\n'}
-                        <span className="emoji">🙅</span>
-                    </div>
-                }
-                <div className="submit-button">
-                    <span className="voteAs" >Vote</span>
-                    <input className="nameInput" type="text" placeholder="name" onChange={(event) => this.setState({ name: event.target.value}) } />
-                    <Button name='submit' onClick={this.onSubmit} />
-                </div>
+          <Layout title="question" classnames="question-page" hideHeader>
+            <h3>This poll is closed</h3>
+            <h3>Future has already been written</h3>
+            <div className="success">
+              <h3 className="selected">
+                Selected option is
+                {' '}
+                {winner.name}
+                {' '}
+                with
+                {' '}
+                {winner.votes.length}
+                {' '}
+                vote
+              </h3>
             </div>
-            <style jsx>{`
+          </Layout>
+        );
+      }
+      if (this.state.voteSent) {
+        return (
+          <Layout title="question" classnames="question-page" hideHeader>
+            <h3>Thanks for your vote! It was received and securely stored.</h3>
+            <h3>
+It cannot be changed by
+              {' '}
+              <span className="blink">ANYONE</span>
+            </h3>
+          </Layout>
+        );
+      }
+      return (
+        <Layout title="question" classnames="question-page" author='author'>
+          <div className="page-inner">
+            <div className="description">
+              {this.state.poll.name}
+            </div>
+            <div className="left">
+              <ul className="lists">
+                {options && options.map((option,i)=> (
+                  <Checkbox
+                    option={option.name}
+                    key={i}
+                    checked={this.state.selectedOption === option.name}
+                    onSelect={()=>this.onSelect(option.name)}
+                  />
+                ))}
+              </ul>
+            </div>
+            {this.state.errorMessage && (
+              <div className="alert">
+                {this.state.errorMessage}
+                {'\n'}
+                <span className="emoji" role="img">🙅</span>
+              </div>
+            )}
+            <div className="submit-button">
+              <span className="voteAs">Vote</span>
+              <input className="nameInput" type="text" placeholder="name" onChange={(event) => this.setState({ name: event.target.value})} />
+              <Button name='submit' onClick={this.onSubmit} />
+            </div>
+          </div>
+          <style jsx>
+            {`
             /* The alert message box */
             .emoji {
                 font-size: 50px;
@@ -202,8 +219,8 @@ class Question extends Component {
             }
           `}
           </style>
-            </Layout>
-        )
+        </Layout>
+      );
     }
 }
 

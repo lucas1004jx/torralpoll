@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+
 //import * as d3 from 'd3';
 import {Layout} from '../components';
 
@@ -12,7 +12,7 @@ import {Layout} from '../components';
 // }
 
 const Results = () => (
-    <Layout title='results' classnames='result-page'></Layout>
-)
+  <Layout title='results' classnames='result-page' />
+);
 
 export default Results;

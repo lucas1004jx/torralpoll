@@ -4,70 +4,72 @@ import {Input, Button, Checkbox, Layout} from '../components';
 
 const CreatePolling = () => {
 
-    const [singleChoice,setSingleChoice] = useState(true);
-    const [secretBallot, setScreteBallot] = useState(true);
-    const [choiceItems,setChoiceItems] = useState(4);
+  const [singleChoice,setSingleChoice] = useState(true);
+  const [secretBallot, setScreteBallot] = useState(true);
+  const [choiceItems,setChoiceItems] = useState(4);
     
-    const handleChoice = () => {
-       setSingleChoice(!singleChoice);
-    }
-     const handleBalot = () => {
-       setScreteBallot(!secretBallot);
-    }
+  const handleChoice = () => {
+    setSingleChoice(!singleChoice);
+  };
+  const handleBalot = () => {
+    setScreteBallot(!secretBallot);
+  };
 
-    const addChoice = () => {
-        setChoiceItems(choiceItems + 1);
-    }
-        return(
-        <Layout className="create-polling-page">
-            <div className="page-inner">
-                <Input title='question' />
-                <Input title='description' />
-                <div>
-                <Input title='choices' num={choiceItems} />
-                </div>
-                <div className="add-button button-container">
-                    <Button name='add more choice' onClick={addChoice}/>
-                </div>
-                <div className="options">
-                    <h3>OPTIONS</h3>
-                    <div className="option-section">
-                        <div className="divider" />
-                        <Checkbox
-                        option='Single Choice'
-                        checked={singleChoice}
-                        onSelect={()=>handleChoice()}
-                        />
-                        <Checkbox
-                        option='Multiple Choice'
-                        checked={!singleChoice}
-                        onSelect={()=>handleChoice()}/>
-                    </div>
-                    <div className="option-section">
-                        <div className="divider" />
-                        <Checkbox
-                        option='secret ballot'
-                        checked={secretBallot}
-                        onSelect={()=>handleBalot()}
-                        />
-                        <Checkbox
-                        option='open ballot'
-                        checked={!secretBallot}
-                        onSelect={()=>handleBalot()}
-                        /> 
-                    </div>
-                    <div className="option-section">
-                        <div className="divider" />
-                        <Checkbox option='set active time'/>
-                    </div>
-                </div>
-                <div className="create-preview-button button-container">
-                    <Button name='preview'/>
-                    <Button name='create'/>
-                </div>
-            </div>
+  const addChoice = () => {
+    setChoiceItems(choiceItems + 1);
+  };
+  return(
+    <Layout className="create-polling-page">
+      <div className="page-inner">
+        <Input title='question' />
+        <Input title='description' />
+        <div>
+          <Input title='choices' num={choiceItems} />
+        </div>
+        <div className="add-button button-container">
+          <Button name='add more choice' onClick={addChoice} />
+        </div>
+        <div className="options">
+          <h3>OPTIONS</h3>
+          <div className="option-section">
+            <div className="divider" />
+            <Checkbox
+              option='Single Choice'
+              checked={singleChoice}
+              onSelect={()=>handleChoice()}
+            />
+            <Checkbox
+              option='Multiple Choice'
+              checked={!singleChoice}
+              onSelect={()=>handleChoice()}
+            />
+          </div>
+          <div className="option-section">
+            <div className="divider" />
+            <Checkbox
+              option='secret ballot'
+              checked={secretBallot}
+              onSelect={()=>handleBalot()}
+            />
+            <Checkbox
+              option='open ballot'
+              checked={!secretBallot}
+              onSelect={()=>handleBalot()}
+            /> 
+          </div>
+          <div className="option-section">
+            <div className="divider" />
+            <Checkbox option='set active time' />
+          </div>
+        </div>
+        <div className="create-preview-button button-container">
+          <Button name='preview' />
+          <Button name='create' />
+        </div>
+      </div>
             
-        <style jsx >{`
+      <style jsx>
+        {`
                 .create-polling-page{
                     margin:0 auto;
                 }
@@ -95,9 +97,9 @@ const CreatePolling = () => {
                     margin: 30px 0;
                 }
             `}
-        </style>
+      </style>
     </Layout>
-        )
-    }
+  );
+};
 
-export default CreatePolling
+export default CreatePolling;

@@ -1,6 +1,7 @@
 
+import React from 'react';
 //import * as d3 from 'd3';
-import { Layout } from '../components';
+import { Layout } from '../components/common';
 
 // class Results extends Component {
 //     render() {

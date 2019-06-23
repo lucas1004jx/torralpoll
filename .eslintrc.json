@@ -4,7 +4,11 @@
         "node": true,
         "es6": true
     },
-    "extends": ["airbnb", "plugin:import/errors", "eslint:recommended"],
+    "extends": [
+        "airbnb",
+        "plugin:import/errors",
+        "eslint:recommended"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -21,27 +25,55 @@
         "react"
     ],
     "rules": {
-        "indent": ["error", 2],
-        "linebreak-style": ["error", "unix"],
-        "quotes": ["error", "single"],
-        "semi": ["error", "always"],
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
         "space-before-blocks": 2,
-        "space-in-parens": ["error", "never"],
-        "object-curly-spacing": ["error", "always"],
-        "comma-spacing": ["error", { "before": false, "after": true }],
-        "key-spacing": ["error", { "beforeColon": false }],
+        "space-in-parens": [
+            "error",
+            "never"
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
+        "key-spacing": [
+            "error",
+            {
+                "beforeColon": false
+            }
+        ],
         "react/jsx-filename-extension": 0,
-        "react/no-array-index-key":0,
-        "react/react-in-jsx-scope":0,
-        "jsx-a11y/anchor-is-valid":0,
-         "react/prop-types": 0,
-         "no-console": 0,
-         "react/destructuring-assignment":0,
-         "jsx-a11y/accessible-emoji":0,
-         "react/button-has-type":0,
-         "jsx-a11y/label-has-for":0,
-         "import/no-cycle":0,
-         "jsx-a11y/click-events-have-key-events":0,
-         "jsx-a11y/no-static-element-interactions":0
+        "react/no-array-index-key": 0,
+        "jsx-a11y/anchor-is-valid": 0,
+        "react/prop-types": 0,
+        "no-console": 0,
+        "react/destructuring-assignment": 0,
+        "jsx-a11y/accessible-emoji": 0,
+        "react/button-has-type": 0,
+        "jsx-a11y/label-has-for": 0,
+        "import/no-cycle": 0,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/no-static-element-interactions": 0
     }
 }

@@ -34,9 +34,11 @@ const Checkbox = ({ option, checked, onSelect }) => {
             padding-left:30px;
             margin-bottom:15px;
             border-radius:4px;
+            
+        }
+        .option.checked{
             box-shadow:2px 2px 5px rgba(38,60,71,0.3);
         }
-        
         .option:hover,.option.checked{
             border-color:#17AD8D;
         }

@@ -15,6 +15,7 @@ const Layout = ({ title, children, classnames, author, hideHeader }) =>(
         )}
       </div>
     )}
+    
     {children}
     <style jsx global>
       {`
@@ -60,6 +61,15 @@ const Layout = ({ title, children, classnames, author, hideHeader }) =>(
             }
         
         `}
+    </style>
+    <style jsx>
+      {`
+      .title{
+        position:sticky;
+      }
+    
+    `}
+
     </style>
   </main>
 );

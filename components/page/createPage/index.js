@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Input, Button, Checkbox, Layout } from '../components';
+import { Input, Button, Checkbox, Layout } from '../../common';
 
 
-const CreatePolling = () => {
+const CreatePollPage = () => {
 
   const [singleChoice, setSingleChoice] = useState(true);
   const [secretBallot, setScreteBallot] = useState(true);
@@ -102,4 +102,4 @@ const CreatePolling = () => {
   );
 };
 
-export default CreatePolling;
+export default CreatePollPage;

@@ -2,18 +2,19 @@ import React from 'react';
 import Link from 'next/link';
 import { Icons } from './index';
 
-const Navbar = ({title,children, classnames}) =>{
+const Navbar = () =>{
   const navbar_height = 48;
   const navbar_padding = 5;
-   return (
-      <nav>
+  return (
+    <nav>
       <Link href='/'>
-      <a>
-        <Icons name='logo' style={{width:'auto',height:navbar_height-navbar_padding*2}}/>
-      </a>
+        <a>
+          <Icons name='logo' style={{ width: 'auto', height: navbar_height-navbar_padding*2 }} />
+        </a>
       </Link>
         
-        <style jsx>{`
+      <style jsx>
+        {`
         nav{
           background:var(--dark-color);
           height:${navbar_height}px;
@@ -30,7 +31,7 @@ const Navbar = ({title,children, classnames}) =>{
       `}
       </style>
     </nav>
-   )
-}
+  );
+};
 
 export default Navbar;

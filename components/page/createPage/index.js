@@ -5,15 +5,12 @@ import { Input, Button, Checkbox, Layout } from '../../common';
 const CreatePollPage = () => {
 
   const [singleChoice, setSingleChoice] = useState(true);
-  const [secretBallot, setScreteBallot] = useState(true);
   const [choiceItems, setChoiceItems] = useState(4);
     
   const handleChoice = () => {
     setSingleChoice(!singleChoice);
   };
-  const handleBalot = () => {
-    setScreteBallot(!secretBallot);
-  };
+ 
 
   const addChoice = () => {
     setChoiceItems(choiceItems + 1);
@@ -44,19 +41,7 @@ const CreatePollPage = () => {
               onSelect={()=>handleChoice()}
             />
           </div>
-          <div className="option-section">
-            <div className="divider" />
-            <Checkbox
-              option='secret ballot'
-              checked={secretBallot}
-              onSelect={()=>handleBalot()}
-            />
-            <Checkbox
-              option='open ballot'
-              checked={!secretBallot}
-              onSelect={()=>handleBalot()}
-            /> 
-          </div>
+          
           <div className="option-section">
             <div className="divider" />
             <Checkbox option='set active time' />

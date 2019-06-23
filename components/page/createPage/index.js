@@ -1,44 +1,95 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import Router from 'next/router';
 import { Input, Button, Checkbox, Layout } from '../../common';
 
 
 const CreatePollPage = () => {
 
-  const [singleChoice, setSingleChoice] = useState(true);
-  const [choiceItems, setChoiceItems] = useState(4);
-    
-  const handleChoice = () => {
-    setSingleChoice(!singleChoice);
+  const [singleOption, setSingleOption] = useState(true);
+  const [optionItems, setOptionItems] = useState(4);
+  const [question, setQuestion] = useState('');
+
+
+  const defaultOptions = {
+    option1: 'opt1',
+    option2: 'opt2',
+    option3: 'opt3',
+    option4: 'opt4'
+  };
+  const [options, setOptions] = useState(defaultOptions);
+
+  const handleOption = () => {
+    setSingleOption(!singleOption);
   };
  
 
-  const addChoice = () => {
-    setChoiceItems(choiceItems + 1);
+  const addOptionItems = () => {
+    setOptionItems(optionItems + 1);
   };
+
+  const optionItemsArray = (num) => (
+    new Array(num).fill('option').map((option, index)=>(
+      `${option}${index+1}`
+    )
+    )
+  );
+
+  const addOptions = (option, value)=>{
+    setOptions({ ...options, [option]: value });
+  };
+
+
+
+  const createPoll = (question='question', options)=>{
+    const optionsArray = Object.keys(options).map(key => options[key]);
+    axios
+      .post('https://torralbot-back.herokuapp.com/create', {
+        name: question,
+        options: optionsArray,
+
+      })
+      .then(()=>Router.push('/polls'))
+      .catch(err=>`something went wrong, error message ${err}`);
+  };
+
   return(
     <Layout className="create-polling-page">
       <div className="page-inner">
-        <Input title='question' />
-        <Input title='description' />
-        <div>
-          <Input title='choices' num={choiceItems} />
+        <div className="input-area">
+          <h2>Question</h2>
+          <Input onChange={(e)=>setQuestion(e.target.value)} value={question} />
+        </div>
+        <div className="input-area">
+          <h2>Description</h2>
+          <Input  />
+        </div>
+        
+        <div className="input-area">
+          <h2>Options</h2>
+          {
+            optionItemsArray(optionItems).map(option => (
+              <Input onChange={(e)=>addOptions(option, e.target.value)} value={options[option]} key={option} />
+            ))
+          }
+          
         </div>
         <div className="add-button button-container">
-          <Button name='add more choice' onClick={addChoice} />
+          <Button name='add more choice' onClick={addOptionItems} />
         </div>
-        <div className="options">
-          <h3>OPTIONS</h3>
+        <div className="config">
+          <h3>Configurations</h3>
           <div className="option-section">
             <div className="divider" />
             <Checkbox
               option='Single Choice'
-              checked={singleChoice}
-              onSelect={()=>handleChoice()}
+              checked={singleOption}
+              onSelect={()=>handleOption()}
             />
             <Checkbox
               option='Multiple Choice'
-              checked={!singleChoice}
-              onSelect={()=>handleChoice()}
+              checked={!singleOption}
+              onSelect={()=>handleOption()}
             />
           </div>
           
@@ -49,7 +100,8 @@ const CreatePollPage = () => {
         </div>
         <div className="create-preview-button button-container">
           <Button name='preview' />
-          <Button name='create' />
+          <Button name='create' onClick={()=>createPoll(question, options)} />
+          
         </div>
       </div>
             
@@ -81,6 +133,14 @@ const CreatePollPage = () => {
                     background:var(--inActive-color);
                     margin: 30px 0;
                 }
+                .input-area{
+                    padding:20px 0;
+                }
+                 h2 {
+                    text-transform: capitalize;
+                    margin:0;
+                    margin-bottom:10px;
+                  }
             `}
       </style>
     </Layout>

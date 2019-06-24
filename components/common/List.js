@@ -16,7 +16,7 @@ const List = ({ content, href, status }) =>{
             <Icons name='polygon' style={iconStyle} />
           </div>
           <div className="tag">
-            <Tag name={status} status={status} style={{ width: '60px' }} />
+            <Tag name={status} status={status} style={{ width: '70px' }} />
           </div>
           <div className="list-content">
             {content}
@@ -30,7 +30,7 @@ const List = ({ content, href, status }) =>{
                 list-style:none;
                 position:relative;
                 padding-left:25px;
-                padding-right:120px;
+                padding-right:140px;
                 margin-bottom:25px;
                 cursor:pointer;
                

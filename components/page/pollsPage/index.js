@@ -63,7 +63,7 @@ class PollsPage extends Component {
     const { options, name, active } = this.props.poll;
     if (this.state.voteSent) {
       return (
-        <Layout title="question" classnames="question-page" hideHeader>
+        <Layout title="question" classnames="question-page" hideHeader pageTitle='TorralPoll-Question'>
           <h3>Thanks for your vote! It was received and securely stored.</h3>
           <h3>
             It cannot be changed by
@@ -79,7 +79,7 @@ class PollsPage extends Component {
       );
     }
     return (
-      <Layout title="question" classnames="question-page" author='author'>
+      <Layout title="question" classnames="question-page" author='author' pageTitle='TorralPoll-Question'>
         <div className="page-inner">
           <div className="description">
             {name}
@@ -208,7 +208,7 @@ class PollsPage extends Component {
     const activePolls = polls.filter(poll => poll.active);
     const closedPolls = polls.filter(poll => !poll.active);
     return (
-      <Layout title='Poll list'>
+      <Layout title='Poll list' pageTile='TorralPoll - poll List'>
         <div className="filter">
           {Tags.map(tag =>
             <Tag name={tag} status={tag} onClick={() => this.handleFilter(tag)} active={tag===status} key={tag} />

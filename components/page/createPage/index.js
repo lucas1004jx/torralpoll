@@ -12,10 +12,10 @@ const CreatePollPage = () => {
 
 
   const defaultOptions = {
-    option1: 'opt1',
-    option2: 'opt2',
-    option3: 'opt3',
-    option4: 'opt4'
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: ''
   };
   const [options, setOptions] = useState(defaultOptions);
 

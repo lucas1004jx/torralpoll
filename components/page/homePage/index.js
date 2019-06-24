@@ -8,15 +8,17 @@ const HomePage = () => {
     background: '#fff',
     color: '#17AD8D',
     fontWeight: '500',
-    fontSize: '20px'
+    fontSize: '16px'
   };
   return (
     <Layout classnames='home-page' hideHeader>
-      <h1>torralpoll!</h1>
+      <div className="title">
+        <h1>torralpoll!</h1>
+      </div>
       <figure>
         <img src="/static/svg/graphic.svg" alt="graphic" />
       </figure>
-      <div className="create-button">
+      <div className="intro-section">
         <div className="intro">
           <p>
             Once upon a time (like until now), there was a group of people, working together in a splendid company.
@@ -42,45 +44,60 @@ const HomePage = () => {
 
       <style jsx global>
         {`
+        body{
+          background:var(--dark-color);
+        }
         .home-page{
             background:var(--dark-color);
             margin:0;
-            padding:0;
+            padding:48px 25px 0 25px;
             width:100vw;
             height:100vh;
             max-width:none;
             min-height: 773px;
+            display:grid;
+            grid-template-columns:1fr 350px;
+            grid-template-rows:250px 1fr;
+            grid-column-gap:15px;
+            grid-row-gap:25px;
+            max-width:1200px;
+            margin:0 auto;
         }
         figure{
-            width:500px;
-            position:absolute;
-            bottom:0;
-            right:50px;
+            width:100%;
             margin:0;
+            grid-column:2/3;
+            grid-row:1/3;
         }
         img{
             width:100%;
             height:100%;
-            object-fit:cover;
+            object-fit:contain;
+            object-position:bottom;
         }
-        .create-button{
-            position:absolute;
-            top:45%;
-            left:15%;
+        .intro-section{
             max-width:500px;
+            margin:0 auto;
             color:#fff;
             font-size:15px;
             line-height:1.5;
             overflow:hidden;
+            grid-column:1/2;
+            grid-row:2/3;
+        }
+        .title{
+            color:#fff;
+            grid-column:1/2;
+            grid-row:1/2;
+            display: flex;
+            align-items: center;
         }
         h1{
-            color:#fff;
-            position:absolute;
-            top:20%;
-            left:50px;
-            transform:rotate(-30deg);
-            font-size:60px;
+          margin:0;
+          font-size:48px;
+          transform:rotate(-30deg);
         }
+        
         h1:after{
             content:'';
             display:block;
@@ -102,6 +119,34 @@ const HomePage = () => {
         @keyframes show{
             from{opacity:0}
             to{opacity:1}
+        }
+
+        @media(max-width:999px){
+          .home-page{
+            grid-template-columns:1fr 280px;
+          }
+          .title{
+            align-items: flex-end;
+          }
+          h1{
+            transform:rotate(0deg);
+          }
+          .intro-section{
+            margin:0;
+          }
+        }
+        @media(max-width:768px){
+          .home-page{
+            grid-template-columns:1fr;
+            grid-template-rows:150px min-content;
+            min-height:auto;
+          }
+          figure{
+            display:none;
+          }
+          .intro-section{
+            grid-column:1/3;
+          }
         }
         `}
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>x</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Form" transform="translate(-1192.000000, -1114.000000)">
+            <g id="CHOICES" transform="translate(84.000000, 1002.500000)">
+                <g id="choice" transform="translate(0.000000, 98.000000)">
+                    <g id="x" transform="translate(1108.000000, 13.000000)">
+                        <circle id="Oval" fill="#B85346" cx="35" cy="35.5" r="35"></circle>
+                        <path d="M19,19.5 L51,50.5 L19,19.5 Z" id="Line-5" stroke="#FFFFFF" stroke-width="4" stroke-linecap="square"></path>
+                        <path d="M51,19.5 L19,50.5 L51,19.5 Z" id="Line-5-Copy" stroke="#FFFFFF" stroke-width="4" stroke-linecap="square"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

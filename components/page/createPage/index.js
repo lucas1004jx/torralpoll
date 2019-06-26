@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
-import { Input, Button, Checkbox, Layout } from '../../common';
+import { Input, Button, Checkbox, Layout, Icons } from '../../common';
 
 
 const CreatePollPage = () => {
@@ -9,6 +9,7 @@ const CreatePollPage = () => {
   const [singleOption, setSingleOption] = useState(true);
   const [optionItems, setOptionItems] = useState(4);
   const [question, setQuestion] = useState('');
+  const [description, setDescription] = useState('');
 
 
   const defaultOptions = {
@@ -26,6 +27,13 @@ const CreatePollPage = () => {
 
   const addOptionItems = () => {
     setOptionItems(optionItems + 1);
+  };
+
+  const removeOptionItems = () => {
+    if(optionItems >1) {
+      setOptionItems(optionItems -1);
+    }
+    
   };
 
   const optionItemsArray = (num) => (
@@ -53,23 +61,34 @@ const CreatePollPage = () => {
       .catch(err=>`something went wrong, error message ${err}`);
   };
 
+  const closeStyle = {
+    width: 30,
+    height: 30,
+    position: 'absolute',
+    top: '50%',
+    right: '-10px',
+    transform: 'translate(100%,-50%)'
+  };
   return(
     <Layout className="create-polling-page">
       <div className="page-inner">
         <div className="input-area">
           <h2>Question</h2>
-          <Input onChange={(e)=>setQuestion(e.target.value)} value={question} />
+          <Input onChange={(e)=>setQuestion(e.target.value)} value={question} placeHolder="what do you wanna ask" />
         </div>
         <div className="input-area">
           <h2>Description</h2>
-          <Input  />
+          <Input onChange={e => setDescription(e.target.value)} value={description} placeHolder='Describe your question' type='textarea' />
         </div>
         
         <div className="input-area">
           <h2>Options</h2>
           {
             optionItemsArray(optionItems).map(option => (
-              <Input onChange={(e)=>addOptions(option, e.target.value)} value={options[option]} key={option} />
+              <div style={{ position: 'relative' }}>
+                <Input onChange={(e)=>addOptions(option, e.target.value)} value={options[option]} key={option} placeHolder={option} />
+                <Icons name='close' style={closeStyle} onClick={removeOptionItems} />
+              </div>
             ))
           }
           

@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 
-const Input = ({ type='text', onChange, value }) => {
+const Input = (props) => {
   return (
     <Fragment>
-     
-      <input className="input" type={type} onChange={onChange} value={value} />
+      <input className="input" {...props} />
      
       <style jsx>
         {`

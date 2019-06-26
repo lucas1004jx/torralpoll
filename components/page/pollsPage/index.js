@@ -60,7 +60,7 @@ class PollsPage extends Component {
     this.setState({ status });
   }
   renderPollDetail = () => {
-    const { options, name, active } = this.props.poll;
+    const { options, name, active, description } = this.props.poll;
     if (this.state.voteSent) {
       return (
         <Layout title="question" classnames="question-page" hideHeader pageTitle='TorralPoll-Question'>
@@ -79,11 +79,11 @@ class PollsPage extends Component {
       );
     }
     return (
-      <Layout title="question" classnames="question-page" author='author' pageTitle='TorralPoll-Question'>
+      <Layout title={name} classnames="question-page" author='author' pageTitle='TorralPoll-Question'>
         <div className="page-inner">
-          <div className="description">
-            {name}
-          </div>
+          <p className="description">
+            { description}
+          </p>
 
           <div className="left">
             <ul className="lists">
@@ -181,7 +181,6 @@ class PollsPage extends Component {
           ul{
               padding:0;
               margin:0;
-              padding-left: 20px;
               margin-top:30px;
           }
           .submit-button{
@@ -191,9 +190,10 @@ class PollsPage extends Component {
           .left{
               width:60%;
           }
-          .page-inner{
-              max-width:800px;
-              margin:0 auto;
+          
+          .description{
+            font-size:18px;
+            line-height:1.4;
           }
         `}
         </style>

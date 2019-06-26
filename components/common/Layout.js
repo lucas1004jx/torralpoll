@@ -21,7 +21,7 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
         <h1>{title}</h1>
         {author && (
           <span className="author">
-            {author}
+            @{author}
           </span>
         )}
       </div>
@@ -49,7 +49,7 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
                 color:var(--dark-color);
             }
             main{
-                max-width:800px;
+                max-width:1200px;
                 margin:0 auto;
                 box-sizing:border-box;
                 padding: 60px 30px;
@@ -67,10 +67,12 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
             }
             .author{
                 align-self:flex-end;
-                margin-bottom:10px;
-                margin-left:20px;
+                margin-left:15px;
+                font-size:14px;
             }
-        
+          .question-page h1{
+            font-size:48px;
+          }
             `}
     </style>
   </main>

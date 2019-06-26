@@ -6,17 +6,16 @@ import { Input, Button, Checkbox, Layout, Icons } from '../../common';
 
 const CreatePollPage = () => {
 
-  const [singleOption, setSingleOption] = useState(true);
-  const [question, setQuestion] = useState('');
-  const [description, setDescription] = useState('');
-  const [optionItems, setOptionitems] = useState(4);
-
   const defaultOptions = {
     option1: '',
     option2: '',
     option3: '',
     option4: ''
   };
+  const [singleOption, setSingleOption] = useState(true);
+  const [question, setQuestion] = useState('');
+  const [description, setDescription] = useState('');
+  const [optionItems, setOptionitems] = useState(4);
   const [options, setOptions] = useState(defaultOptions);
 
 
@@ -45,11 +44,12 @@ const CreatePollPage = () => {
 
 
 
-  const createPoll = (question='question', options)=>{
+  const createPoll = (question='question', description, options)=>{
     const optionsArray = Object.keys(options).map(key => options[key]);
     axios
       .post('https://torralbot-back.herokuapp.com/create', {
         name: question,
+        description,
         options: optionsArray,
 
       })
@@ -115,7 +115,7 @@ const CreatePollPage = () => {
         </div>
         <div className="create-preview-button button-container">
           <Button name='preview' />
-          <Button name='create' onClick={()=>createPoll(question, options)} />
+          <Button name='create' onClick={()=>createPoll(question, description, options)} />
           
         </div>
       </div>

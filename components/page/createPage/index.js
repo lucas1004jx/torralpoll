@@ -7,10 +7,9 @@ import { Input, Button, Checkbox, Layout, Icons } from '../../common';
 const CreatePollPage = () => {
 
   const [singleOption, setSingleOption] = useState(true);
-  const [optionItems, setOptionItems] = useState(4);
   const [question, setQuestion] = useState('');
   const [description, setDescription] = useState('');
-
+  const [optionItems, setOptionitems] = useState(4);
 
   const defaultOptions = {
     option1: '',
@@ -20,28 +19,25 @@ const CreatePollPage = () => {
   };
   const [options, setOptions] = useState(defaultOptions);
 
+
   const handleOption = () => {
     setSingleOption(!singleOption);
   };
  
 
-  const addOptionItems = () => {
-    setOptionItems(optionItems + 1);
+  const addOptionItems = (index) => {
+    setOptionitems(optionItems + 1);
+    setOptions({ ...options, [`option${index}`]: '' });
   };
 
-  const removeOptionItems = () => {
+  const removeOptionItems = (id) => {
+    setOptionitems(optionItems-1);
     if(optionItems >1) {
-      setOptionItems(optionItems -1);
+      delete options[id];
     }
     
   };
 
-  const optionItemsArray = (num) => (
-    new Array(num).fill('option').map((option, index)=>(
-      `${option}${index+1}`
-    )
-    )
-  );
 
   const addOptions = (option, value)=>{
     setOptions({ ...options, [option]: value });
@@ -74,27 +70,27 @@ const CreatePollPage = () => {
       <div className="page-inner">
         <div className="input-area">
           <h2>Question</h2>
-          <Input onChange={(e)=>setQuestion(e.target.value)} value={question} placeHolder="what do you wanna ask" />
+          <Input onChange={(e)=>setQuestion(e.target.value)} value={question} placeholder="what do you wanna ask" />
         </div>
         <div className="input-area">
           <h2>Description</h2>
-          <Input onChange={e => setDescription(e.target.value)} value={description} placeHolder='Describe your question' type='textarea' />
+          <Input onChange={e => setDescription(e.target.value)} value={description} placeholder='Describe your question' type='textarea' />
         </div>
         
         <div className="input-area">
           <h2>Options</h2>
           {
-            optionItemsArray(optionItems).map(option => (
-              <div style={{ position: 'relative' }}>
-                <Input onChange={(e)=>addOptions(option, e.target.value)} value={options[option]} key={option} placeHolder={option} />
-                <Icons name='close' style={closeStyle} onClick={removeOptionItems} />
+            Object.keys(options).map((option, index) => (
+              <div style={{ position: 'relative' }} key={option}>
+                <Input onChange={(e)=>addOptions(option, e.target.value)} value={options[option]} placeholder={`option${index+1}`} id={option} />
+                {Object.keys(options).length >1 ? <Icons name='close' style={closeStyle} onClick={()=>removeOptionItems(option)} /> : null}
               </div>
             ))
           }
           
         </div>
         <div className="add-button button-container">
-          <Button name='add more choice' onClick={addOptionItems} />
+          <Button name='add more choice' onClick={()=>addOptionItems(optionItems+1)} />
         </div>
         <div className="config">
           <h3>Configurations</h3>

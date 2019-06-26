@@ -84,6 +84,8 @@ const HomePage = () => {
             overflow:hidden;
             grid-column:1/2;
             grid-row:2/3;
+            height:fit-content;
+            align-self:center;
         }
         .title{
             color:#fff;
@@ -94,8 +96,9 @@ const HomePage = () => {
         }
         h1{
           margin:0;
-          font-size:48px;
+          font-size:60px;
           transform:rotate(-30deg);
+          
         }
         
         h1:after{
@@ -106,10 +109,10 @@ const HomePage = () => {
             background:var(--main-color);
         }
         .intro{
-            animation: slideUp 5s 1 forwards;
+            animation: slideUp 3s 1 forwards;
             }
         .btn{
-            animation: show 1s 4s 1 forwards;
+            animation: show 1s 2s 1 forwards;
             opacity:0; 
         }
         @keyframes slideUp{

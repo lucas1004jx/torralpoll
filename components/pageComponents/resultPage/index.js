@@ -30,9 +30,11 @@ const ResultPage = (props) => {
     const width = '80%';
     const factorX = 0;
     const factorY = 40;
+
     const calcPercetage = (votes) => {
       const total = options.reduce((total, option) => total + option.votes.length, 0);
-      return (votes / total).toFixed(2) * 100;
+     
+      return total !== 0 ? (votes / total).toFixed(2) * 100 : 0;
     };
     
     const svg = d3.select('#graphic').append('svg').attr('width', width).attr('height', height);

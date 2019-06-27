@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { PollsPage } from '../components/page';
+import { PollsPage } from '../components/pageComponents';
 
 class Polls extends Component {
 

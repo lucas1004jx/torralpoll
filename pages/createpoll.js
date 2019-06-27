@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreatePollPage }  from '../components/page';
+import { CreatePollPage }  from '../components/pageComponents';
 
 const CreatePoll = () => {
   

@@ -5,25 +5,6 @@ import { Checkbox, Layout, Button, List, Tag } from '../../common';
 
 class PollsPage extends Component {
 
-  static async getInitialProps({ query }) {
-    let id, poll = {}, polls = [];
-
-    if (query.id) {
-      id = query.id;
-      poll = await axios.get(`https://torralbot-back.herokuapp.com/${id}/details`)
-        .then(res => res.data)
-        .catch(() => console.error('failed to fetch poll detail data'));
-
-      return { poll };
-    } else {
-      polls = await axios.get('https://torralbot-back.herokuapp.com/list')
-        .then(res => res.data)
-        .catch(() => console.error('failed to fetch poll list data'));
-
-      return { polls };
-    }
-
-  }
 
   state = {
     selectedOption: null,
@@ -61,6 +42,7 @@ class PollsPage extends Component {
   }
   renderPollDetail = () => {
     const { options, name, active, description } = this.props.poll;
+    const  { query: { id } }  = this.props.url;
     if (this.state.voteSent) {
       return (
         <Layout title="question" classnames="question-page" hideHeader pageTitle='TorralPoll-Question'>
@@ -73,6 +55,11 @@ class PollsPage extends Component {
           <Link href="/polls">
             <a>
               <Button name='back to list' />
+            </a>
+          </Link>
+          <Link href={`/result?id=${id}`}>
+            <a>
+              <Button name='see result' />
             </a>
           </Link>
         </Layout>
@@ -113,7 +100,11 @@ class PollsPage extends Component {
                 <Button name='back to list' />
               </a>
             </Link>
-
+            <Link href={`/result?id=${id}`}>
+              <a>
+                <Button name='see result' />
+              </a>
+            </Link>
           </div>
         </div>
         <style jsx>
@@ -202,7 +193,8 @@ class PollsPage extends Component {
   }
 
   renderPollList = () => {
-    const { polls: { polls } } = this.props;
+    let  { polls }  = this.props.polls;
+    polls = polls.reverse();
     const { status } = this.state;
     const Tags=['all', 'active', 'closed'];
     const activePolls = polls.filter(poll => poll.active);

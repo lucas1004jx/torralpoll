@@ -114,7 +114,7 @@ const CreatePollPage = () => {
           </div>
         </div>
         <div className="create-preview-button button-container">
-          <Button name='preview' />
+          {/* <Button name='preview' /> */}
           <Button name='create' onClick={()=>createPoll(question, description, options)} />
           
         </div>

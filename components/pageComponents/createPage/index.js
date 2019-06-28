@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
+import Link from 'next/link';
 import { Input, Button, Checkbox, Layout, Icons } from '../../common';
 
 
@@ -22,7 +23,7 @@ const CreatePollPage = () => {
   const handleOption = () => {
     setSingleOption(!singleOption);
   };
- 
+
 
   const addOptionItems = (index) => {
     setOptionitems(optionItems + 1);
@@ -30,21 +31,21 @@ const CreatePollPage = () => {
   };
 
   const removeOptionItems = (id) => {
-    setOptionitems(optionItems-1);
-    if(optionItems >1) {
+    setOptionitems(optionItems - 1);
+    if (optionItems > 1) {
       delete options[id];
     }
-    
+
   };
 
 
-  const addOptions = (option, value)=>{
+  const addOptions = (option, value) => {
     setOptions({ ...options, [option]: value });
   };
 
 
 
-  const createPoll = (question='question', description, options)=>{
+  const createPoll = (question = 'question', description, options) => {
     const optionsArray = Object.keys(options).map(key => options[key]);
     axios
       .post('https://torralbot-back.herokuapp.com/create', {
@@ -53,8 +54,8 @@ const CreatePollPage = () => {
         options: optionsArray,
 
       })
-      .then(()=>Router.push('/polls'))
-      .catch(err=>`something went wrong, error message ${err}`);
+      .then(() => Router.push('/polls'))
+      .catch(err => `something went wrong, error message ${err}`);
   };
 
   const closeStyle = {
@@ -65,32 +66,32 @@ const CreatePollPage = () => {
     right: '-10px',
     transform: 'translate(100%,-50%)'
   };
-  return(
+  return (
     <Layout className="create-polling-page" pageTitle='TorralPoll-Create'>
       <div className="page-inner">
         <div className="input-area">
           <h2>Question</h2>
-          <Input onChange={(e)=>setQuestion(e.target.value)} value={question} placeholder="what do you wanna ask" />
+          <Input onChange={(e) => setQuestion(e.target.value)} value={question} placeholder="what do you wanna ask" />
         </div>
         <div className="input-area">
           <h2>Description</h2>
           <Input onChange={e => setDescription(e.target.value)} value={description} placeholder='Describe your question' type='textarea' />
         </div>
-        
+
         <div className="input-area">
           <h2>Options</h2>
           {
             Object.keys(options).map((option, index) => (
               <div style={{ position: 'relative' }} key={option}>
-                <Input onChange={(e)=>addOptions(option, e.target.value)} value={options[option]} placeholder={`option${index+1}`} id={option} />
-                {Object.keys(options).length >1 ? <Icons name='close' style={closeStyle} onClick={()=>removeOptionItems(option)} /> : null}
+                <Input onChange={(e) => addOptions(option, e.target.value)} value={options[option]} placeholder={`option${index + 1}`} id={option} />
+                {Object.keys(options).length > 1 ? <Icons name='close' style={closeStyle} onClick={() => removeOptionItems(option)} /> : null}
               </div>
             ))
           }
-          
+
         </div>
         <div className="add-button button-container">
-          <Button name='add more choice' onClick={()=>addOptionItems(optionItems+1)} />
+          <Button name='add more choice' onClick={() => addOptionItems(optionItems + 1)} />
         </div>
         <div className="config">
           <h3>Configurations</h3>
@@ -99,27 +100,32 @@ const CreatePollPage = () => {
             <Checkbox
               option='Single Choice'
               checked={singleOption}
-              onSelect={()=>handleOption()}
+              onSelect={() => handleOption()}
             />
             <Checkbox
               option='Multiple Choice'
               checked={!singleOption}
-              onSelect={()=>handleOption()}
+              onSelect={() => handleOption()}
             />
           </div>
-          
+
           <div className="option-section">
             <div className="divider" />
             <Checkbox option='set active time' />
           </div>
         </div>
         <div className="create-preview-button button-container">
+          <Link href="/polls">
+            <a>
+              <Button name='see list' />
+            </a>
+          </Link>
           {/* <Button name='preview' /> */}
-          <Button name='create' onClick={()=>createPoll(question, description, options)} />
-          
+          <Button name='create' onClick={() => createPoll(question, description, options)} />
+
         </div>
       </div>
-            
+
       <style jsx>
         {`
                 .create-polling-page{

@@ -211,7 +211,7 @@ class PollsPage extends Component {
             <Tag name={tag} status={tag} onClick={() => this.handleFilter(tag)} active={tag === status} key={tag} />
           )}
 
-          <Link href="/createPoll">
+          <Link href="/createpoll">
             <a>
               <Button name='create poll' style={{ 'float': 'right' }} />
             </a>

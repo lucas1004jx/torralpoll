@@ -9,7 +9,8 @@ class PollsPage extends Component {
   state = {
     selectedOption: null,
     voteSent: false,
-    status: 'all'
+    status: 'all',
+    name: ''
   };
 
 
@@ -21,6 +22,14 @@ class PollsPage extends Component {
   onSubmit = () => {
     const { url: { query: { id } } } = this.props;
     const { name, selectedOption } = this.state;
+    if (!name) {
+      alert('You should submit with your name');
+      return;
+    }
+    if (!selectedOption) {
+      alert('You should choose at least one option');
+      return;
+    }
     axios
       .post(`https://torralbot-back.herokuapp.com/${id}/vote`, {
         user: name,
@@ -42,7 +51,7 @@ class PollsPage extends Component {
   }
   renderPollDetail = () => {
     const { options, name, active, description } = this.props.poll;
-    const  { query: { id } }  = this.props.url;
+    const { query: { id } } = this.props.url;
     if (this.state.voteSent) {
       return (
         <Layout title="question" classnames="question-page" hideHeader pageTitle='TorralPoll-Question'>
@@ -69,7 +78,7 @@ class PollsPage extends Component {
       <Layout title={name} classnames="question-page" author='author' pageTitle='TorralPoll-Question'>
         <div className="page-inner">
           <p className="description">
-            { description}
+            {description}
           </p>
 
           <div className="left">
@@ -100,11 +109,7 @@ class PollsPage extends Component {
                 <Button name='back to list' />
               </a>
             </Link>
-            <Link href={`/result?id=${id}`}>
-              <a>
-                <Button name='see result' />
-              </a>
-            </Link>
+
           </div>
         </div>
         <style jsx>
@@ -193,29 +198,29 @@ class PollsPage extends Component {
   }
 
   renderPollList = () => {
-    let  { polls }  = this.props.polls;
+    let { polls } = this.props.polls;
     polls = polls.reverse();
     const { status } = this.state;
-    const Tags=['all', 'active', 'closed'];
+    const Tags = ['all', 'active', 'closed'];
     const activePolls = polls.filter(poll => poll.active);
     const closedPolls = polls.filter(poll => !poll.active);
     return (
       <Layout title='Poll list' pageTile='TorralPoll - poll List'>
         <div className="filter">
           {Tags.map(tag =>
-            <Tag name={tag} status={tag} onClick={() => this.handleFilter(tag)} active={tag===status} key={tag} />
+            <Tag name={tag} status={tag} onClick={() => this.handleFilter(tag)} active={tag === status} key={tag} />
           )}
 
 
         </div>
         {status === 'all' && polls.map(poll => (
-          <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
+          <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} />
         ))}
         {status === 'active' && activePolls.map(poll => (
           <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
         ))}
         {status === 'closed' && closedPolls.map(poll => (
-          <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
+          <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={`/result?id=${poll._id}`} key={poll._id} />
         ))}
         <style jsx>
           {`
@@ -246,7 +251,7 @@ class PollsPage extends Component {
       <div>can not find data</div>
     );
 
-    
+
   }
 }
 

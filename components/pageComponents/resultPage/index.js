@@ -5,7 +5,7 @@ import { Layout, Button } from '../../common';
 
 const ResultPage = (props) => {
   const { name, description, options } = props;
-  useEffect(()=>{
+  useEffect(() => {
     drawResult();
   });
 
@@ -17,10 +17,10 @@ const ResultPage = (props) => {
     }
     return color;
   };
-  const drawResult = ()=>{
+  const drawResult = () => {
     let data = [];
 
-    options.map(({ name, votes })=>data.push({ 
+    options.map(({ name, votes }) => data.push({
       'name': name,
       'votes': votes.length,
       'fill': getRandomColor()
@@ -33,10 +33,10 @@ const ResultPage = (props) => {
 
     const calcPercetage = (votes) => {
       const total = options.reduce((total, option) => total + option.votes.length, 0);
-     
+
       return total !== 0 ? (votes / total).toFixed(2) * 100 : 0;
     };
-    
+
     const svg = d3.select('#graphic').append('svg').attr('width', width).attr('height', height);
     svg
       .selectAll('rect')
@@ -44,22 +44,22 @@ const ResultPage = (props) => {
       .enter()
       .append('rect')
       .attr('x', factorX)
-      .attr('y', (d, i)=>  factorY * i)
-      .attr('width', (d)=> `${calcPercetage(d.votes)}%`)
-      .attr('height',  25)
-      .attr('fill', (d)=>d.fill);
+      .attr('y', (d, i) => factorY * i)
+      .attr('width', (d) => `${calcPercetage(d.votes)}%`)
+      .attr('height', 25)
+      .attr('fill', (d) => d.fill);
 
     svg
       .selectAll('text')
       .data(data)
       .enter()
       .append('text')
-      .text((d)=>`${d.name} ${d.votes} votes`)
+      .text((d) => `${d.name} ${d.votes} votes`)
       .attr('x', (d) => `${calcPercetage(d.votes) + 1}%`)
       .attr('y', (d, i) => factorY * i + 20)
-      .attr('fill',  '#263C47');
+      .attr('fill', '#263C47');
   };
-  return(
+  return (
     <Layout title='results' classnames='result-page'>
       <h2>{name}</h2>
       <p>{description}</p>

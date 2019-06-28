@@ -34,6 +34,7 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
                 --main-color: #17AD8D;
                 --inActive-color:#979797;
                 --dark-color:#263C47;
+                --light-blue:#54C6FF;
                 --tag-all:#FAC314;
                 --tag-active:#079AE0;
                 --tag-closed:#B85346;
@@ -69,6 +70,9 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
                 align-self:flex-end;
                 margin-left:15px;
                 font-size:14px;
+            }
+            .home-page nav{
+              background:var(--light-blue);
             }
           .question-page h1{
             font-size:48px;

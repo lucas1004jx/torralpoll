@@ -16,7 +16,7 @@ const HomePage = () => {
         <h1>torralpoll!</h1>
       </div>
       <figure>
-        <img src="/static/svg/graphic.svg" alt="graphic" />
+        <img src="/static/svg/team.svg" alt="team" />
       </figure>
       <div className="intro-section">
         <div className="intro">
@@ -45,10 +45,10 @@ const HomePage = () => {
       <style jsx global>
         {`
         body{
-          background:var(--dark-color);
+          background:var(--light-blue);
         }
         .home-page{
-            background:var(--dark-color);
+            background:var(--light-blue);
             margin:0;
             padding:48px 25px 0 25px;
             width:100vw;
@@ -56,7 +56,7 @@ const HomePage = () => {
             max-width:none;
             min-height: 773px;
             display:grid;
-            grid-template-columns:1fr 350px;
+            grid-template-columns:repeat(3, 1fr);
             grid-template-rows:250px 1fr;
             grid-column-gap:15px;
             grid-row-gap:25px;
@@ -66,7 +66,7 @@ const HomePage = () => {
         figure{
             width:100%;
             margin:0;
-            grid-column:2/3;
+            grid-column: span 2 / -1;
             grid-row:1/3;
         }
         img{
@@ -82,7 +82,7 @@ const HomePage = () => {
             font-size:15px;
             line-height:1.5;
             overflow:hidden;
-            grid-column:1/2;
+            grid-column:1/3;
             grid-row:2/3;
             height:fit-content;
             align-self:center;
@@ -154,6 +154,7 @@ const HomePage = () => {
         `}
 
       </style>
+      
     </Layout>
   );
 };

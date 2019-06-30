@@ -31,38 +31,41 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
     <style jsx global>
       {`
             :root{
-                --main-color: #17AD8D;
-                --inActive-color:#979797;
-                --dark-color:#263C47;
-                --light-blue:#54C6FF;
+                --color-main: #17AD8D;
+                --color-background:#5F9EA0;
+                --color-inActive:#979797;
+                --color-dark:#667270;
+                --color-text:#4a4a4a;
                 --tag-all:#FAC314;
                 --tag-active:#079AE0;
                 --tag-closed:#B85346;
-                --main-font:'Lato', sans-serif;
-                --header-font: 'Chalkduster', 'Lato', sans-serif;
+                --font-main:'Lato', sans-serif;
+                --font-header: 'Chalkduster', 'Lato', sans-serif;
             }
             @font-face {
               font-family: Chalkduster;
               src: url('/staic/fonts/Chalkduster.ttf');
             }
             body{
-                font-family:var(--main-font);
+                font-family:var(--font-main);
                 padding: 0;
                 margin:0;
                 box-sizing:border-box;
                 width:100%;
                 position:relative;
-                color:var(--dark-color);
+                color:var(--color-dark);
             }
             main{
-                max-width:1200px;
+                max-width:1400px;
+                height:100vh;
+                min-height:100vh;
                 margin:0 auto;
                 box-sizing:border-box;
                 padding: 60px 30px;
                 padding-bottom:50px;
             }
             .title{
-                font-family: var(--header-font);
+                font-family: var(--font-header);
                 display:flex;
                 margin:20px 0;
             }
@@ -77,13 +80,17 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
                 margin-left:15px;
                 font-size:14px;
             }
-            .home-page nav{
-              background:var(--light-blue);
-            }
+           
+            
           .question-page h1{
             font-size:48px;
           }
             `}
+    </style>
+    <style jsx>
+      {`
+        
+      `}
     </style>
   </main>
 );

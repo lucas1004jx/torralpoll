@@ -42,7 +42,7 @@ const PollLists = (props) => {
         {`
             .filter{
               margin-bottom:15px;
-              border-bottom:2px solid var(--inActive-color);
+              border-bottom:2px solid var(--color-inActive);
               padding-bottom:15px;
             }
           `}

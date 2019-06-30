@@ -156,7 +156,7 @@ const CreatePollPage = () => {
                 }
                 .divider{
                     height:1px;
-                    background:var(--inActive-color);
+                    background:var(--color-inActive);
                     margin: 30px 0;
                 }
                 .input-area{

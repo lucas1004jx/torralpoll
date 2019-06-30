@@ -135,7 +135,7 @@ const PollDetail = (props) => {
                 margin-bottom: 15px;
             }
             .selected {
-                color: var(--dark-color)
+                color: var(--color-dark)
             }
             
           /* The close button */

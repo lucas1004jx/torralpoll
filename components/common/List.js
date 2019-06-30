@@ -6,7 +6,7 @@ const List = ({ content, href, status }) =>{
   const iconStyle = {
     width: 20,
     height: 'auto',
-    fill: `${status === 'active' ?  'var(--main-color)' :'var(--inActive-color)'}`
+    fill: `${status === 'active' ?  'var(--color-main)' :'var(--color-inActive)'}`
   };
   return ( 
     <div className={`list ${status ==='closed' ? 'closed' : ''}`}>
@@ -41,10 +41,10 @@ const List = ({ content, href, status }) =>{
             }
             .list-content{
                 font-size:22px;
-                color:var(--dark-color);
+                color:var(--color-dark);
             }
             .list.closed .list-content{
-                color:var(--inActive-color);
+                color:var(--color-inActive);
             }
             .list-content:after{
                 content:"";

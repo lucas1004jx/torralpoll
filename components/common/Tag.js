@@ -20,7 +20,7 @@ const Tag = ({ name, status, onClick, style, active=true }) => {
         transition:background .5s ease;
     }
     .tag.inActive{
-      background:var(--inActive-color);
+      background:var(--color-inActive);
     }    
     `}
 

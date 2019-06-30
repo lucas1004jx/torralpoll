@@ -7,11 +7,11 @@ const Button = ({ name, ...props }) =>(
     <style jsx>
       {`
         button{
-            background:var(--main-color);
+            background:var(--color-main);
             color:#fff;
             padding:15px 20px;
             border:none;
-            border-radius:4px;
+            border-radius:8px;
             text-transform: uppercase;
             margin-right:15px;
             cursor:pointer;

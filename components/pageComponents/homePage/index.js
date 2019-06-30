@@ -12,92 +12,72 @@ const HomePage = () => {
   };
   return (
     <Layout classnames='home-page' hideHeader pageTitle='TorralPoll-Home'>
-      <div className="title">
-        <h1>torralpoll!</h1>
-      </div>
-      <figure>
-        <img src="/static/svg/team.svg" alt="team" />
-      </figure>
-      <div className="intro-section">
-        <div className="intro">
-          <p>
+      <div className="home-page-inner">
+        <div className="intro-section">
+          <div className="title">
+            <h1>TorralPoll!</h1>
+          </div>
+          <div className="intro">
+            <p>
             Once upon a time (like until now), there was a group of people, working together in a splendid company.
-          </p>
-          <p>From time to time (every friday) they enjoy going out for lunch in one among the most fancy (maybe not ) restaurants around their workplace.</p>
-          <p>They are supposed to choose the restaurant in a democratic and civilized way but since the first introduction of the current  voting system a lot of doubts have arisen, a lot of rumors surround the system and its keeper and maintainer regarding the lawfulness of their methods. </p>
-          <p>
+            </p>
+            <p>From time to time (every friday) they enjoy going out for lunch in one among the most fancy (maybe not ) restaurants around their workplace.</p>
+            <p>They are supposed to choose the restaurant in a democratic and civilized way but since the first introduction of the current  voting system a lot of doubts have arisen, a lot of rumors surround the system and its keeper and maintainer regarding the lawfulness of their methods. </p>
+            <p>
             The growing discontent among the people of the company led to the birth of the tool we are going to unveil today in order to end the era of oppression and tyranny of the old voting system.
-          </p>
+            </p>
+          </div>
+          <Link prefetch href="/createpoll">
+            <a className="btn">
+              <Button name="create a poll" style={btnStyle} />
+            </a>
+          </Link>
+          <Link prefetch href="/polls">
+            <a className="btn">
+              <Button name="see polls" style={btnStyle} />
+            </a>
+          </Link>
+
         </div>
-        <Link prefetch href="/createpoll">
-          <a className="btn">
-            <Button name="create a poll" style={btnStyle} />
-          </a>
-        </Link>
-        <Link prefetch href="/polls">
-          <a className="btn">
-            <Button name="see polls" style={btnStyle} />
-          </a>
-        </Link>
-
-      </div>
-
+      </div> 
       <style jsx global>
         {`
         body{
-          background:var(--light-blue);
+          background:var(--color-background);
         }
-        .home-page{
-            background:var(--light-blue);
+      `}
+      </style>
+      <style jsx>
+        {`
+        .home-page-inner{
             margin:0;
-            padding:48px 25px 0 25px;
-            width:100vw;
-            height:100vh;
-            max-width:none;
+            min-height:100%;
             display:grid;
-            grid-template-columns:repeat(3, 1fr);
-            grid-template-rows:1fr 1.5fr;
-            grid-column-gap:15px;
-            grid-row-gap:25px;
-            max-width:1200px;
+            grid-template-columns:1fr;
+            grid-template-rows:1fr auto 1fr;
             margin:0 auto;
-        }
-        figure{
-            width:100%;
-            margin:0;
-            grid-column: span 2 / -1;
-            grid-row:1/3;
-        }
-        img{
-            width:100%;
-            height:100%;
-            object-fit:contain;
-            object-position:bottom;
+            background:url('/static/svg/team.svg') no-repeat right bottom;
+            background-size:80% auto;
         }
         .intro-section{
-            max-width:500px;
-            margin:0 auto;
-            color:#fff;
-            font-size:15px;
+            max-width:600px;
+            font-size:18px;
             line-height:1.5;
             overflow:hidden;
-            grid-column:1/3;
+            grid-column:1/2;
             grid-row:2/3;
             height:fit-content;
-            align-self:center;
+            color:var(--color-text);
+            padding: 15px 0;
         }
         .title{
             color:#fff;
-            grid-column:1/3;
-            grid-row:1/2;
-            display: flex;
-            align-items: flex-end;
-            justify-content:center;
+            margin-bottom:50px;
         }
         h1{
           margin:0;
-          font-size:60px;
-         
+          font-size:70px;
+          text-transform:none;
         }
         
         h1:after{
@@ -105,11 +85,12 @@ const HomePage = () => {
             display:block;
             width:100%;
             height:10px;
-            background:var(--main-color);
+            background:var(--color-main);
         }
         .intro{
             animation: slideUp 3s 1 forwards;
-            }
+            margin-bottom:25px;
+          }
         .btn{
             animation: show 1s 2s 1 forwards;
             opacity:0; 
@@ -129,9 +110,6 @@ const HomePage = () => {
           }
           .title{
             align-items: flex-end;
-          }
-          h1{
-            transform:rotate(0deg);
           }
           .intro-section{
             margin:0;

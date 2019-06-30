@@ -16,7 +16,7 @@ const Navbar = () =>{
       <style jsx>
         {`
         nav{
-          background:var(--dark-color);
+          background:var(--color-dark);
           height:${navbar_height}px;
           padding:${navbar_padding}px 15px;
           display:flex;

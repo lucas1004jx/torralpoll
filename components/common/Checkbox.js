@@ -6,7 +6,7 @@ const Checkbox = ({ option, checked, onSelect }) => {
   const polygonStyle = {
     width: 20,
     height: 'auto',
-    fill: checked ? 'var(--main-color)' : 'var(--inActive-color)',
+    fill: checked ? 'var(--color-main)' : 'var(--color-inActive)',
     transform: checked ? 'rotate(360deg) scale(1.1)' : 'rotate(0deg) scale(1)'
   };
   return (

@@ -19,7 +19,7 @@ const Input = (props) => {
             box-sizing:border-box;
             margin-bottom:15px;
             padding:10px;
-            border:1px solid var(--main-color);
+            border:1px solid var(--color-main);
         }
         textarea{
           height:200px;

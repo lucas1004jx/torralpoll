@@ -39,6 +39,11 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
                 --tag-active:#079AE0;
                 --tag-closed:#B85346;
                 --main-font:'Lato', sans-serif;
+                --header-font: 'Chalkduster', 'Lato', sans-serif;
+            }
+            @font-face {
+              font-family: Chalkduster;
+              src: url('/staic/fonts/Chalkduster.ttf');
             }
             body{
                 font-family:var(--main-font);
@@ -57,6 +62,7 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
                 padding-bottom:50px;
             }
             .title{
+                font-family: var(--header-font);
                 display:flex;
                 margin:20px 0;
             }

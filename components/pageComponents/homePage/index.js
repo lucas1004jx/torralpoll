@@ -56,7 +56,7 @@ const HomePage = () => {
             max-width:none;
             display:grid;
             grid-template-columns:repeat(3, 1fr);
-            grid-template-rows:250px 1fr;
+            grid-template-rows:1fr 1.5fr;
             grid-column-gap:15px;
             grid-row-gap:25px;
             max-width:1200px;
@@ -88,16 +88,16 @@ const HomePage = () => {
         }
         .title{
             color:#fff;
-            grid-column:1/2;
+            grid-column:1/3;
             grid-row:1/2;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
+            justify-content:center;
         }
         h1{
           margin:0;
           font-size:60px;
-          transform:rotate(-30deg);
-          
+         
         }
         
         h1:after{

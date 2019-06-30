@@ -9,12 +9,15 @@ const CreatePollPage = () => {
 
   const defaultOptions = {
     option1: '',
+    option2: '',
+    option3: '',
+    option4: ''
 
   };
   const [singleOption, setSingleOption] = useState(true);
   const [question, setQuestion] = useState('');
   const [description, setDescription] = useState('');
-  const [optionItems, setOptionitems] = useState(1);
+  const [optionItems, setOptionitems] = useState(Object.keys(defaultOptions).length);
   const [options, setOptions] = useState(defaultOptions);
 
 
@@ -38,7 +41,11 @@ const CreatePollPage = () => {
 
 
   const addOptions = (option, value) => {
-    setOptions({ ...options, [option]: value });
+    //for support safari object keys order
+    setOptions(()=>{
+      options[option] = value;
+      return { ...options };
+    });
   };
 
 

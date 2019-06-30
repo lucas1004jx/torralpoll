@@ -54,7 +54,6 @@ const HomePage = () => {
             width:100vw;
             height:100vh;
             max-width:none;
-            min-height: 773px;
             display:grid;
             grid-template-columns:repeat(3, 1fr);
             grid-template-rows:250px 1fr;

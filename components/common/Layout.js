@@ -34,7 +34,7 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
                 --color-main: #17AD8D;
                 --color-background:#5F9EA0;
                 --color-inActive:#979797;
-                --color-dark:#667270;
+                --color-dark:#263C47;
                 --color-text:#4a4a4a;
                 --tag-all:#FAC314;
                 --tag-active:#079AE0;
@@ -44,7 +44,7 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
             }
             @font-face {
               font-family: Chalkduster;
-              src: url('/staic/fonts/Chalkduster.ttf');
+              src: url('/static/fonts/Chalkduster.woff2');
             }
             body{
                 font-family:var(--font-main);
@@ -85,6 +85,8 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
           .question-page h1{
             font-size:48px;
           }
+
+          
             `}
     </style>
     <style jsx>

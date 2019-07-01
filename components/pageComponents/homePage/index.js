@@ -27,11 +27,6 @@ const HomePage = () => {
             The growing discontent among the people of the company led to the birth of the tool we are going to unveil today in order to end the era of oppression and tyranny of the old voting system.
             </p>
           </div>
-          <Link prefetch href="/createpoll">
-            <a className="btn">
-              <Button name="create a poll" style={btnStyle} />
-            </a>
-          </Link>
           <Link prefetch href="/polls">
             <a className="btn">
               <Button name="see polls" style={btnStyle} />

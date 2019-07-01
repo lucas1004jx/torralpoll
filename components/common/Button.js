@@ -11,7 +11,7 @@ const Button = ({ name, ...props }) =>(
             color:#fff;
             padding:15px 20px;
             border:none;
-            border-radius:8px;
+            border-radius:6px;
             text-transform: uppercase;
             margin-right:15px;
             cursor:pointer;

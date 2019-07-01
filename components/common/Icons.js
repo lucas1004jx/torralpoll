@@ -101,6 +101,8 @@ const Close = ({
   width = '70',
   height = '70',
   viewBox = '0 0 70 70',
+  fill='#B85346',
+  stroke='#FFFFFF',
   ...props
 }) => (
   <svg
@@ -115,9 +117,9 @@ const Close = ({
         <g id="CHOICES" transform="translate(84.000000, 1002.500000)">
           <g id="choice" transform="translate(0.000000, 98.000000)">
             <g id="x" transform="translate(1108.000000, 13.000000)">
-              <circle id="Oval" fill="#B85346" cx="35" cy="35.5" r="35" />
-              <path d="M19,19.5 L51,50.5 L19,19.5 Z" id="Line-5" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="square" />
-              <path d="M51,19.5 L19,50.5 L51,19.5 Z" id="Line-5-Copy" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="square" />
+              <circle id="Oval" fill={fill} cx="35" cy="35.5" r="35" />
+              <path d="M19,19.5 L51,50.5 L19,19.5 Z" id="Line-5" stroke={stroke} strokeWidth="4" strokeLinecap="square" />
+              <path d="M51,19.5 L19,50.5 L51,19.5 Z" id="Line-5-Copy" stroke={stroke} strokeWidth="4" strokeLinecap="square" />
             </g>
           </g>
         </g>

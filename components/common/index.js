@@ -6,6 +6,7 @@ import List from './List';
 import Layout from './Layout';
 import Nav from './Navbar';
 import Tag from './Tag';
+import LoginModal from './LoginModal';
 
 export {
   Button,
@@ -15,5 +16,6 @@ export {
   Layout,
   List,
   Nav,
-  Tag
+  Tag,
+  LoginModal
 };

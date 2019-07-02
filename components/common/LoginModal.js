@@ -1,25 +1,47 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useContext } from 'react';
+import Router from 'next/router';
+import { GoogleLogin } from 'react-google-login';
 import { Icons } from './index';
+import { LoginContext } from '../context';
 
-const LoginModal = (props) =>{
-  const closeStyle ={
+const LoginModal = () => {
+  const closeStyle = {
     width: '40',
     height: '40'
   };
+  const { handleClose, userLogin, getUserProfile } = useContext(LoginContext);
+  const responseSuccess = (res) => {
+    console.log('res', res);
+    const { profileObj } = res;
+    console.log('profileObj', profileObj);
+    sessionStorage.setItem('profile', JSON.stringify(profileObj));
+    Router.push('/polls');
+    userLogin();
+    handleClose();
+    getUserProfile(profileObj);
+  };
+
+  const responseFailed = (res) => {
+    console.log('res faild', res);
+  };
+
+
   return (
     <div className="login-modal">
       <div className="modal-inner">
         <div className="close">
-          <Icons name="close" style={closeStyle} fill='none' stroke='#000' onClick={props.onClick} />
+          <Icons name="close" style={closeStyle} fill='none' stroke='#000' onClick={handleClose} />
         </div>
-        
-        <Link href="/">
-          <a className="google">
-            <img src="/static/svg/google.png" alt="google icon" className="google-icon" />
-            <p>Sign in with Google</p> 
-          </a>
-        </Link>  
+        <GoogleLogin
+          clientId="239251067475-1ov5ieoodtk7579697b8c5r102375ojf.apps.googleusercontent.com"
+          buttonText="Sign in with Google"
+          onSuccess={responseSuccess}
+          onFailure={responseFailed}
+          cookiePolicy="single_host_origin"
+          className="google"
+          redirectUri="/polls"
+        />
+
       </div>
       <style jsx>
         {`
@@ -46,23 +68,7 @@ const LoginModal = (props) =>{
             align-items:center;
             background:url('/static/svg/login.svg') no-repeat center center;
         }
-        .google{
-            width:250px;
-            border:1px solid var(--color-dark);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding: 0 15px;
-            background:#fff;
-            text-decoration:none;
-            color:var(--color-dark);
-        }
-        .google-icon{
-            width:25px;
-            height:25px;
-            flex-shrink:0;
-            margin-right:15px;
-        }
+        
         .close{
             position:absolute;
             right:0;

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Layout, Button } from '../../common';
 
 const ResultPage = (props) => {
-  const { name, description, options } = props;
+  const { name = '', description = '', options = [] } = props;
   useEffect(() => {
     drawResult();
   });

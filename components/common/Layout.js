@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import{ Nav } from './index';
+import { Nav } from './index';
 
 Router.onRouteChangeStart = () => NProgress.start();
 
@@ -10,7 +10,7 @@ Router.onRouteChangeComplete = () => NProgress.done();
 
 Router.onChangeError = () => NProgress.done();
 
-const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='TorralPoll' }) =>(
+const Layout = ({ title, children, classnames, author, hideHeader, pageTitle = 'TorralPoll' }) => (
   <main className={classnames}>
     <Head>
       <title>{pageTitle}</title>
@@ -26,7 +26,7 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
         )}
       </div>
     )}
-    
+
     {children}
     <style jsx global>
       {`
@@ -86,6 +86,21 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle='To
             font-size:48px;
           }
 
+          .google{
+            width:250px;
+            border:1px solid var(--color-dark);
+            display:flex !important;
+            align-items:center;
+            justify-content:center;
+            padding: 0 15px;
+            background:#fff;
+        }
+        
+        .google span{
+          color:var(--color-dark);
+            font-family:var(--font-main);
+            font-size:16px;
+        }
           
             `}
     </style>

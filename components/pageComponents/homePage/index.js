@@ -19,12 +19,12 @@ const HomePage = () => {
           </div>
           <div className="intro">
             <p>
-            Once upon a time (like until now), there was a group of people, working together in a splendid company.
+              Once upon a time (like until now), there was a group of people, working together in a splendid company.
             </p>
             <p>From time to time (every friday) they enjoy going out for lunch in one among the most fancy (maybe not ) restaurants around their workplace.</p>
             <p>They are supposed to choose the restaurant in a democratic and civilized way but since the first introduction of the current  voting system a lot of doubts have arisen, a lot of rumors surround the system and its keeper and maintainer regarding the lawfulness of their methods. </p>
             <p>
-            The growing discontent among the people of the company led to the birth of the tool we are going to unveil today in order to end the era of oppression and tyranny of the old voting system.
+              The growing discontent among the people of the company led to the birth of the tool we are going to unveil today in order to end the era of oppression and tyranny of the old voting system.
             </p>
           </div>
           <Link prefetch href="/polls">
@@ -34,7 +34,7 @@ const HomePage = () => {
           </Link>
 
         </div>
-      </div> 
+      </div>
       <style jsx global>
         {`
         body{
@@ -126,7 +126,7 @@ const HomePage = () => {
         `}
 
       </style>
-      
+
     </Layout>
   );
 };

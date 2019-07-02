@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
+import { server } from '../../../config';
 import { Input, Button, Checkbox, Layout, Icons } from '../../common';
 
 
@@ -42,7 +43,7 @@ const CreatePollPage = () => {
 
   const addOptions = (option, value) => {
     //for support safari object keys order
-    setOptions(()=>{
+    setOptions(() => {
       options[option] = value;
       return { ...options };
     });
@@ -53,7 +54,7 @@ const CreatePollPage = () => {
   const createPoll = (question = 'question', description, options) => {
     const optionsArray = Object.keys(options).map(key => options[key]);
     axios
-      .post('https://torralbot-back.herokuapp.com/create', {
+      .post(`${server}/create`, {
         name: question,
         description,
         options: optionsArray,

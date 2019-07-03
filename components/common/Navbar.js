@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
+import { GoogleLogout } from 'react-google-login';
 import { Icons, LoginModal } from './index';
 import { LoginContext } from '../context';
 
@@ -7,8 +9,13 @@ const Navbar = () => {
   const navbar_height = 56;
   const navbar_padding = 5;
 
-  const { loginModal, handleLogin, loginState, userProfile } = useContext(LoginContext);
+  const { loginModal, handleLogin, loginState, userProfile, userLogout } = useContext(LoginContext);
   console.log('userProfile', userProfile);
+  const logout = () => {
+    console.log('logout');
+    userLogout();
+    Router.replace('/');
+  };
   return (
     <nav>
       <Link href='/'>
@@ -35,6 +42,10 @@ const Navbar = () => {
             <div className="profile-detail">
               <p>{userProfile.name}</p>
               <p> {userProfile.email}</p>
+              <GoogleLogout
+                buttonText="Logout"
+                onLogoutSuccess={logout}
+              />
             </div>
           </div>
         )}

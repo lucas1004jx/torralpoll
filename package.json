@@ -2,7 +2,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next --port 8080",
-    "now-build": "next build"
+    "now-build": "next build",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",

@@ -12,9 +12,8 @@ const LoginModal = () => {
   const { handleClose, userLogin, getUserProfile } = useContext(LoginContext);
   const responseSuccess = (res) => {
     console.log('res', res);
-    const { profileObj } = res;
-    console.log('profileObj', profileObj);
-    sessionStorage.setItem('profile', JSON.stringify(profileObj));
+    const { profileObj, tokenId } = res;
+    sessionStorage.setItem('token', tokenId);
     Router.push('/polls');
     userLogin();
     handleClose();
@@ -23,6 +22,8 @@ const LoginModal = () => {
 
   const responseFailed = (res) => {
     console.log('res faild', res);
+    handleClose();
+    Router.push('/');
   };
 
 

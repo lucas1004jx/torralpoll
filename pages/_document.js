@@ -2,8 +2,14 @@ import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 
 export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const props = await Document.getInitialProps(ctx);
+    console.log('document ctx', ctx.req);
+    //console.log('document pros', props);
+    return { ...props };
+  }
   render() {
-    return(
+    return (
       <html lang="en">
         <Head>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
@@ -16,7 +22,7 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          
+
         </body>
       </html>
     );

@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import { Layout, Button, Checkbox } from '../../common';
+import { LoginContext } from '../../context';
 
 const PollDetail = (props) => {
+  const { profile: { email } } = useContext(LoginContext);
   const { options, name, active, description } = props.poll;
   const { query: { id } } = props.url;
   
   const [ voteSent, setVoteSent ] = useState(false);
   const [ errorMessage, setErrorMessage ] = useState('');
-  const [ userName, setUserName ] = useState('');
+  
   const [selectedOption, setSelectedOption] = useState('');
 
   const onSubmit = () => {
-    if (!userName) {
-      alert('You should submit with your name');
-      return;
-    }
+    
     if (!selectedOption) {
       alert('You should choose at least one option');
       return;
     }
     axios
       .post(`https://torralbot-back.herokuapp.com/${id}/vote`, {
-        user: userName,
+        user: email,
         option: selectedOption,
 
       })
@@ -92,7 +91,7 @@ const PollDetail = (props) => {
         )}
         <div className="submit-button">
           <span className="voteAs">Vote</span>
-          <input className="nameInput" type="text" placeholder="name" onChange={(e) => setUserName(e.target.value)} />
+         
           {active ? <Button name='submit' onClick={onSubmit} /> : ''}
           <Link href="/polls">
             <a>

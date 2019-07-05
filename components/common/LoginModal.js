@@ -2,10 +2,14 @@ import React, { useContext } from 'react';
 import Router from 'next/router';
 import nookies from 'nookies';
 import { GoogleLogin } from 'react-google-login';
+import { Icons } from './index';
 import { LoginContext } from '../context';
 
 const LoginModal = () => {
-  
+  const closeStyle = {
+    width: '40',
+    height: '40'
+  };
   const { handleLoginState } = useContext(LoginContext);
   const responseSuccess = (res) => {
     const { profileObj, tokenId } = res;
@@ -20,10 +24,16 @@ const LoginModal = () => {
     Router.push('/');
   };
 
+  const handdleClose = () => {
+    Router.push('/');
+  };
 
   return (
     <div className="login-modal">
       <div className="modal-inner">
+        <div className="close">
+          <Icons name="close" style={closeStyle} fill='none' stroke='#000' onClick={handdleClose} />
+        </div>
         <GoogleLogin
           clientId="239251067475-1ov5ieoodtk7579697b8c5r102375ojf.apps.googleusercontent.com"
           buttonText="Sign in with Google"
@@ -59,6 +69,12 @@ const LoginModal = () => {
             justify-content:center;
             align-items:center;
             background:url('/static/svg/login.svg') no-repeat center center;
+        }
+        
+        .close{
+            position:absolute;
+            right:0;
+            top:0;
         }
        
       `}

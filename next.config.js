@@ -2,7 +2,7 @@ const withCSS = require('@zeit/next-css');
 
 
 module.exports = withCSS({
-  target: 'serveless',
+  target: 'serverless',
   env: {
     server: 'https://torralbot-back.herokuapp.com',
     client_id: '239251067475-1ov5ieoodtk7579697b8c5r102375ojf.apps.googleusercontent.com'

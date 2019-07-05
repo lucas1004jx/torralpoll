@@ -11,12 +11,13 @@ const PollDetail = (props) => {
   const { _id: id, options, name, active, description } = props;
   
   const [ voteSent, setVoteSent ] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [ errorMessage, setErrorMessage ] = useState('');
   
   const [selectedOption, setSelectedOption] = useState('');
 
   const onSubmit = () => {
-    
+    console.log('submit');
     const token  = getToken();
     
     if (!selectedOption) {
@@ -33,14 +34,13 @@ const PollDetail = (props) => {
       },
       headers: { Authorization: token }
     })
+      // eslint-disable-next-line no-unused-vars
       .then(response => {
-        if (response.data && response.data.res && response.data.res.indexOf('Error') !== -1) {
-          setErrorMessage('You have already voted');
-        } else {
-          setVoteSent(true);
-        }
+        console.log('voteeeeeeee');
+        setVoteSent(true);
+       
       })
-      .catch(err => console.log('error', err));
+      .catch(err => console.log('submit error-------->', err));
   };
   
   const onSelect = (value) => {

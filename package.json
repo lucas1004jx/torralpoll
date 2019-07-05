@@ -1,10 +1,11 @@
 {
+  "main":"server.js",
   "scripts": {
     "build": "next build",
     "dev": "nodemon server.js --port 8080",
     "now-build": "next build",
     "heroku-postbuild": "next build",
-    "start": "node server.js -p $PORT"
+    "start": "node server.js"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",

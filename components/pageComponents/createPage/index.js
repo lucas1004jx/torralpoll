@@ -73,13 +73,16 @@ const CreatePollPage = () => {
   const createPoll = (question = 'question', description, options) => {
     const token  = getToken();
     const optionsArray = Object.keys(options).map(key => options[key]);
-    axios
-      .post(`${server}/create`, { headers: { Authorization: token } }, {
+    axios({
+      method: 'post',
+      url: `${server}/create`,
+      params: {
         name: question,
         description,
         options: optionsArray,
-
-      })
+      },
+      headers: { Authorization: token }
+    })
       .then(() => Router.push('/polls'))
       .catch(err => `something went wrong, error message ${err}`);
   };

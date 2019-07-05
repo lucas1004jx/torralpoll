@@ -4,7 +4,7 @@
     "dev": "nodemon server.js --port 8080",
     "now-build": "next build",
     "heroku-postbuild": "npm run build",
-    "start": "next start -p $PORT"
+    "start": "server.js -p $PORT"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",

@@ -10,7 +10,7 @@ const PollsPage = (props) => {
   const { poll, polls } = props;
   if(!loginState) return(
     <Layout>
-      <div>YOU NNED TO LOG IN TO SEE POLL LIST</div>
+      <div>YOU NEED TO LOG IN TO SEE POLL LIST</div>
     </Layout>
   );
   if (poll) {

@@ -12,8 +12,8 @@ const Navbar = () => {
 
   const { loginModal, handleLogin, loginState, userProfile, userLogout } = useContext(LoginContext);
   console.log('userProfile', userProfile);
-  const { Role } = userProfile;
-  console.log('role', Role);
+  const { rol } = userProfile;
+  //console.log('role', rol);
   const logout = () => {
     console.log('logout');
     Cookies.remove('token');
@@ -34,7 +34,7 @@ const Navbar = () => {
           </span>
         )}
         {
-          Role === 'Admin' && (
+          rol === 'Admin' && (
             <Link href='/createpoll'>
               <a className="create">
             Create poll

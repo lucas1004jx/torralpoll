@@ -8,12 +8,23 @@ import { LoginContext } from '../../context';
 
 
 const CreatePollPage = () => {
-  const { loginState } = useContext(LoginContext);
-  if(!loginState) return(
-    <Layout>
-      <div>YOU NNED TO LOG IN TO CREATE POLL</div>
-    </Layout>
-  );
+  const { loginState, userProfile } = useContext(LoginContext);
+  const { rol } = userProfile;
+  
+  if(!loginState) {
+    return(
+      <Layout>
+        <div>YOU NEED TO LOG IN TO CREATE POLL</div>
+      </Layout>
+    );
+  }
+  if(rol !== 'Admin') {
+    return (
+      <Layout>
+        <div>YOU ARE NOT AUTHORIZED TO CREATE POLL</div>
+      </Layout>
+    );
+  }
   const defaultOptions = {
     option1: '',
     option2: '',

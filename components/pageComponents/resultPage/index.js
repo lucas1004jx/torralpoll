@@ -9,7 +9,7 @@ const ResultPage = (props) => {
   const { loginState } = useContext(LoginContext);
   if(!loginState) return(
     <Layout>
-      <div>YOU NNED TO LOG IN TO SEE POLL RESULT</div>
+      <div>YOU NEED TO LOG IN TO SEE POLL RESULT</div>
     </Layout>
   );
   useEffect(() => {

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { CreatePollPage }  from '../components/pageComponents';
 
 const CreatePoll = () => {
@@ -6,5 +7,6 @@ const CreatePoll = () => {
   return <CreatePollPage />;
  
 };
+
 
 export default CreatePoll;

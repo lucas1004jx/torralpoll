@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { Layout, List, Button, Tag } from '../../common';
+import { Layout, List, Tag } from '../../common';
 
 const PollLists = (props) => {
   const [status, setStatus] = useState('all');
@@ -23,11 +22,7 @@ const PollLists = (props) => {
           <Tag name={tag} status={tag} onClick={() => handleFilter(tag)} active={tag === status} key={tag} />
         )}
 
-        <Link href="/createpoll">
-          <a>
-            <Button name='create poll' style={{ 'float': 'right' }} />
-          </a>
-        </Link>
+        
       </div>
       {status === 'all' && polls.map(poll => (
         <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} />

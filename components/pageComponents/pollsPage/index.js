@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PollDetail from './PollDetail';
 import PollLists from './PollLists';
+import { Layout } from '../../common';
+import { LoginContext } from '../../context';
 
 const PollsPage = (props) => {
-
+  const { loginState } = useContext(LoginContext);
+  //console.log('PollsPage----------->loginState', loginState);
   const { poll, polls } = props;
-
+  if(!loginState) return(
+    <Layout>
+      <div>YOU NNED TO LOG IN TO SEE POLL LIST</div>
+    </Layout>
+  );
   if (poll) {
     return <PollDetail {...poll} />;
   } else if (polls) {
@@ -14,7 +21,10 @@ const PollsPage = (props) => {
 
 
   return (
-    <div>can not find data</div>
+    <Layout>
+      <div>NOTR FOUND DATA</div>
+    </Layout>
+    
   );
 
 

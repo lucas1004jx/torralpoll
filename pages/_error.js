@@ -1,10 +1,10 @@
 import React from 'react';
 import { Layout } from '../components/common';
 
-const Error = ({ statusCode }) => {
+const Error = ({ statusCode = '', message }) => {
   return (
     <Layout>
-      <div>{`Error ${statusCode}`}</div>
+      <div>{`Error ${statusCode} ${message}`}</div>
     </Layout>
     
   );

@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
 import { GoogleLogout } from 'react-google-login';
+import Link from 'next/link';
+import Cookies from 'js-cookie';
+import React, { useContext } from 'react';
+import Router from 'next/router';
 import { Icons, LoginModal } from './index';
 import { LoginContext } from '../context';
 
@@ -11,8 +12,11 @@ const Navbar = () => {
 
   const { loginModal, handleLogin, loginState, userProfile, userLogout } = useContext(LoginContext);
   console.log('userProfile', userProfile);
+  const { Role } = userProfile;
+  console.log('role', Role);
   const logout = () => {
     console.log('logout');
+    Cookies.remove('token');
     userLogout();
     Router.replace('/');
   };
@@ -29,15 +33,19 @@ const Navbar = () => {
             SignIn
           </span>
         )}
-        <Link href='/createpoll'>
-          <a className="create">
+        {
+          Role === 'Admin' && (
+            <Link href='/createpoll'>
+              <a className="create">
             Create poll
-          </a>
-        </Link>
+              </a>
+            </Link>
+          )}
+       
         {loginState && (
           <div className="profile-container">
             <figure className="profile">
-              <img src={userProfile.imageUrl} alt="profile" />
+              <img src={userProfile.picture} alt="profile" />
             </figure>
             <div className="profile-detail">
               <p>{userProfile.name}</p>

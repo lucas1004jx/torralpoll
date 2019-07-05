@@ -1,10 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import Link from 'next/link';
 import { Layout, Button } from '../../common';
+import { LoginContext } from '../../context';
 
 const ResultPage = (props) => {
   const { name = '', description = '', options = [] } = props;
+  const { loginState } = useContext(LoginContext);
+  if(!loginState) return(
+    <Layout>
+      <div>YOU NNED TO LOG IN TO SEE POLL RESULT</div>
+    </Layout>
+  );
   useEffect(() => {
     drawResult();
   });

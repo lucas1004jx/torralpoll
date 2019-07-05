@@ -46,7 +46,7 @@ const HomePage = () => {
         {`
         .home-page-inner{
             margin:0;
-            min-height:100%;
+            min-height:calc(100vh - 120px);
             display:grid;
             grid-template-columns:1fr;
             grid-template-rows:1fr auto 1fr;

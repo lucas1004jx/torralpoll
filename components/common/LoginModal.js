@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Router from 'next/router';
+import Cookies from 'js-cookie';
 import { GoogleLogin } from 'react-google-login';
 import { Icons } from './index';
 import { LoginContext } from '../context';
@@ -9,15 +10,15 @@ const LoginModal = () => {
     width: '40',
     height: '40'
   };
-  const { handleClose, userLogin, getUserProfile } = useContext(LoginContext);
+  const { handleClose, handleLoginState } = useContext(LoginContext);
   const responseSuccess = (res) => {
-    console.log('res', res);
     const { profileObj, tokenId } = res;
-    sessionStorage.setItem('token', tokenId);
+    Cookies.set('token', tokenId);
+    sessionStorage.setItem('profile', JSON.stringify(profileObj));
     Router.push('/polls');
-    userLogin();
+    handleLoginState(true);
     handleClose();
-    getUserProfile(profileObj);
+  
   };
 
   const responseFailed = (res) => {

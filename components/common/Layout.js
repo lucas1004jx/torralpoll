@@ -57,7 +57,6 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle = '
             }
             main{
                 max-width:1400px;
-                height:100vh;
                 min-height:100vh;
                 margin:0 auto;
                 box-sizing:border-box;

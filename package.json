@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "next build",
-    "dev": "next --port 8080",
+    "dev": "nodemon server.js --port 8080",
     "now-build": "next build",
     "heroku-postbuild": "npm run build",
     "start": "next start -p $PORT"
@@ -9,7 +9,10 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "axios": "^0.19.0",
+    "cookie-parser": "^1.4.4",
     "d3": "^5.9.2",
+    "express": "^4.17.1",
+    "js-cookie": "^2.2.0",
     "next": "^8.1.0",
     "nprogress": "^0.2.0",
     "react": "^16.8.6",
@@ -22,6 +25,7 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0"
+    "eslint-plugin-react": "^7.13.0",
+    "nodemon": "^1.19.1"
   }
 }

@@ -20,6 +20,8 @@ const Input = (props) => {
             margin-bottom:15px;
             padding:10px;
             border:1px solid var(--color-main);
+            font-size:18px;
+            font-family:var(--font-main);
         }
         textarea{
           height:200px;

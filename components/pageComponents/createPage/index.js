@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
 import { server } from '../../../config';
 import { Input, Button, Checkbox, Layout, Icons } from '../../common';
+import { LoginContext } from '../../context';
 
 
 const CreatePollPage = () => {
-
+  const { loginState } = useContext(LoginContext);
+  if(!loginState) return(
+    <Layout>
+      <div>YOU NNED TO LOG IN TO CREATE POLL</div>
+    </Layout>
+  );
   const defaultOptions = {
     option1: '',
     option2: '',

@@ -4,7 +4,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const props = await Document.getInitialProps(ctx);
-    console.log('document ctx', ctx.req);
+    //console.log('document ctx', ctx.res.statusCode);
     //console.log('document pros', props);
     return { ...props };
   }

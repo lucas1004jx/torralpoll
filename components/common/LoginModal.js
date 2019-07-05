@@ -1,29 +1,22 @@
 import React, { useContext } from 'react';
 import Router from 'next/router';
-import Cookies from 'js-cookie';
+import nookies from 'nookies';
 import { GoogleLogin } from 'react-google-login';
-import { Icons } from './index';
 import { LoginContext } from '../context';
 
 const LoginModal = () => {
-  const closeStyle = {
-    width: '40',
-    height: '40'
-  };
-  const { handleClose, handleLoginState } = useContext(LoginContext);
+  
+  const { handleLoginState } = useContext(LoginContext);
   const responseSuccess = (res) => {
     const { profileObj, tokenId } = res;
-    Cookies.set('token', tokenId);
+    nookies.set(null, 'token', tokenId);
     sessionStorage.setItem('profile', JSON.stringify(profileObj));
     Router.push('/polls');
     handleLoginState(true);
-    handleClose();
-  
   };
 
   const responseFailed = (res) => {
     console.log('res faild', res);
-    handleClose();
     Router.push('/');
   };
 
@@ -31,9 +24,6 @@ const LoginModal = () => {
   return (
     <div className="login-modal">
       <div className="modal-inner">
-        <div className="close">
-          <Icons name="close" style={closeStyle} fill='none' stroke='#000' onClick={handleClose} />
-        </div>
         <GoogleLogin
           clientId="239251067475-1ov5ieoodtk7579697b8c5r102375ojf.apps.googleusercontent.com"
           buttonText="Sign in with Google"
@@ -69,12 +59,6 @@ const LoginModal = () => {
             justify-content:center;
             align-items:center;
             background:url('/static/svg/login.svg') no-repeat center center;
-        }
-        
-        .close{
-            position:absolute;
-            right:0;
-            top:0;
         }
        
       `}

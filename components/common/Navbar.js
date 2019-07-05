@@ -3,14 +3,14 @@ import Link from 'next/link';
 import Cookies from 'js-cookie';
 import React, { useContext } from 'react';
 import Router from 'next/router';
-import { Icons, LoginModal } from './index';
+import { Icons } from './index';
 import { LoginContext } from '../context';
 
 const Navbar = () => {
   const navbar_height = 56;
   const navbar_padding = 5;
 
-  const { loginModal, handleLogin, loginState, userProfile, userLogout } = useContext(LoginContext);
+  const { loginState, userProfile, userLogout } = useContext(LoginContext);
   console.log('userProfile', userProfile);
   const { rol } = userProfile;
   //console.log('role', rol);
@@ -29,9 +29,11 @@ const Navbar = () => {
       </Link>
       <div>
         {!loginState && (
-          <span className="login" onClick={handleLogin}>
+          <Link href="/login">
+            <a className="login">
             SignIn
-          </span>
+            </a>
+          </Link>
         )}
         {
           rol === 'Admin' && (
@@ -58,7 +60,6 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      {loginModal && <LoginModal />}
 
       <style jsx>
         {`

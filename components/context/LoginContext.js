@@ -4,8 +4,6 @@ import { auth } from '../../lib';
 const LoginContext = createContext();
 const LoginContextProvider = ({ children, token }) => {
   
-  
-  const [loginModal, setLoginModal] = useState(false);
   const [loginState, setLoginState] = useState(false);
   const [userProfile, setUserProfile] = useState({});
   
@@ -17,25 +15,22 @@ const LoginContextProvider = ({ children, token }) => {
 
   };
  
-  const handleLogin = () => {
-    setLoginModal(true);
-    
-  };
-  const handleClose = () => {
-    setLoginModal(false);
-  };
+
  
   useEffect(()=>{
     //console.log('use effect---------->', token);
-    auth(token).then(({ isLogin, profile })=>{
+    if(token) {
+      auth(token).then(({ isLogin, profile })=>{
       //console.log('context set state', isLogin);
-      handleLoginState(isLogin);
-      setProfile(profile);
-    });
+        handleLoginState(isLogin);
+        setProfile(profile);
+      }).catch(error => console.log('auth error', error));
+    }
+    
   }, [loginState, token]);
   
   return (
-    <LoginContext.Provider value={{ loginModal, handleLogin, handleClose, loginState, handleLoginState, userProfile, setProfile }}>
+    <LoginContext.Provider value={{ loginState, handleLoginState, userProfile, setProfile }}>
       {children}
     </LoginContext.Provider>
   );

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import nookies from 'nookies';
 import { LoginContext } from '../components/context';
-import { getToken } from '../lib';
 import { server } from '../config';
 import { PollsPage } from '../components/pageComponents';
 
 class Polls extends Component {
 static contextType = LoginContext;
 static async getInitialProps(ctx) {
-  const { query, req } = ctx;
+  const { query } = ctx;
   
-  const token  = getToken(req);
+  const { token }  = nookies.get(ctx);
   //console.log('polls token----------->', token);
   let id, poll = {}, polls = [];
   if (query.id) {

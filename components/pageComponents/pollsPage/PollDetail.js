@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
-import { getToken } from '../../../lib';
+import nookies from 'nookies';
 import { Layout, Button, Checkbox } from '../../common';
 import { LoginContext } from '../../context';
 
@@ -18,8 +18,7 @@ const PollDetail = (props) => {
 
   const onSubmit = () => {
     console.log('submit');
-    const token  = getToken();
-    
+    const { token }  = nookies.get();
     if (!selectedOption) {
       alert('You should choose at least one option');
       return;

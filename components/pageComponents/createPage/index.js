@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
-import { getToken } from '../../../lib';
+import nookies from 'nookies';
 import { server } from '../../../config';
 import { Input, Button, Checkbox, Layout, Icons } from '../../common';
 import { LoginContext } from '../../context';
@@ -71,7 +71,7 @@ const CreatePollPage = () => {
 
 
   const createPoll = (question = 'question', description, options) => {
-    const token  = getToken();
+    const { token }  = nookies.get();
     const optionsArray = Object.keys(options).map(key => options[key]);
     axios({
       method: 'post',

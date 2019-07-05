@@ -1,15 +1,13 @@
 import React from 'react';
 import App, { Container } from 'next/app';
-import { getToken } from '../lib';
+import nookies from 'nookies';
 import { LoginContextProvider } from '../components/context';
 
 class MyApp extends App {
 
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-  
-    const { req } = ctx;
-    const token = getToken(req);
+    const { token }= nookies.get(ctx);
     //console.log('_app token ----->', token);
     if (Component.getInitialProps) {
       pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};

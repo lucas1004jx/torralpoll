@@ -27,7 +27,7 @@ const PollDetail = (props) => {
     axios({
       method: 'post',
       url: `https://torralbot-back.herokuapp.com/${id}/vote`,
-      params: {
+      data: {
         user: email,
         option: selectedOption
       },

@@ -76,7 +76,7 @@ const CreatePollPage = () => {
     axios({
       method: 'post',
       url: `${server}/create`,
-      params: {
+      data: {
         name: question,
         description,
         options: optionsArray,

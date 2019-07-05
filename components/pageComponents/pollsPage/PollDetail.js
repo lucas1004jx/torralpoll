@@ -6,9 +6,9 @@ import { Layout, Button, Checkbox } from '../../common';
 import { LoginContext } from '../../context';
 
 const PollDetail = (props) => {
-  const { profile: { email } } = useContext(LoginContext);
-  const { options, name, active, description } = props.poll;
-  const { query: { id } } = props.url;
+  const { userProfile: { email } } = useContext(LoginContext);
+  console.log('props', props);
+  const { _id: id, options, name, active, description } = props;
   
   const [ voteSent, setVoteSent ] = useState(false);
   const [ errorMessage, setErrorMessage ] = useState('');

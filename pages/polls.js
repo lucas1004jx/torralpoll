@@ -15,7 +15,11 @@ static async getInitialProps(ctx) {
   let id, poll = {}, polls = [];
   if (query.id) {
     id = query.id;
-    poll = await axios.get(`${server}/${id}/details`, { headers: { Authorization: token } })
+    poll = await axios({
+      method: 'get',
+      url: `${server}/${id}/details`,
+      headers: { Authorization: token }
+    })
       .then(res => res.data)
       .catch(() => console.error('failed to fetch poll detail data'));
 

@@ -23,12 +23,16 @@ const PollDetail = (props) => {
       alert('You should choose at least one option');
       return;
     }
-    axios
-      .post(`https://torralbot-back.herokuapp.com/${id}/vote`, { headers: { Authorization: token } }, {
+    
+    axios({
+      method: 'post',
+      url: `https://torralbot-back.herokuapp.com/${id}/vote`,
+      params: {
         user: email,
-        option: selectedOption,
-
-      })
+        option: selectedOption
+      },
+      headers: { Authorization: token }
+    })
       .then(response => {
         if (response.data && response.data.res && response.data.res.indexOf('Error') !== -1) {
           setErrorMessage('You have already voted');

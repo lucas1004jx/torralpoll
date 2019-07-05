@@ -3,7 +3,7 @@
     "build": "next build",
     "dev": "nodemon server.js --port 8080",
     "now-build": "next build",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "next build",
     "start": "node server.js -p $PORT"
   },
   "dependencies": {

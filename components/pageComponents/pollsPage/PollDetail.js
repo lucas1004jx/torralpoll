@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import { getToken } from '../../../lib';
 import { Layout, Button, Checkbox } from '../../common';
 import { LoginContext } from '../../context';
 
@@ -16,12 +17,14 @@ const PollDetail = (props) => {
 
   const onSubmit = () => {
     
+    const token  = getToken();
+    
     if (!selectedOption) {
       alert('You should choose at least one option');
       return;
     }
     axios
-      .post(`https://torralbot-back.herokuapp.com/${id}/vote`, {
+      .post(`https://torralbot-back.herokuapp.com/${id}/vote`, { headers: { Authorization: token } }, {
         user: email,
         option: selectedOption,
 

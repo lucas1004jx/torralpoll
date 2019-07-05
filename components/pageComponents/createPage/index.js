@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
+import { getToken } from '../../../lib';
 import { server } from '../../../config';
 import { Input, Button, Checkbox, Layout, Icons } from '../../common';
 import { LoginContext } from '../../context';
@@ -39,6 +40,7 @@ const CreatePollPage = () => {
   const [options, setOptions] = useState(defaultOptions);
 
 
+
   const handleOption = () => {
     setSingleOption(!singleOption);
   };
@@ -69,9 +71,10 @@ const CreatePollPage = () => {
 
 
   const createPoll = (question = 'question', description, options) => {
+    const token  = getToken();
     const optionsArray = Object.keys(options).map(key => options[key]);
     axios
-      .post(`${server}/create`, {
+      .post(`${server}/create`, { headers: { Authorization: token } }, {
         name: question,
         description,
         options: optionsArray,

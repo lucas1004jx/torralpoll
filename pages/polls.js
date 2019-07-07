@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import nookies from 'nookies';
-import { LoginContext } from '../components/context';
+import { LoginContext } from '../context';
 import { server } from '../config';
 import { PollsPage } from '../components/pageComponents';
+import Error from './_error';
 
 class Polls extends Component {
 static contextType = LoginContext;
 static async getInitialProps(ctx) {
   const { query } = ctx;
   
-  const { token }  = nookies.get(ctx);
+  const { token='' }  = nookies.get(ctx);
   //console.log('polls token----------->', token);
   let id, poll = {}, polls = [];
   if (query.id) {
@@ -21,19 +22,34 @@ static async getInitialProps(ctx) {
       headers: { Authorization: token }
     })
       .then(res => res.data)
-      .catch(() => console.error('failed to fetch poll detail data'));
+      .catch((error) => {
+        console.error('fetch poll detail data error', error.message);
+        return {
+          error: error.response.status,
+          errorMessage: error.message
+        };
+      });
 
     return { poll };
   } else {
   
     polls = await axios.get(`${server}/list`, { headers: { Authorization: token } })
-      .then(res => res.data)
-      .catch((error) => console.error(`failed to fetch poll list data ${error}`));
+      .then(res =>res.data)
+      .catch((error) => {
+        console.log('fetch polls list error', error.message); 
+        return { 
+          error: error.response.status,
+          errorMessage: error.message
+        };  });
     return { polls };
   }
 
 }
 render() {
+  const { poll={}, polls={} } = this.props;
+  if (poll.error)  return <Error statusCode={poll.error} />;
+  if (polls.error)  return <Error statusCode={polls.error} />;
+   
   return <PollsPage {...this.props}  />;
 }
 

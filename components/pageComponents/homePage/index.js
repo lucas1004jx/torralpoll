@@ -11,7 +11,7 @@ const HomePage = () => {
     fontSize: '16px'
   };
   return (
-    <Layout classnames='home-page' hideHeader pageTitle='TorralPoll-Home'>
+    <Layout className='home-page' ideHeaderh pageTitle='TorralPoll-Home'>
       <div className="home-page-inner">
         <div className="intro-section">
           <div className="title">

@@ -1,7 +1,7 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import nookies from 'nookies';
-import { LoginContextProvider } from '../components/context';
+import { LoginContextProvider } from '../context';
 
 class MyApp extends App {
 

@@ -12,10 +12,10 @@ Router.onChangeError = () => NProgress.done();
 
 
 
-const Layout = ({ title, children, author, classnames, hideHeader, pageTitle = 'TorralPoll' }) => {
+const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'TorralPoll' }) => {
   
   return (
-    <main className={classnames}>
+    <main className={className}>
       <Head>
         <title>{pageTitle}</title>
       </Head>
@@ -95,7 +95,12 @@ const Layout = ({ title, children, author, classnames, hideHeader, pageTitle = '
       </style>
       <style jsx>
         {`
-        
+        .error-page{
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          flex-direction:column;
+        }
       `}
       </style>
     </main>

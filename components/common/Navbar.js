@@ -2,7 +2,7 @@ import { GoogleLogout } from 'react-google-login';
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { Icons } from './index';
-import { LoginContext } from '../context';
+import { LoginContext } from '../../context';
 
 const Navbar = () => {
   const navbar_height = 56;

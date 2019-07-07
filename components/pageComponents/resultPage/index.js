@@ -1,17 +1,11 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import Link from 'next/link';
 import { Layout, Button } from '../../common';
-import { LoginContext } from '../../context';
 
 const ResultPage = (props) => {
   const { name = '', description = '', options = [] } = props;
-  const { loginState } = useContext(LoginContext);
-  if(!loginState) return(
-    <Layout>
-      <div>YOU NEED TO LOG IN TO SEE POLL RESULT</div>
-    </Layout>
-  );
+ 
   useEffect(() => {
     drawResult();
   });
@@ -67,7 +61,7 @@ const ResultPage = (props) => {
       .attr('fill', '#263C47');
   };
   return (
-    <Layout title='results' classnames='result-page'>
+    <Layout title='results' className='result-page'>
       <h2>{name}</h2>
       <p>{description}</p>
       <div id="graphic" />

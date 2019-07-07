@@ -4,7 +4,7 @@ import { Layout, List, Tag } from '../../common';
 const PollLists = (props) => {
   const [status, setStatus] = useState('all');
 
-  let { polls } = props;
+  let { polls=[] } = props;
   polls = polls.reverse();
   
   const Tags = ['all', 'active', 'closed'];

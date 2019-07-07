@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Router from 'next/router';
 import { GoogleLogin } from 'react-google-login';
 import { Icons } from '../../common/index';
-import { LoginContext } from '../../context';
+import { LoginContext } from '../../../context';
 
 const LoginModal = () => {
   const closeStyle = {
@@ -74,7 +74,7 @@ const LoginModal = () => {
        @media(max-width:768px){
           .login-modal{
            width:100%;
-           min-height:618px;
+           min-height:664px;
            background:url('/static/svg/login.svg') no-repeat center center;
            background-size:contain;
         }

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import nookies from 'nookies';
 import { Layout, Button, Checkbox } from '../../common';
-import { LoginContext } from '../../context';
+import { LoginContext } from '../../../context';
 
 const PollDetail = (props) => {
   const { userProfile: { email } } = useContext(LoginContext);
@@ -49,7 +49,7 @@ const PollDetail = (props) => {
 
   if (voteSent) {
     return (
-      <Layout title="question" classnames="question-page" hideHeader pageTitle='TorralPoll-Question'>
+      <Layout title="question" className="question-page" hideHeader pageTitle='TorralPoll-Question'>
         <h3>Thanks for your vote! It was received and securely stored.</h3>
         <h3>
             It cannot be changed by
@@ -70,7 +70,7 @@ const PollDetail = (props) => {
     );
   }
   return (
-    <Layout title={name} classnames="question-page" author='author' pageTitle='TorralPoll-Question'>
+    <Layout title={name} className="question-page" author='author' pageTitle='TorralPoll-Question'>
       <div className="page-inner">
         <p className="description">
           {description}

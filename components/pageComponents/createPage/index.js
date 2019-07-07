@@ -1,17 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
 import nookies from 'nookies';
 import { server } from '../../../config';
 import { Input, Button, Checkbox, Layout, Icons } from '../../common';
-import { LoginContext } from '../../context';
+
 
 
 const CreatePollPage = () => {
-  const { loginState, userProfile } = useContext(LoginContext);
-  const { rol } = userProfile;
-  
+
   const defaultOptions = {
     option1: '',
     option2: '',
@@ -26,21 +24,10 @@ const CreatePollPage = () => {
   const [description, setDescription] = useState('');
   const [optionItems, setOptionitems] = useState(Object.keys(defaultOptions).length);
   const [options, setOptions] = useState(defaultOptions);
+
   
-  if(!loginState) {
-    return(
-      <Layout>
-        <div>YOU NEED TO LOG IN TO CREATE POLL</div>
-      </Layout>
-    );
-  }
-  if(rol !== 'Admin') {
-    return (
-      <Layout>
-        <div>YOU ARE NOT AUTHORIZED TO CREATE POLL</div>
-      </Layout>
-    );
-  }
+  
+  
 
   const handleOption = () => {
     setSingleOption(!singleOption);

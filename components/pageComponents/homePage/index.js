@@ -52,7 +52,7 @@ const HomePage = () => {
             grid-template-rows:1fr auto 1fr;
             margin:0 auto;
             background:url('/static/svg/team.svg') no-repeat right bottom;
-            background-size:80% auto;
+            background-size: 70% auto;
         }
         .intro-section{
             max-width:600px;
@@ -119,9 +119,7 @@ const HomePage = () => {
           figure{
             display:none;
           }
-          .intro-section{
-            grid-column:1/3;
-          }
+          
         }
         `}
 

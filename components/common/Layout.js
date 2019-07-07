@@ -10,26 +10,30 @@ Router.onRouteChangeComplete = () => NProgress.done();
 
 Router.onChangeError = () => NProgress.done();
 
-const Layout = ({ title, children, classnames, author, hideHeader, pageTitle = 'TorralPoll' }) => (
-  <main className={classnames}>
-    <Head>
-      <title>{pageTitle}</title>
-    </Head>
-    <Nav />
-    {!hideHeader && (
-      <div className="title">
-        <h1>{title}</h1>
-        {author && (
-          <span className="author">
-            @{author}
-          </span>
-        )}
-      </div>
-    )}
 
-    {children}
-    <style jsx global>
-      {`
+
+const Layout = ({ title, children, author, classnames, hideHeader, pageTitle = 'TorralPoll' }) => {
+  
+  return (
+    <main className={classnames}>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
+      <Nav />
+      {!hideHeader && (
+        <div className="title">
+          <h1>{title}</h1>
+          {author && (
+            <span className="author">
+            @{author}
+            </span>
+          )}
+        </div>
+      )}
+
+      {children}
+      <style jsx global>
+        {`
             :root{
                 --color-main: #17AD8D;
                 --color-background:#5F9EA0;
@@ -85,30 +89,17 @@ const Layout = ({ title, children, classnames, author, hideHeader, pageTitle = '
             font-size:48px;
           }
 
-          .google{
-            width:250px;
-            border:1px solid var(--color-dark);
-            display:flex !important;
-            align-items:center;
-            justify-content:center;
-            padding: 0 15px;
-            background:#fff;
-        }
-        
-        .google span{
-          color:var(--color-dark);
-            font-family:var(--font-main);
-            font-size:16px;
-        }
+          
           
             `}
-    </style>
-    <style jsx>
-      {`
+      </style>
+      <style jsx>
+        {`
         
       `}
-    </style>
-  </main>
-);
+      </style>
+    </main>
+  );
+};
 
 export default Layout;

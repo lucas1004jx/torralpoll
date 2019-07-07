@@ -12,6 +12,21 @@ const CreatePollPage = () => {
   const { loginState, userProfile } = useContext(LoginContext);
   const { rol } = userProfile;
   
+  const defaultOptions = {
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: ''
+
+  };
+  
+
+  const [singleOption, setSingleOption] = useState(true);
+  const [question, setQuestion] = useState('');
+  const [description, setDescription] = useState('');
+  const [optionItems, setOptionitems] = useState(Object.keys(defaultOptions).length);
+  const [options, setOptions] = useState(defaultOptions);
+  
   if(!loginState) {
     return(
       <Layout>
@@ -26,20 +41,6 @@ const CreatePollPage = () => {
       </Layout>
     );
   }
-  const defaultOptions = {
-    option1: '',
-    option2: '',
-    option3: '',
-    option4: ''
-
-  };
-  const [singleOption, setSingleOption] = useState(true);
-  const [question, setQuestion] = useState('');
-  const [description, setDescription] = useState('');
-  const [optionItems, setOptionitems] = useState(Object.keys(defaultOptions).length);
-  const [options, setOptions] = useState(defaultOptions);
-
-
 
   const handleOption = () => {
     setSingleOption(!singleOption);

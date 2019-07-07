@@ -1,9 +1,9 @@
 import React from 'react';
-import { LoginModal } from '../components/common';
+import { LoginPage } from '../components/pageComponents';
 
 const Login = () => {
   return (
-    <LoginModal />
+    <LoginPage />
   );};
 
 export default Login;

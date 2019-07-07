@@ -1,8 +1,6 @@
 import { GoogleLogout } from 'react-google-login';
 import Link from 'next/link';
-import Cookies from 'js-cookie';
 import React, { useContext } from 'react';
-import Router from 'next/router';
 import { Icons } from './index';
 import { LoginContext } from '../context';
 
@@ -11,14 +9,12 @@ const Navbar = () => {
   const navbar_padding = 5;
 
   const { loginState, userProfile, userLogout } = useContext(LoginContext);
-  console.log('userProfile', userProfile);
+  console.log('navbar-----userProfile----->', userProfile);
   const { rol } = userProfile;
   //console.log('role', rol);
   const logout = () => {
     console.log('logout');
-    Cookies.remove('token');
     userLogout();
-    Router.replace('/');
   };
   return (
     <nav>
@@ -53,6 +49,7 @@ const Navbar = () => {
               <p>{userProfile.name}</p>
               <p> {userProfile.email}</p>
               <GoogleLogout
+                clientId="239251067475-1ov5ieoodtk7579697b8c5r102375ojf.apps.googleusercontent.com"
                 buttonText="Logout"
                 onLogoutSuccess={logout}
               />

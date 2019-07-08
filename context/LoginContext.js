@@ -33,6 +33,7 @@ const LoginContextProvider = ({ children, token }) => {
     auth(token).then(({ isLogin, profile={} })=>{
       setLoginState(isLogin);
       setUserProfile(profile);
+      setError(null);
     }).catch(error => {
       console.log('login context auth error', error.message);
       setError(error.message);

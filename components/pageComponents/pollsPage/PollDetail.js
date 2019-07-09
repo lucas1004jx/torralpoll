@@ -3,7 +3,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import nookies from 'nookies';
 import { api } from '../../../config';
-import { Layout, Button, Checkbox } from '../../common';
+import { Layout, Button, Checkbox, InfoCard } from '../../common';
 import { LoginContext } from '../../../context';
 
 const PollDetail = (props) => {
@@ -51,20 +51,12 @@ const PollDetail = (props) => {
     return (
       <Layout title="question" className="question-page" hideHeader pageTitle='TorralPoll-Question'>
         <div className="page-inner">
-          <figure>
-            <img src="/static/svg/thanks.svg" alt="thanks" />
-          </figure>
-          <h3 className="text">Thanks for your vote! It was received and securely stored.
-            <br />It cannot be changed by ANYONE
-          </h3>
-          
-          <div className="button">
-            <Link href="/polls">
-              <a>
-                <Button name='back to list' />
-              </a>
-            </Link>
-          </div>
+          <InfoCard 
+            img='/static/svg/thanks.svg'
+            message='Thanks for your vote!'
+            btn1='back to list'
+            href1='/polls'
+          />
           
         </div>
         <style jsx>
@@ -75,30 +67,9 @@ const PollDetail = (props) => {
             justify-content: center;
             align-items: center;
             margin-top:50px;
+            height:calc(100vh - 180px);
           }
-          figure{
-            margin:0;
-            padding:0;
-            width:80%;
-            text-align:center;
-          }
-          img{
-            width:100%;
-            max-width:800px;
-            height:100%;
-            object-fit:contain;
-            object-position:center;
-          }
-          .text{
-            font-size:18px;
-            font-family:var(--font-header);
-            margin:0;
-            margin-top:25px;
-            text-align:center;
-          }
-          .button{
-            margin-top:25px;
-          }
+          
         `}
         </style>
       </Layout>

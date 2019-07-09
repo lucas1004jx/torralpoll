@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Layout, Button } from '../components/common';
+import { Layout, Button, InfoCard } from '../components/common';
 
 const Error = ({ statusCode = '', message='', query={} }) => {
   const images = {
@@ -13,40 +13,46 @@ const Error = ({ statusCode = '', message='', query={} }) => {
     '401': 'NOT AUTHORIZED',
     '500': 'YOU HAVE ALREADY VOTED'
   };
+  
   return (
     <Layout className="error-page" pageTitle={`${statusCode} ERROR`} hideHeader>
-      <figure>
-        <img src={images[statusCode]} alt={statusCode} />
-      </figure>
-      <div className="text">{message || messages[statusCode]} </div>
-      {statusCode === 404 && (
-        <div className="button">
-          <Link href='/'>
-            <a>
-              <Button name="Home" />
-            </a>
-          </Link>
+      {(statusCode === 404 || statusCode === 401) && (
+        <div className={`page-inner error-${statusCode}`}>
+          
+          <figure>
+            <img src={images[statusCode]} alt={statusCode} />
+          </figure>
+          <div className="info">
+            <div className="text">{message || messages[statusCode]} </div>
+          
+            <div className="button">
+              <Link href='/'>
+                <a>
+                  <Button name="Home" />
+                </a>
+              </Link>
+            </div>
+          </div>
         </div>
       )}
       {statusCode === 500 && (
-        <div className="button">
-          <Link href={`option?id=${query.id}`}>
-            <a>
-              <Button name="see your option" />
-            </a>
-          </Link>
-          <Link href="/polls">
-            <a>
-              <Button name="Back to list" />
-            </a>
-          </Link>
-        </div>
+        <InfoCard 
+          img={images[statusCode]}
+          message={messages[statusCode]}
+          btn1='see your option'
+          href1={`option?id=${query.id}`}
+          btn2='back to list'
+          href2='/polls'
+        />
       )}
-     
-      
-      <style>
+      <style jsx>
         {`
-        
+        .page-inner{
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          flex-direction:column;
+        }
         figure{
           margin:0;
           padding:0;
@@ -67,7 +73,10 @@ const Error = ({ statusCode = '', message='', query={} }) => {
         }
         .button{
           margin-top:25px;
+          text-align:center;
+
         }
+        
       `}
       </style>
     </Layout>

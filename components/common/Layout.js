@@ -99,7 +99,6 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
           display:flex;
           justify-content:center;
           align-items:center;
-          flex-direction:column;
         }
       `}
       </style>

@@ -3,6 +3,7 @@ import CreatePollPage from './createPage';
 import PollsPage from './pollsPage';
 import ResultPage from './resultPage';
 import LoginPage from './loginPage';
+import OptionPage from './optionPage';
 
 
 export {
@@ -10,5 +11,6 @@ export {
   CreatePollPage,
   PollsPage,
   ResultPage,
-  LoginPage
+  LoginPage,
+  OptionPage
 };

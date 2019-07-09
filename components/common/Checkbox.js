@@ -2,7 +2,7 @@ import React from 'react';
 import { Icons } from './index';
 
 
-const Checkbox = ({ option, checked, onSelect }) => {
+const Checkbox = ({ option, checked, onSelect, disabled }) => {
   const polygonStyle = {
     width: 20,
     height: 'auto',
@@ -14,12 +14,12 @@ const Checkbox = ({ option, checked, onSelect }) => {
       <div className="polygon">
         <Icons name='polygon' style={polygonStyle} /> 
       </div>
-      <input type="radio" id={option} value={option} checked={checked} onChange={onSelect} name={option} />
+      <input type="radio" id={option} value={option} checked={checked} onChange={onSelect} name={option} disabled={disabled} />
       <label htmlFor={option}>{option}</label>
       <style jsx>
         {`
        label,input,.option{
-            cursor:pointer;
+            cursor:${!disabled ? 'pointer': 'default'};
         }
         label{
             display:block;
@@ -38,11 +38,12 @@ const Checkbox = ({ option, checked, onSelect }) => {
         }
         .option.checked{
             box-shadow:2px 2px 5px rgba(38,60,71,0.3);
+            border-color: #17AD8D ;
         }
-        .option:hover,.option.checked{
-            border-color:#17AD8D;
+        .option:hover{
+            border-color:${!disabled ? '#17AD8D' : 'none'} ;
         }
-
+        
         input{
             position:absolute;
             left:0;

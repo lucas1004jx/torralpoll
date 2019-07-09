@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import nookies from 'nookies';
+import { api } from '../../../config';
 import { Layout, Button, Checkbox } from '../../common';
 import { LoginContext } from '../../../context';
 
@@ -12,7 +13,6 @@ const PollDetail = (props) => {
   
   const [ voteSent, setVoteSent ] = useState(false);
   // eslint-disable-next-line no-unused-vars
-  const [ errorMessage, setErrorMessage ] = useState('');
   
   const [selectedOption, setSelectedOption] = useState('');
 
@@ -22,11 +22,11 @@ const PollDetail = (props) => {
     if (!selectedOption) {
       alert('You should choose at least one option');
       return;
-    }
+    } 
     
     axios({
       method: 'post',
-      url: `https://torralbot-back.herokuapp.com/${id}/vote`,
+      url: api.vote(id),
       data: {
         user: email,
         option: selectedOption
@@ -50,22 +50,57 @@ const PollDetail = (props) => {
   if (voteSent) {
     return (
       <Layout title="question" className="question-page" hideHeader pageTitle='TorralPoll-Question'>
-        <h3>Thanks for your vote! It was received and securely stored.</h3>
-        <h3>
-            It cannot be changed by
-          {' '}
-          <span className="blink">ANYONE</span>
-        </h3>
-        <Link href="/polls">
-          <a>
-            <Button name='back to list' />
-          </a>
-        </Link>
-        <Link href={`/result?id=${id}`}>
-          <a>
-            <Button name='see result' />
-          </a>
-        </Link>
+        <div className="page-inner">
+          <figure>
+            <img src="/static/svg/thanks.svg" alt="thanks" />
+          </figure>
+          <h3 className="text">Thanks for your vote! It was received and securely stored.
+            <br />It cannot be changed by ANYONE
+          </h3>
+          
+          <div className="button">
+            <Link href="/polls">
+              <a>
+                <Button name='back to list' />
+              </a>
+            </Link>
+          </div>
+          
+        </div>
+        <style jsx>
+          {`
+          .page-inner{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top:50px;
+          }
+          figure{
+            margin:0;
+            padding:0;
+            width:80%;
+            text-align:center;
+          }
+          img{
+            width:100%;
+            max-width:800px;
+            height:100%;
+            object-fit:contain;
+            object-position:center;
+          }
+          .text{
+            font-size:18px;
+            font-family:var(--font-header);
+            margin:0;
+            margin-top:25px;
+            text-align:center;
+          }
+          .button{
+            margin-top:25px;
+          }
+        `}
+        </style>
       </Layout>
     );
   }
@@ -88,16 +123,7 @@ const PollDetail = (props) => {
             ))}
           </ul>
         </div>
-        {errorMessage && (
-          <div className="alert">
-            {errorMessage}
-            {'\n'}
-            <span className="emoji" role="img">🙅</span>
-          </div>
-        )}
         <div className="submit-button">
-          <span className="voteAs">Vote</span>
-         
           {active ? <Button name='submit' onClick={onSubmit} /> : ''}
           <Link href="/polls">
             <a>

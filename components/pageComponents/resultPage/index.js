@@ -22,8 +22,8 @@ const ResultPage = (props) => {
     let data = [];
 
     options.map(({ name, votes }) => data.push({
-      'name': name,
-      'votes': votes.length,
+      name,
+      votes,
       'fill': getRandomColor()
     }));
 
@@ -33,7 +33,7 @@ const ResultPage = (props) => {
     const factorY = 40;
 
     const calcPercetage = (votes) => {
-      const total = options.reduce((total, option) => total + option.votes.length, 0);
+      const total = options.reduce((total, option) => total + option.votes, 0);
 
       return total !== 0 ? (votes / total).toFixed(2) * 100 : 0;
     };
@@ -56,8 +56,8 @@ const ResultPage = (props) => {
       .enter()
       .append('text')
       .text((d) => `${d.name} ${d.votes} votes`)
-      .attr('x', (d) => `${calcPercetage(d.votes) + 1}%`)
-      .attr('y', (d, i) => factorY * i + 20)
+      .attr('x', 10)
+      .attr('y', (d, i) => factorY * i + 19)
       .attr('fill', '#263C47');
   };
   return (

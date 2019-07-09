@@ -3,8 +3,10 @@ import Router from 'next/router';
 import { GoogleLogin } from 'react-google-login';
 import { Icons } from '../../common/index';
 import { LoginContext } from '../../../context';
+import { clientId } from '../../../config';
 
 const LoginModal = () => {
+  console.log('clientId', clientId);
   const closeStyle = {
     width: '40',
     height: '40'
@@ -32,7 +34,7 @@ const LoginModal = () => {
         </div>
         <div className="login-box">
           <GoogleLogin
-            clientId="239251067475-1ov5ieoodtk7579697b8c5r102375ojf.apps.googleusercontent.com"
+            clientId={clientId}
             buttonText="Sign in with Google"
             onSuccess={responseSuccess}
             onFailure={responseFailed}

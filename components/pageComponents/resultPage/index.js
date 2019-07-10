@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import Link from 'next/link';
 import { Layout, Button } from '../../common';
+import { LoginContext } from '../../../context';
+import Error from '../../../pages/_error';
 
 const ResultPage = (props) => {
-  const { name = '', description = '', options = [] } = props;
- 
+  const { name = '', description = '', options = [], active } = props;
+  const { userProfile: { rol } } = useContext(LoginContext);
+  
+  if(active && rol === 'User') return <Error statusCode='401' />;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    drawResult();
+    if(!active || (active && rol=== 'Admin')) {
+      drawResult();
+    }
+    
   });
+  
 
   const getRandomColor = () => {
     var letters = '0123456789ABCDEF';

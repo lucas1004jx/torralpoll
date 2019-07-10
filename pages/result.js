@@ -10,6 +10,7 @@ class Result extends Component {
   static async getInitialProps(ctx) {
     let { query: { id } } = ctx;
     const { token='' }  = nookies.get(ctx);
+  
     if(id) {
       const poll = await axios.get(api.result(id), { headers: { Authorization: token } })
         .then(res =>  {

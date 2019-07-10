@@ -86,8 +86,8 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
             }
            
             
-          .question-page h1{
-            font-size:48px;
+          .poll-detail-page h1{
+            font-size:28px; 
           }
 
           

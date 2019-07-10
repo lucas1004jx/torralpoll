@@ -57,8 +57,9 @@ const CreatePollPage = () => {
   };
 
 
-
+  
   const createPoll = (question = 'question', description, options) => {
+  
     const { token }  = nookies.get();
     const optionsArray = Object.keys(options).map(key => options[key]);
     axios({

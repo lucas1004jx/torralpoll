@@ -18,18 +18,22 @@ const InforCard = (props) =>{
         <div className="text">{message} </div>
         <div className="button">
           { btn1 &&(
-            <Link href={href1}>
-              <a>
-                <Button name={btn1} style={button500} margin="25" />
-              </a>
-            </Link>
+            <div className="btn1">
+              <Link href={href1}>
+                <a>
+                  <Button name={btn1} style={button500} />
+                </a>
+              </Link>
+            </div>
           )}
           {btn2 && (
-            <Link href={href2}>
-              <a>
-                <Button name={btn2} style={button500} />
-              </a>
-            </Link>
+            <div className="btn2">
+              <Link href={href2}>
+                <a>
+                  <Button name={btn2} style={button500} />
+                </a>
+              </Link>
+            </div>
           )}
         </div>
       </div>
@@ -46,6 +50,7 @@ const InforCard = (props) =>{
           padding:35px 30px;
           border-radius:6px;
           box-shadow: 4px 4px 10px var(--color-shadow);
+          margin: 0 auto;
         }
         figure{
           margin:0;
@@ -82,6 +87,10 @@ const InforCard = (props) =>{
         .button{
           margin-top:25px;
           text-align:center;
+          display:flex;
+        }
+        .btn2{
+          margin-left:25px;
         }
        
       `}

@@ -10,7 +10,7 @@ const Navbar = () => {
   const navbar_padding = 5;
 
   const { loginState, userProfile, userLogout } = useContext(LoginContext);
-  console.log('navbar-----userProfile----->', userProfile);
+  //console.log('navbar-----userProfile----->', userProfile);
   const { rol } = userProfile;
   //console.log('role', rol);
   const logout = () => {

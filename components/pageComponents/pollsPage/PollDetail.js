@@ -8,7 +8,6 @@ import { LoginContext } from '../../../context';
 
 const PollDetail = (props) => {
   const { userProfile: { email } } = useContext(LoginContext);
-  console.log('props', props);
   const { _id: id, options, name, active, description, createdBy } = props;
   
   const [ voteSent, setVoteSent ] = useState(false);
@@ -49,13 +48,15 @@ const PollDetail = (props) => {
 
   if (voteSent) {
     return (
-      <Layout title="question" className="question-page" hideHeader pageTitle='TorralPoll-Question'>
+      <Layout title="question" className="poll-detail-page" hideHeader pageTitle='TorralPoll || Thanks for your vote'>
         <div className="page-inner">
           <InfoCard 
             img='/static/svg/thanks.svg'
             message='Thanks for your vote!'
             btn1='back to list'
             href1='/polls'
+            btn2='see your option'
+            href2={`/option?id=${id}`}
           />
           
         </div>
@@ -76,7 +77,7 @@ const PollDetail = (props) => {
     );
   }
   return (
-    <Layout title={name} className="question-page" author={createdBy} pageTitle='TorralPoll-Question'>
+    <Layout title={name} className="poll-detail-page" author={createdBy} pageTitle='TorralPoll || Poll Detail'>
       <div className="page-inner">
         <p className="description">
           {description}
@@ -106,22 +107,7 @@ const PollDetail = (props) => {
       </div>
       <style jsx>
         {`
-            /* The alert message box */
-            .emoji {
-                font-size: 50px;
-            }
-            @-webkit-keyframes blinker {
-                from {opacity: 1.0;}
-                to {opacity: 0.0;}
-            }
-            .blink{
-                text-decoration: blink;
-                -webkit-animation-name: blinker;
-                -webkit-animation-duration: 0.6s;
-                -webkit-animation-iteration-count:infinite;
-                -webkit-animation-timing-function:ease-in-out;
-                -webkit-animation-direction: alternate;
-            }
+            
             .alert {
               padding: 20px;
               background-color: #f44336; /* Red */

@@ -49,6 +49,7 @@ static async getInitialProps(ctx) {
 }
 render() {
   const { poll={}, polls={}, query={} } = this.props;
+  
   if (poll.error)  return <Error statusCode={poll.error} query={query} />;
   if (polls.error)  return <Error statusCode={polls.error} />;
    

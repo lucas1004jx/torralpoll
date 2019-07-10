@@ -1,50 +1,47 @@
 import React from 'react';
 import Link from 'next/link';
-import { Layout, Button, InfoCard } from '../components/common';
+import { Layout, Button } from '../components/common';
 
-const Error = ({ statusCode = '', message='', query={} }) => {
+const Error = ({ statusCode = '', message='', }) => {
   const images = {
     '404': '/static/svg/404.svg',
     '401': '/static/svg/401.svg', 
-    '500': '/static/svg/already_vote.svg'
+    '500': '/static/svg/server_error.svg'
   };
   const messages = {
     '404': 'NOT FOUND',
     '401': 'NOT AUTHORIZED',
-    '500': 'YOU HAVE ALREADY VOTED'
+    '500': 'SERVER ERROR'
   };
   
   return (
     <Layout className="error-page" pageTitle={`${statusCode} ERROR`} hideHeader>
-      {(statusCode === 404 || statusCode === 401) && (
-        <div className={`page-inner error-${statusCode}`}>
+      <div className={`page-inner error-${statusCode}`}>  
+        <figure>
+          <img src={images[statusCode]} alt={statusCode} />
+        </figure>
+        <div className="info">
+          <div className="text">{message || messages[statusCode]} </div>
           
-          <figure>
-            <img src={images[statusCode]} alt={statusCode} />
-          </figure>
-          <div className="info">
-            <div className="text">{message || messages[statusCode]} </div>
-          
-            <div className="button">
-              <Link href='/'>
+          <div className="button">
+            { statusCode === 401 && (
+              <Link href='/login'>
                 <a>
-                  <Button name="Home" />
+                  <Button name="Sign In" margin="25" />
                 </a>
               </Link>
-            </div>
+            )}
+            <Link href='/'>
+              <a>
+                <Button name="Home" />
+              </a>
+            </Link>
+            
           </div>
         </div>
-      )}
-      {statusCode === 500 && (
-        <InfoCard 
-          img={images[statusCode]}
-          message={messages[statusCode]}
-          btn1='see your option'
-          href1={`option?id=${query.id}`}
-          btn2='back to list'
-          href2='/polls'
-        />
-      )}
+      </div>
+     
+      
       <style jsx>
         {`
         .page-inner{

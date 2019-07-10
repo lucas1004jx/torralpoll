@@ -24,7 +24,7 @@ const Checkbox = ({ option, checked, onSelect, disabled }) => {
         label{
             display:block;
             padding: 15px 10px;
-            font-size:18px;
+            font-size:16px;
             transition: color 0.3s ease;
             text-transform:capitalize;
         }

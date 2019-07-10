@@ -30,8 +30,8 @@ const PollLists = (props) => {
   const renderPollList = (status) =>(
     pollObj[status].map(poll => (
       poll.hasVoted ?
-        <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/option?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />:
-        <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />
+        <List content={poll.name} id={poll._id} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/option?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />:
+        <List content={poll.name} id={poll._id} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />
     ))
    
   );
@@ -40,16 +40,22 @@ const PollLists = (props) => {
     <Layout title='Poll list' pageTile='TorralPoll - poll List'>
       <div className="filter">
         {Tags.map(tag =>
-          <Tag name={tag} status={tag} onClick={() => handleFilter(tag)} active={tag === status} key={tag} />
+          <Tag name={tag} status={tag} onClick={() => handleFilter(tag)} active={tag === status} key={tag} style={{ width: '86px' }} />
         )}
       </div>
-      {renderPollList(status)}
+      <div className="lists">
+        {renderPollList(status)}
+      </div>
+      
       <style jsx>
         {`
             .filter{
               margin-bottom:15px;
               border-bottom:2px solid var(--color-inActive);
               padding-bottom:15px;
+            }
+            .lists{
+              padding-right: 50px;
             }
           `}
 

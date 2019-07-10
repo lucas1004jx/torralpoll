@@ -7,5 +7,7 @@ module.exports = {
   list: `${server}/list`,
   vote: (id) => `${server}/${id}/vote`,
   userOption: (id) => `${server}/${id}/details`,
-  result: (id) => `${server}/${id}/details`
+  result: (id) => `${server}/${id}/details`,
+  close: (id) =>`${server}/${id}/close`,
+  delete: (id) => `${server}/${id}/delete`,
 };

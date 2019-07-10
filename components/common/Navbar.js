@@ -1,6 +1,7 @@
 import { GoogleLogout } from 'react-google-login';
 import Link from 'next/link';
 import React, { useContext } from 'react';
+import { clientId } from '../../config';
 import { Icons } from './index';
 import { LoginContext } from '../../context';
 
@@ -49,7 +50,7 @@ const Navbar = () => {
               <p>{userProfile.name}</p>
               <p> {userProfile.email}</p>
               <GoogleLogout
-                clientId="239251067475-1ov5ieoodtk7579697b8c5r102375ojf.apps.googleusercontent.com"
+                clientId={clientId}
                 buttonText="Logout"
                 onLogoutSuccess={logout}
               />
@@ -63,7 +64,7 @@ const Navbar = () => {
         nav{
           background:var(--color-dark);
           height:${navbar_height}px;
-          padding:${navbar_padding}px 15px;
+          padding:${navbar_padding}px 25px;
           display:flex;
           align-items:center;
           justify-content:space-between;

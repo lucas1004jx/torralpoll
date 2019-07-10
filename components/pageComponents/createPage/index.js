@@ -3,7 +3,7 @@ import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
 import nookies from 'nookies';
-import { server } from '../../../config';
+import { api } from '../../../config';
 import { Input, Button, Checkbox, Layout, Icons } from '../../common';
 
 
@@ -63,7 +63,7 @@ const CreatePollPage = () => {
     const optionsArray = Object.keys(options).map(key => options[key]);
     axios({
       method: 'post',
-      url: `${server}/create`,
+      url: api.create,
       data: {
         name: question,
         description,
@@ -134,7 +134,7 @@ const CreatePollPage = () => {
         <div className="create-preview-button button-container">
           <Link href="/polls">
             <a>
-              <Button name='see list' />
+              <Button name='see list' margin="25" />
             </a>
           </Link>
           {/* <Button name='preview' /> */}

@@ -40,6 +40,7 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
                 --color-inActive:#979797;
                 --color-dark:#263C47;
                 --color-text:#4a4a4a;
+                --color-shadow:rgba(0,0,0,0.3);
                 --tag-all:#FAC314;
                 --tag-active:#079AE0;
                 --tag-closed:#B85346;
@@ -99,7 +100,6 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
           display:flex;
           justify-content:center;
           align-items:center;
-          flex-direction:column;
         }
       `}
       </style>

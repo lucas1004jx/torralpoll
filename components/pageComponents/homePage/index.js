@@ -8,7 +8,6 @@ const HomePage = () => {
     background: '#fff',
     color: '#17AD8D',
     fontWeight: '500',
-    fontSize: '16px'
   };
   return (
     <Layout className='home-page' ideHeaderh pageTitle='TorralPoll-Home'>

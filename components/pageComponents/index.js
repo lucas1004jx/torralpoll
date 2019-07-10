@@ -4,6 +4,7 @@ import PollsPage from './pollsPage';
 import ResultPage from './resultPage';
 import LoginPage from './loginPage';
 import OptionPage from './optionPage';
+import InfoPage from './infoPage';
 
 
 export {
@@ -12,5 +13,6 @@ export {
   PollsPage,
   ResultPage,
   LoginPage,
-  OptionPage
+  OptionPage,
+  InfoPage
 };

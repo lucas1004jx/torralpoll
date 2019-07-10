@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, List, Tag } from '../../common';
 
 const PollLists = (props) => {
+  const { polls=[] } = props;
   const [status, setStatus] = useState('all');
-
-  let { polls=[] } = props;
-  polls = polls.reverse();
-  
+  const [pollObj, setPollObj] = useState({
+    'all': [],
+    'active': [],
+    'closed': []
+  });
   const Tags = ['all', 'active', 'closed'];
-  const activePolls = polls.filter(poll => poll.active);
-  const closedPolls = polls.filter(poll => !poll.active);
+
+  useEffect(()=>{
+    const activePolls = polls.filter(poll => poll.active);
+    const closedPolls = polls.filter(poll => !poll.active);
+    setPollObj({
+      'all': polls.reverse(),
+      'active': activePolls,
+      'closed': closedPolls
+    });
+  
+  }, [props]);
+  
 
   const handleFilter = (status) => {
     setStatus(status);
   };
+  
+  const renderPollList = (status) =>(
+    pollObj[status].map(poll => (
+      poll.hasVoted ?
+        <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/option?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />:
+        <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />
+    ))
+   
+  );
 
   return (
     <Layout title='Poll list' pageTile='TorralPoll - poll List'>
@@ -22,17 +43,7 @@ const PollLists = (props) => {
           <Tag name={tag} status={tag} onClick={() => handleFilter(tag)} active={tag === status} key={tag} />
         )}
       </div>
-      {status === 'all' && polls.map(poll => (
-        poll.hasVoted ?
-          <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/option?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />:
-          <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />
-      ))}
-      {status === 'active' && activePolls.map(poll => (
-        <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />
-      ))}
-      {status === 'closed' && closedPolls.map(poll => (
-        <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={`/result?id=${poll._id}`} key={poll._id} />
-      ))}
+      {renderPollList(status)}
       <style jsx>
         {`
             .filter{

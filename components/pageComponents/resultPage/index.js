@@ -21,9 +21,9 @@ const ResultPage = (props) => {
   const drawResult = () => {
     let data = [];
 
-    options.map(({ name, votes }) => data.push({
+    options.map(({ name, votesCount }) => data.push({
       name,
-      votes,
+      votesCount,
       'fill': getRandomColor()
     }));
 
@@ -32,10 +32,10 @@ const ResultPage = (props) => {
     const factorX = 0;
     const factorY = 40;
 
-    const calcPercetage = (votes) => {
-      const total = options.reduce((total, option) => total + option.votes, 0);
+    const calcPercetage = (votesCount) => {
+      const total = options.reduce((total, option) => total + option.votesCount, 0);
 
-      return total !== 0 ? (votes / total).toFixed(2) * 100 : 0;
+      return total !== 0 ? (votesCount / total).toFixed(2) * 100 : 0;
     };
 
     const svg = d3.select('#graphic').append('svg').attr('width', width).attr('height', height);
@@ -46,7 +46,7 @@ const ResultPage = (props) => {
       .append('rect')
       .attr('x', factorX)
       .attr('y', (d, i) => factorY * i)
-      .attr('width', (d) => `${calcPercetage(d.votes)}%`)
+      .attr('width', (d) => `${calcPercetage(d.votesCount)}%`)
       .attr('height', 25)
       .attr('fill', (d) => d.fill);
 
@@ -55,7 +55,7 @@ const ResultPage = (props) => {
       .data(data)
       .enter()
       .append('text')
-      .text((d) => `${d.name} ${d.votes} votes`)
+      .text((d) => `${d.name} ${d.votesCount} votes`)
       .attr('x', 10)
       .attr('y', (d, i) => factorY * i + 19)
       .attr('fill', '#263C47');

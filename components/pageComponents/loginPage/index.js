@@ -62,7 +62,7 @@ const LoginModal = () => {
             position:relative;
             width:100%;
             padding-bottom:56.3%;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
             background:url('/static/svg/login.svg') no-repeat center center;
             background-size:cover;
         }

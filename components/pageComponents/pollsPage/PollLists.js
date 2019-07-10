@@ -21,11 +21,11 @@ const PollLists = (props) => {
         {Tags.map(tag =>
           <Tag name={tag} status={tag} onClick={() => handleFilter(tag)} active={tag === status} key={tag} />
         )}
-
-        
       </div>
       {status === 'all' && polls.map(poll => (
-        <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} />
+        poll.hasVoted ?
+          <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/option?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />:
+          <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />
       ))}
       {status === 'active' && activePolls.map(poll => (
         <List content={poll.name} status={poll.active ? 'active' : 'closed'} href={`/polls?id=${poll._id}`} key={poll._id} />

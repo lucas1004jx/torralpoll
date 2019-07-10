@@ -134,7 +134,7 @@ const CreatePollPage = () => {
         <div className="create-preview-button button-container">
           <Link href="/polls">
             <a>
-              <Button name='see list' />
+              <Button name='see list' margin="25" />
             </a>
           </Link>
           {/* <Button name='preview' /> */}

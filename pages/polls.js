@@ -38,8 +38,9 @@ static async getInitialProps(ctx) {
       .then(res =>res.data)
       .catch((error) => {
         console.log('fetch polls list error', error.message); 
+        const statusCode = error.response && error.response.status || 401;
         return { 
-          error: error.response.status,
+          error: statusCode,
           errorMessage: error.message
         };  });
     return { polls };

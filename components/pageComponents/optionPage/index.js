@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Layout, Checkbox, Button } from '../../common';
 
 const OptionPage = (props) => {
-  const { name, description, options, userOption } = props;
+  const { name, description, options, votedOption, createdBy } = props;
   return (
-    <Layout title={name} className="question-page" author='author' pageTitle='TorralPoll-Question'>
+    <Layout title={name} className="question-page" author={createdBy} pageTitle='TorralPoll-Question'>
       <div className="page-inner">
         <p className="description">
           {description}
@@ -14,7 +14,7 @@ const OptionPage = (props) => {
         <div className="left">
           <ul className="lists">
             {options && options.map((option, i) => (
-              option.name === userOption ? (
+              option.name === votedOption ? (
                 <Checkbox
                   option={option.name}
                   key={i}
@@ -30,7 +30,7 @@ const OptionPage = (props) => {
               )))}
           </ul>
         </div>
-        <span className="voteAs">{`Your vote: ${userOption}`} </span>
+        <span className="voteAs">{`Your vote: ${votedOption}`} </span>
         <div className="submit-button">
           <Link href="/polls">
             <a>

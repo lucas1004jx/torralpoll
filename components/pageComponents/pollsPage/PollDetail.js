@@ -9,7 +9,7 @@ import { LoginContext } from '../../../context';
 const PollDetail = (props) => {
   const { userProfile: { email } } = useContext(LoginContext);
   console.log('props', props);
-  const { _id: id, options, name, active, description } = props;
+  const { _id: id, options, name, active, description, createdBy } = props;
   
   const [ voteSent, setVoteSent ] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -76,7 +76,7 @@ const PollDetail = (props) => {
     );
   }
   return (
-    <Layout title={name} className="question-page" author='author' pageTitle='TorralPoll-Question'>
+    <Layout title={name} className="question-page" author={createdBy} pageTitle='TorralPoll-Question'>
       <div className="page-inner">
         <p className="description">
           {description}
@@ -95,7 +95,7 @@ const PollDetail = (props) => {
           </ul>
         </div>
         <div className="submit-button">
-          {active ? <Button name='submit' onClick={onSubmit} /> : ''}
+          {active ? <Button name='submit' onClick={onSubmit} margin="25" /> : ''}
           <Link href="/polls">
             <a>
               <Button name='back to list' />

@@ -1,20 +1,22 @@
 import React from 'react';
 
-const Button = ({ name, ...props }) =>(
+const Button = ({ name, margin=0, ...props }) =>(
   <button {...props}>
     {name}
     
     <style jsx>
       {`
         button{
+            font-family:var(--font-main);
             background:var(--color-main);
             color:#fff;
             padding:15px 20px;
             border:none;
             border-radius:6px;
             text-transform: uppercase;
-            margin-right:15px;
             cursor:pointer;
+            min-width:100px;
+            margin-right:${margin}px;
         }
       `}
     </style>

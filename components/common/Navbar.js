@@ -64,7 +64,7 @@ const Navbar = () => {
         nav{
           background:var(--color-dark);
           height:${navbar_height}px;
-          padding:${navbar_padding}px 15px;
+          padding:${navbar_padding}px 25px;
           display:flex;
           align-items:center;
           justify-content:space-between;

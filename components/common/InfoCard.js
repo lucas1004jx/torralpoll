@@ -20,7 +20,7 @@ const InforCard = (props) =>{
           { btn1 &&(
             <Link href={href1}>
               <a>
-                <Button name={btn1} style={button500} />
+                <Button name={btn1} style={button500} margin="25" />
               </a>
             </Link>
           )}
@@ -45,7 +45,7 @@ const InforCard = (props) =>{
           background:var(--color-background);
           padding:35px 30px;
           border-radius:6px;
-          box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+          box-shadow: 4px 4px 10px var(--color-shadow);
         }
         figure{
           margin:0;
@@ -83,7 +83,7 @@ const InforCard = (props) =>{
           margin-top:25px;
           text-align:center;
         }
-        
+       
       `}
       </style>
     </div>

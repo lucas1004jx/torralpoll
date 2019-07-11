@@ -6,7 +6,7 @@ import { LoginContext } from '../../../context';
 import { clientId } from '../../../config';
 
 const LoginModal = () => {
-  console.log('clientId', clientId);
+
   const closeStyle = {
     width: '40',
     height: '40'

@@ -1,7 +1,7 @@
 const { server } = require('./index');
 
 module.exports = {
-  user: `${server}/user`,
+  user: `${server}/me`,
   create: `${server}/create`,
   detail: (id) => `${server}/${id}/details`,
   list: `${server}/list`,

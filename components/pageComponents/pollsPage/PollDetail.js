@@ -1,15 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import nookies from 'nookies';
 import { api } from '../../../config';
 import { Layout, Button, Checkbox } from '../../common';
-import { LoginContext } from '../../../context';
 import VoteSent from './VoteSent'; 
 
 const PollDetail = (props) => {
-  const { userProfile: { email } } = useContext(LoginContext);
-  const { _id: id, options, name, description, createdBy } = props;
+  
+  const { id, options, name, description, createdBy } = props;
   
   const [ voteSent, setVoteSent ] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -28,7 +27,6 @@ const PollDetail = (props) => {
       method: 'post',
       url: api.vote(id),
       data: {
-        user: email,
         option: selectedOption
       },
       headers: { Authorization: token }
@@ -43,14 +41,13 @@ const PollDetail = (props) => {
   };
   
   const onSelect = (value) => {
-    console.log('value', value);
     setSelectedOption(value);
   };
 
   if (voteSent) return <VoteSent id={id} />;
 
   return (
-    <Layout title={name} className="poll-detail-page" author={createdBy} pageTitle='TorralPoll || Poll Detail'>
+    <Layout title={name} className="poll-detail-page" author={createdBy.name} pageTitle='TorralPoll || Poll Detail'>
       <div className="page-inner">
         <p className="description">
           {description}

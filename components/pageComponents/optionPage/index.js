@@ -5,7 +5,7 @@ import { Layout, Checkbox, Button } from '../../common';
 const OptionPage = (props) => {
   const { name, description, options, votedOption, createdBy } = props;
   return (
-    <Layout title={name} className="poll-detail-page" author={createdBy} pageTitle='TorralPoll || User Option  '>
+    <Layout title={name} className="poll-detail-page" author={createdBy.name} pageTitle='TorralPoll || User Option  '>
       <div className="page-inner">
         <p className="description">
           {description}

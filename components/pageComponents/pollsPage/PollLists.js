@@ -29,9 +29,9 @@ const PollLists = (props) => {
   
   const renderPollList = (status) =>(
     pollObj[status].map(poll => (
-      poll.hasVoted ?
-        <List content={poll.name} id={poll._id} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/option?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />:
-        <List content={poll.name} id={poll._id} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll._id}` : `/result?id=${poll._id}`} key={poll._id} voted={poll.hasVoted} />
+      poll.userHasVoted ?
+        <List content={poll.name} id={poll.id} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/option?id=${poll.id}` : `/result?id=${poll.id}`} key={poll.id} voted={poll.userHasVoted} />:
+        <List content={poll.name} id={poll.id} status={poll.active ? 'active' : 'closed'} href={poll.active ? `/polls?id=${poll.id}` : `/result?id=${poll.id}`} key={poll.id} voted={poll.userHasVoted} />
     ))
    
   );

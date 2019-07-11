@@ -6,7 +6,7 @@ const InforCard = (props) =>{
   const { message, className='', img, btn1, href1, btn2, href2 } = props;
   const button500 = {
     background: '#fff',
-    color: 'var(--color-dark)'
+    color: 'var(--color-text)'
   };
 
   return(

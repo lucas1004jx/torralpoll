@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import Router from 'next/router';
 import Link from 'next/link';
 import nookies from 'nookies';
-import { api } from '../../../config';
 import { Input, Button, Checkbox, Layout, Icons } from '../../common';
+import { crud } from '../../../lib';
 
 
 
@@ -25,9 +23,6 @@ const CreatePollPage = () => {
   const [optionItems, setOptionitems] = useState(Object.keys(defaultOptions).length);
   const [options, setOptions] = useState(defaultOptions);
 
-  
-  
-  
 
   const handleOption = () => {
     setSingleOption(!singleOption);
@@ -58,22 +53,12 @@ const CreatePollPage = () => {
 
 
   
-  const createPoll = (question = 'question', description, options) => {
+  const createPoll = (question = 'question', description='', options=[]) => {
   
-    const { token }  = nookies.get();
-    const optionsArray = Object.keys(options).map(key => options[key]);
-    axios({
-      method: 'post',
-      url: api.create,
-      data: {
-        name: question,
-        description,
-        options: optionsArray,
-      },
-      headers: { Authorization: token }
-    })
-      .then(() => Router.push('/polls'))
-      .catch(err => `something went wrong, error message ${err}`);
+    const { token='' }  = nookies.get();
+    const { handleCreate } = crud;
+    const optionsArray = Object.keys(options).map(key => options[key]).filter(option=> !!option);
+    handleCreate(token, question, description, optionsArray);
   };
 
   const closeStyle = {

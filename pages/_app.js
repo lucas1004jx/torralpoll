@@ -4,7 +4,7 @@ import nookies from 'nookies';
 import { CombinedCtxProvider } from '../context';
 
 class MyApp extends App {
- 
+
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
     const { token }= nookies.get(ctx);

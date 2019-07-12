@@ -22,12 +22,19 @@ const List = ({ content, href, status, id, timestamp }) =>{
     await handleClose(id, token);
     const { polls: pollList } = await handePollList(token);
     setPollList(pollList);
+    window?
+      window.location.href='/polls':
+      Router.push('/polls');
+    
   };
   const optionDelete = async () =>{
     await handleDelete(id, token);
     const { polls: pollList } = await handePollList(token);
     console.log('after delete polllist', pollList);
     setPollList(pollList);
+    window?
+      window.location.href='/polls':
+      Router.push('/polls');
   };
   const optionResult = () =>{
     Router.push(`/result?id=${id}`);

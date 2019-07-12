@@ -36,10 +36,11 @@ const ResultPage = (props) => {
       'fill': getRandomColor()
     }));
 
-    const height = 50 * data.length;
+    const height = 50 * data.length*1.4;
     const width = '80%';
     const factorX = 0;
-    const factorY = 40;
+    const GfactorY = 30;
+    const TfactorY = 15;
 
     const calcPercetage = (votesCount) => {
       const total = options.reduce((total, option) => total + option.votesCount, 0);
@@ -54,7 +55,7 @@ const ResultPage = (props) => {
       .enter()
       .append('rect')
       .attr('x', factorX)
-      .attr('y', (d, i) => factorY * i)
+      .attr('y', (d, i) => GfactorY * (i+i) + 25)
       .attr('width', (d) => `${calcPercetage(d.votesCount)}%`)
       .attr('height', 25)
       .attr('fill', (d) => d.fill);
@@ -66,7 +67,7 @@ const ResultPage = (props) => {
       .append('text')
       .text((d) => `${d.name} ${d.votesCount} votes`)
       .attr('x', 10)
-      .attr('y', (d, i) => factorY * i + 19)
+      .attr('y', (d, i) => TfactorY * (i+i+i+i) + 20)
       .attr('fill', '#263C47');
   };
   return (

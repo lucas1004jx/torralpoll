@@ -2,26 +2,39 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import nookies from 'nookies';
 import Router from 'next/router';
+import Moment from 'react-moment';
 import { Icons, Tag } from './index';
-import { handleClose, handleDelete } from '../../lib/crud';
-import { LoginContext } from '../../context';
+import { crud } from '../../lib';
+import { LoginContext, PollListContext } from '../../context';
 
-const List = ({ content, href, status, id }) =>{
+const List = ({ content, href, status, id, timestamp }) =>{
   const iconStyle = {
     width: 20,
     height: 'auto',
     fill: `${status === 'active' ?  'var(--color-main)' :'var(--color-inActive)'}`
   };
   const { userProfile: { rol } } = useContext(LoginContext);
+  const { setPollList } = useContext(PollListContext);
+  const { handleClose, handleDelete, handePollList } = crud;
   
   const { token='' } = nookies.get();
-  const optionClose = () =>{
-    handleClose(id, token);
-    Router.push('/polls');
+  const optionClose = async () =>{
+    await handleClose(id, token);
+    const { polls: pollList } = await handePollList(token);
+    setPollList(pollList);
+    window?
+      window.location.href='/polls':
+      Router.push('/polls');
+    
   };
-  const optionDelete = () =>{
-    handleDelete(id, token);
-    Router.push('/polls');
+  const optionDelete = async () =>{
+    await handleDelete(id, token);
+    const { polls: pollList } = await handePollList(token);
+    console.log('after delete polllist', pollList);
+    setPollList(pollList);
+    window?
+      window.location.href='/polls':
+      Router.push('/polls');
   };
   const optionResult = () =>{
     Router.push(`/result?id=${id}`);
@@ -33,6 +46,11 @@ const List = ({ content, href, status, id }) =>{
         <a>
           <div className="list-icon">
             <Icons name='polygon' style={iconStyle} />
+          </div>
+          <div className="date">
+            <Moment format="YYYY/MM/DD">
+              {timestamp}
+            </Moment>
           </div>
           <div className="tag">
             <Tag name={status} status={status} style={{ width: '70px' }} />
@@ -62,7 +80,7 @@ const List = ({ content, href, status, id }) =>{
                 list-style:none;
                 position:relative;
                 padding-left:25px;
-                padding-right:140px;
+                padding-right:230px;
                 margin-bottom:25px;
                 cursor:pointer;
             }
@@ -155,6 +173,13 @@ const List = ({ content, href, status, id }) =>{
             }
             .options span:last-child{
               margin-bottom:0;
+            }
+
+            .date{
+              position:absolute;
+              right:130px;
+              top:50%;
+              transform:translateY(-50%);
             }
       `}
       </style>

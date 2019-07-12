@@ -30,7 +30,7 @@ const OptionPage = (props) => {
               )))}
           </ul>
         </div>
-        <span className="voteAs">{`Your vote: ${votedOption}`} </span>
+        <p className="userOption">Your vote <span>{votedOption}</span></p>
         <div className="submit-button">
           <Link href="/polls">
             <a>
@@ -41,66 +41,12 @@ const OptionPage = (props) => {
       </div>
       <style jsx>
         {`
-          /* The alert message box */
-          .emoji {
-              font-size: 50px;
-          }
-          @-webkit-keyframes blinker {
-              from {opacity: 1.0;}
-              to {opacity: 0.0;}
-          }
-          .blink{
-              text-decoration: blink;
-              -webkit-animation-name: blinker;
-              -webkit-animation-duration: 0.6s;
-              -webkit-animation-iteration-count:infinite;
-              -webkit-animation-timing-function:ease-in-out;
-              -webkit-animation-direction: alternate;
-          }
-          .alert {
-            padding: 20px;
-            background-color: #f44336; /* Red */
-            color: white;
-            text-align:center;
-            margin-bottom: 15px;
-          }
-          .success {
-              padding: 20px;
-              background-color: green; /* Red */
-              color: white;
-              text-align:center;
-              margin-bottom: 15px;
-          }
+       
           .selected {
               color: var(--color-dark)
           }
           
-        /* The close button */
-        .closebtn {
-          margin-left: 15px;
-          color: white;
-          font-weight: bold;
-          float: right;
-          font-size: 22px;
-          line-height: 20px;
-          cursor: pointer;
-          transition: 0.3s;
-        }
-          
-        /* When moving the mouse over the close button */
-        .closebtn:hover {
-          color: black;
-        }
-        .voteAs {
-            margin-right: 20px;
-        }
-        .nameInput {
-            margin-right: 20px;
-            border-style: solid;
-            border-color: grey;
-            border-radius: 5px;
-            padding: 10px;
-        }
+      
         ul{
             padding:0;
             margin:0;
@@ -117,6 +63,13 @@ const OptionPage = (props) => {
         .description{
           font-size:18px;
           line-height:1.4;
+        }
+        .userOption{
+          font-size:24px;
+        }
+        .userOption span{
+          color:var(--color-main);
+          text-transform:capitalize;
         }
       `}
       </style>

@@ -35,6 +35,23 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
      
       <style jsx>
         {`
+        .title{
+              font-family: var(--font-header);
+              display:flex;
+              margin:20px 0;
+              position:relative;
+          }
+
+          .home-page .title:after{
+            content:'';
+            display:block;
+            width:250px;
+            height:1px;
+            background:var(--color-main);
+            position:absolute;
+            bottom:0;
+            left:75px;
+          }
         .error-page{
           display:flex;
           justify-content:center;

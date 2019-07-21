@@ -39,7 +39,7 @@ const List = ({ content, href, status, id, timestamp }) =>{
   const optionResult = () =>{
     Router.push(`/result?id=${id}`);
   };
-
+  
   return ( 
     <div className={`list ${status ==='closed' ? 'closed' : ''}`}>
       <Link href={href}>

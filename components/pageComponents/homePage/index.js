@@ -1,21 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { Layout, Button } from '../../common';
+import { Layout, Button, Icons } from '../../common';
 
 const HomePage = () => {
 
-  const btnStyle = {
-    background: '#fff',
-    color: '#17AD8D',
-    fontWeight: '500',
-  };
   return (
-    <Layout className='home-page' ideHeaderh pageTitle='TorralPoll-Home'>
+    <Layout className='home-page' pageTitle='TorralPoll-Home' title="TorralPoll!">
       <div className="home-page-inner">
         <div className="intro-section">
-          <div className="title">
-            <h1>TorralPoll!</h1>
-          </div>
           <div className="intro">
             <p>
               Once upon a time (like until now), there was a group of people, working together in a splendid company.
@@ -28,16 +20,19 @@ const HomePage = () => {
           </div>
           <Link prefetch href="/polls">
             <a className="btn">
-              <Button name="see polls" style={btnStyle} />
+              <Button name="see polls"  />
             </a>
           </Link>
-
+         
+        </div>
+        <div className="graphic">
+          <Icons name='bcgHome' width='100%' height='auto' />
         </div>
       </div>
       <style jsx global>
         {`
         body{
-          background:var(--color-background);
+          
         }
       `}
       </style>
@@ -45,42 +40,25 @@ const HomePage = () => {
         {`
         .home-page-inner{
             margin:0;
-            min-height:calc(100vh - 120px);
             display:grid;
-            grid-template-columns:1fr;
-            grid-template-rows:1fr auto 1fr;
+            grid-template-columns:50% 50%;
+            grid-template-rows:1fr;
+            grid-column-gap:25px;
+            grid-template-areas:'intro graphic';
             margin:0 auto;
-            background:url('/static/svg/team.svg') no-repeat right bottom;
-            background-size: 70% auto;
+            color:var(--color-text);
         }
         .intro-section{
             max-width:600px;
-            font-size:18px;
+            font-size:15px;
             line-height:1.5;
             overflow:hidden;
-            grid-column:1/2;
-            grid-row:2/3;
+            grid-area:intro;
             height:fit-content;
             color:var(--color-text);
-            padding: 15px 0;
-        }
-        .title{
-            color:#fff;
-            margin-bottom:50px;
-        }
-        h1{
-          margin:0;
-          font-size:70px;
-          text-transform:none;
+            padding: 15px;
         }
         
-        h1:after{
-            content:'';
-            display:block;
-            width:100%;
-            height:10px;
-            background:var(--color-main);
-        }
         .intro{
             animation: slideUp 3s 1 forwards;
             margin-bottom:25px;
@@ -89,6 +67,15 @@ const HomePage = () => {
             animation: show 1s 2s 1 forwards;
             opacity:0; 
         }
+
+        .graphic{
+          grid-area:graphic;
+          position:absolute;
+          top:0;
+          right:0;
+          width:60%;
+        }
+        
         @keyframes slideUp{
             from{transform:translateY(100%)}
             to{transform:translateY(0)}

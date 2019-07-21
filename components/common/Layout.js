@@ -35,6 +35,14 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
      
       <style jsx>
         {`
+        .title{
+              font-family: var(--font-header);
+              display:flex;
+              margin:20px 0;
+              position:relative;
+          }
+
+          
         .error-page{
           display:flex;
           justify-content:center;

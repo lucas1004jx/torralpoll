@@ -62,22 +62,20 @@ const Navbar = () => {
       <style jsx>
         {`
         nav{
-          background:var(--color-dark);
           height:${navbar_height}px;
           padding:${navbar_padding}px 25px;
           display:flex;
           align-items:center;
           justify-content:space-between;
-          margin-bottom:50px;
           position:absolute;
           width:100%;
           left:0;
           top:0;
           box-sizing:border-box;
+          z-index:2;
         }
         a:not(.logo),.login{
-          color:#fff;
-          font-family:var(--font-header);
+          color:var(--color-text);
           text-decoration:none;
           margin-left:25px;
           text-transform:capitalize;
@@ -85,7 +83,7 @@ const Navbar = () => {
           display:inline-block;
         }
         .create{
-          border:1px solid #fff;
+          border:1px solid var(--color-text);
           padding:8px 16px;
          
         }

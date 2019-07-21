@@ -36,43 +36,47 @@ class MyApp extends App {
                 --color-dark:#263C47;
                 --color-text:#4a4a4a;
                 --color-shadow:rgba(0,0,0,0.3);
+                 --color-gradient:linear-gradient(90deg, rgba(23,173,141,1) 0%, rgba(84,198,255,1) 100%);
                 --tag-all:#FAC314;
                 --tag-active:#079AE0;
                 --tag-closed:#B85346;
                 --font-main:'Lato', sans-serif;
                 --font-header: 'Chalkduster', 'Lato', sans-serif;
+                --font-fantasy:'AfricanStyle', 'Lato', sans-serif;
             }
             @font-face {
               font-family: Chalkduster;
               src: url('/static/fonts/Chalkduster.woff2');
             }
+            @font-face {
+              font-family: AfricanStyle;
+              src: url('/static/fonts/AfricanStyle.ttf');
+            }
             body{
                 font-family:var(--font-main);
                 padding: 0;
-                margin:0;
+                margin:0 auto;
                 box-sizing:border-box;
-                width:100%;
                 position:relative;
-                color:var(--color-dark);
+                color:var(--color-text);
             }
             main{
+                position:relative;
                 max-width:1400px;
                 min-height:100vh;
                 margin:0 auto;
                 box-sizing:border-box;
                 padding: 60px 30px;
                 padding-bottom:50px;
+                overflow:hidden;
             }
-            .title{
-                font-family: var(--font-header);
-                display:flex;
-                margin:20px 0;
-            }
+           
 
             h1{
                 text-transform:uppercase;
-                font-size:60px;
+                font-size:36px;
                 margin:0;
+                font-family:var(--font-fantasy);
             }
             .author{
                 align-self:flex-end;

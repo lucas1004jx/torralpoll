@@ -16,7 +16,7 @@ const ResultPage = (props) => {
       drawResult();
     }
     
-  });
+  }, []);
   
 
   const getRandomColor = () => {

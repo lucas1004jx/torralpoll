@@ -75,8 +75,7 @@ const Navbar = () => {
           z-index:2;
         }
         a:not(.logo),.login{
-          color:#000;
-          font-family:var(--font-header);
+          color:var(--color-text);
           text-decoration:none;
           margin-left:25px;
           text-transform:capitalize;
@@ -84,7 +83,7 @@ const Navbar = () => {
           display:inline-block;
         }
         .create{
-          border:1px solid #fff;
+          border:1px solid var(--color-text);
           padding:8px 16px;
          
         }

@@ -5,9 +5,10 @@ import { Layout, Button, Icons } from '../../common';
 const HomePage = () => {
 
   return (
-    <Layout className='home-page' pageTitle='TorralPoll-Home' title="TorralPoll!">
+    <Layout className='home-page' pageTitle='TorralPoll-Home' title="TorralPoll!" hideHeader>
       <div className="home-page-inner">
         <div className="intro-section">
+          <h1 className="title">TorralPoll</h1>
           <div className="intro">
             <p>
               Once upon a time (like until now), there was a group of people, working together in a splendid company.
@@ -42,9 +43,9 @@ const HomePage = () => {
             margin:0;
             display:grid;
             grid-template-columns:50% 50%;
-            grid-template-rows:1fr;
+            grid-template-rows:65px min-content;
             grid-column-gap:25px;
-            grid-template-areas:'intro graphic';
+            grid-template-areas:'. .' 'intro graphic';
             margin:0 auto;
             color:var(--color-text);
         }
@@ -63,6 +64,23 @@ const HomePage = () => {
             animation: slideUp 3s 1 forwards;
             margin-bottom:25px;
           }
+        .title{
+          position:relative;
+          font-family:var(--font-fantasy);
+          font-size:48px;
+          margin-bottom:50px;
+        }
+        .title:after{
+            content:'';
+            display:block;
+            width:250px;
+            height:4px;
+            background:var(--color-main);
+            position:absolute;
+            bottom:-20px;
+            left:75px;
+        }
+
         .btn{
             animation: show 1s 2s 1 forwards;
             opacity:0; 

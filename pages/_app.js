@@ -42,11 +42,15 @@ class MyApp extends App {
                 --tag-closed:#B85346;
                 --font-main:'Lato', sans-serif;
                 --font-header: 'Chalkduster', 'Lato', sans-serif;
-               
+                --font-fantasy:'AfricanStyle', 'Lato', sans-serif;
             }
             @font-face {
               font-family: Chalkduster;
               src: url('/static/fonts/Chalkduster.woff2');
+            }
+            @font-face {
+              font-family: AfricanStyle;
+              src: url('/static/fonts/AfricanStyle.ttf');
             }
             body{
                 font-family:var(--font-main);
@@ -57,8 +61,8 @@ class MyApp extends App {
                 color:var(--color-text);
             }
             main{
-              position:relative;
-                max-width:1200px;
+                position:relative;
+                max-width:1400px;
                 min-height:100vh;
                 margin:0 auto;
                 box-sizing:border-box;
@@ -70,8 +74,9 @@ class MyApp extends App {
 
             h1{
                 text-transform:uppercase;
-                font-size:60px;
+                font-size:36px;
                 margin:0;
+                font-family:var(--font-fantasy);
             }
             .author{
                 align-self:flex-end;

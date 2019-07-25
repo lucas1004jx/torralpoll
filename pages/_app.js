@@ -29,12 +29,26 @@ class MyApp extends App {
         </CombinedCtxProvider>
         <style jsx global>
           {`
+
+            @font-face {
+                font-family: Chalkduster;
+                src: url('/static/fonts/Chalkduster.woff2');
+              }
+            @font-face {
+              font-family: 'African Style';
+              src: url('/static/fonts/AfricanStyle.woff2') format('woff2'),
+                  url('AfricanStyle.woff') format('woff');
+              font-weight: normal;
+              font-style: normal;
+            }
             :root{
                 --color-main: #17AD8D;
                 --color-background:#5F9EA0;
                 --color-inActive:#979797;
                 --color-dark:#263C47;
                 --color-text:#4a4a4a;
+                --color-highlight:#FAC314;
+                --color-link:#079AE0;
                 --color-shadow:rgba(0,0,0,0.3);
                  --color-gradient:linear-gradient(90deg, rgba(23,173,141,1) 0%, rgba(84,198,255,1) 100%);
                 --tag-all:#FAC314;
@@ -42,23 +56,19 @@ class MyApp extends App {
                 --tag-closed:#B85346;
                 --font-main:'Lato', sans-serif;
                 --font-header: 'Chalkduster', 'Lato', sans-serif;
-                --font-fantasy:'AfricanStyle', 'Lato', sans-serif;
+                --font-fantasy:'African Style', 'Lato', sans-serif;
             }
-            @font-face {
-              font-family: Chalkduster;
-              src: url('/static/fonts/Chalkduster.woff2');
-            }
-            @font-face {
-              font-family: AfricanStyle;
-              src: url('/static/fonts/AfricanStyle.ttf');
-            }
+            
             body{
                 font-family:var(--font-main);
+                font-weight:normal;
                 padding: 0;
                 margin:0 auto;
                 box-sizing:border-box;
                 position:relative;
                 color:var(--color-text);
+                -webkit-font-smoothing: antialiased;
+	              -moz-osx-font-smoothing: grayscale;
             }
             main{
                 position:relative;
@@ -77,6 +87,7 @@ class MyApp extends App {
                 font-size:36px;
                 margin:0;
                 font-family:var(--font-fantasy);
+                font-weight:normal;
             }
             .author{
                 align-self:flex-end;

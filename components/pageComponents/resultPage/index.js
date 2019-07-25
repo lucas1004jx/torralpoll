@@ -12,11 +12,13 @@ const ResultPage = (props) => {
   if(active && rol === 'User') return <Error statusCode='401' />;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if(!active || (active && rol=== 'Admin')) {
-      drawResult();
+    if(rol) {
+      if(!active || (active && rol=== 'Admin')) {
+        drawResult();
+      }
     }
     
-  }, []);
+  }, [rol]);
   
 
   const getRandomColor = () => {

@@ -7,8 +7,8 @@ import Error from '../../../pages/_error';
 
 const ResultPage = (props) => {
   const { name = '', description = '', options = [], active } = props;
-  const { userProfile: { rol } } = useContext(LoginContext);
-  
+  const { userProfile: { rol='' } } = useContext(LoginContext);
+  console.log('rol', rol);
   if(active && rol === 'User') return <Error statusCode='401' />;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -16,7 +16,7 @@ const ResultPage = (props) => {
       drawResult();
     }
     
-  }, []);
+  }, [rol]);
   
 
   const getRandomColor = () => {

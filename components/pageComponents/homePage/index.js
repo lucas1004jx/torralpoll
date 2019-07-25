@@ -8,7 +8,7 @@ const HomePage = () => {
     <Layout className='home-page' pageTitle='TorralPoll-Home' title="TorralPoll!" hideHeader>
       <div className="home-page-inner">
         <div className="intro-section">
-          <h1 className="title">TorralPoll</h1>
+          <h1 className="title"><span>Torral</span>Poll</h1>
           <div className="intro">
             <p>
               Once upon a time (like until now), there was a group of people, working together in a splendid company.
@@ -69,6 +69,10 @@ const HomePage = () => {
           font-family:var(--font-fantasy);
           font-size:48px;
           margin-bottom:50px;
+          color:var(--color-link);
+        }
+        .title span{
+          color:var(--color-highlight);
         }
         .title:after{
             content:'';

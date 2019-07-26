@@ -6,7 +6,7 @@ const VoteSent = (props) =>{
   return (
     <InfoPage 
       pageTitle='Thanks for your vote'
-      img='/static/svg/thanks.svg'
+      img='/static/images/thanks.svg'
       message='Thanks for your vote!'
       btn1='back to list'
       href1='/polls'

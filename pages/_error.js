@@ -4,9 +4,9 @@ import { Layout, Button } from '../components/common';
 
 const Error = ({ statusCode = '', message='', }) => {
   const images = {
-    '404': '/static/svg/404.svg',
-    '401': '/static/svg/401.svg', 
-    '500': '/static/svg/server_error.svg'
+    '404': '/static/images/404.svg',
+    '401': '/static/images/401.svg', 
+    '500': '/static/images/server_error.svg'
   };
   const messages = {
     '404': 'NOT FOUND',

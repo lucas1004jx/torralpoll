@@ -7,6 +7,7 @@ import Layout from './Layout';
 import Nav from './Navbar';
 import Tag from './Tag';
 import InfoCard from './InfoCard';
+import Card from './Card';
 
 export {
   Button,
@@ -17,5 +18,6 @@ export {
   List,
   Nav,
   Tag,
-  InfoCard
+  InfoCard,
+  Card
 };

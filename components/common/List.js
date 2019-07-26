@@ -7,7 +7,17 @@ import { Icons, Tag } from './index';
 import { crud } from '../../lib';
 import { LoginContext, PollListContext } from '../../context';
 
-const List = ({ content, href, status, id, timestamp }) =>{
+const List = (props) =>{
+  const { name,  id, timestampCreation, active, userHasVoted } = props;
+  const handleHref = () => {
+    if(userHasVoted) {
+      return active ? `/option?id=${id}` : `/result?id=${id}`;
+    }else{
+      return active ? `/polls?id=${id}` : `/result?id=${id}`;
+    }
+  }; 
+  const status = active ? 'active' : 'closed';
+
   const iconStyle = {
     width: 20,
     height: 'auto',
@@ -42,21 +52,21 @@ const List = ({ content, href, status, id, timestamp }) =>{
   
   return ( 
     <div className={`list ${status ==='closed' ? 'closed' : ''}`}>
-      <Link href={href}>
+      <Link href={handleHref()}>
         <a>
           <div className="list-icon">
             <Icons name='polygon' style={iconStyle} />
           </div>
           <div className="date">
-            <Moment format="YYYY/MM/DD">
-              {timestamp}
+            <Moment format="DD.MM.YYYY">
+              {timestampCreation}
             </Moment>
           </div>
           <div className="tag">
             <Tag name={status} status={status} style={{ width: '70px' }} />
           </div>
           <div className="list-content">
-            {content}
+            {name}
           </div>
         </a>
       </Link>
@@ -109,7 +119,7 @@ const List = ({ content, href, status, id, timestamp }) =>{
             .list-icon{
                 position:absolute;
                 left:0;
-                top:0;
+                top:3px;
             }
             .tag{
                 position:absolute;

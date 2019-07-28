@@ -48,6 +48,9 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
           justify-content:center;
           align-items:center;
         }
+        .poll-list-page .title{
+          color:var(--color-link);
+        }
       `}
       </style>
     </main>

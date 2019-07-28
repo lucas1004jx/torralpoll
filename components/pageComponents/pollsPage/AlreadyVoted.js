@@ -6,7 +6,7 @@ const AlreadyVoted = (props) =>{
   return(
     <InfoPage 
       pageTitle='FORBBIDEN'
-      img='/static/svg/already_vote.svg'
+      img='/static/images/already_vote.svg'
       message='You have already voted'
       btn1='see your option'
       href1={`/option?id=${id}`}

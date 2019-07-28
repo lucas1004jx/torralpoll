@@ -7,6 +7,8 @@ import Layout from './Layout';
 import Nav from './Navbar';
 import Tag from './Tag';
 import InfoCard from './InfoCard';
+import Card from './Card';
+import DotMenu from './DotMenu';
 
 export {
   Button,
@@ -17,5 +19,7 @@ export {
   List,
   Nav,
   Tag,
-  InfoCard
+  InfoCard,
+  Card,
+  DotMenu
 };

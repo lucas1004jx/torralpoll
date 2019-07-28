@@ -53,7 +53,7 @@ class MyApp extends App {
                  --color-gradient:linear-gradient(90deg, rgba(23,173,141,1) 0%, rgba(84,198,255,1) 100%);
                 --tag-all:#FAC314;
                 --tag-active:#079AE0;
-                --tag-closed:#B85346;
+                --tag-closed:#F54444;
                 --font-main:'Lato', sans-serif;
                 --font-header: 'Chalkduster', 'Lato', sans-serif;
                 --font-fantasy:'African Style', 'Lato', sans-serif;

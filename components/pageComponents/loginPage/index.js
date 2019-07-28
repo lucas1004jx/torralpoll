@@ -40,7 +40,7 @@ const LoginModal = () => {
             onFailure={responseFailed}
             cookiePolicy="single_host_origin"
             className="google"
-            redirectUri="/polls"
+            redirectUri="/"
           />
         </div>
        
@@ -63,7 +63,7 @@ const LoginModal = () => {
             width:100%;
             padding-bottom:56.3%;
             box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
-            background:url('/static/svg/login.svg') no-repeat center center;
+            background:url('/static/images/login.svg') no-repeat center center;
             background-size:cover;
         }
        
@@ -77,7 +77,7 @@ const LoginModal = () => {
           .login-modal{
            width:100%;
            min-height:664px;
-           background:url('/static/svg/login.svg') no-repeat center center;
+           background:url('/static/images/login.svg') no-repeat center center;
            background-size:contain;
         }
         .close{

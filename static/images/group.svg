@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="poll-list" transform="translate(-134.000000, -573.000000)" stroke="#079AE0">
+            <g id="card" transform="translate(29.000000, 253.000000)">
+                <g id="participants" transform="translate(106.000000, 319.000000)">
+                    <g id="group" transform="translate(0.000000, 2.000000)">
+                        <g id="group_back" transform="translate(4.000000, 1.000000)" fill="#E6F7FF">
+                            <path d="M3,7.99342771 C4.65685425,7.99342771 6,8.15840051 6,6.83528073 C6,5.51216095 4.65685425,5 3,5 C1.34314575,5 0,5.51216095 0,6.83528073 C0,8.15840051 1.34314575,7.99342771 3,7.99342771 Z" id="椭圆形"></path>
+                            <circle id="椭圆形" cx="3.5" cy="2.5" r="2.5"></circle>
+                        </g>
+                        <g id="group_front" fill="#FFFFFF">
+                            <path d="M4,9.75001398 C6.209139,9.75001398 8,9.94562045 8,8.37681159 C8,6.80800274 6.209139,5.53623188 4,5.53623188 C1.790861,5.53623188 0,6.80800274 0,8.37681159 C0,9.94562045 1.790861,9.75001398 4,9.75001398 Z" id="椭圆形"></path>
+                            <ellipse id="椭圆形" cx="3.75438596" cy="3.04347826" rx="3.15789474" ry="3.04347826"></ellipse>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

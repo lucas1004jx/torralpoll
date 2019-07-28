@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import nookies from 'nookies';
-import Router from 'next/router';
 import Moment from 'react-moment';
-import { Icons, Tag } from './index';
-import { crud } from '../../lib';
-import { LoginContext, PollListContext } from '../../context';
+import { Icons, Tag, DotMenu } from './index';
+import { LoginContext } from '../../context';
+
 
 const List = (props) =>{
   const { name,  id, timestampCreation, active, userHasVoted } = props;
@@ -24,31 +22,8 @@ const List = (props) =>{
     fill: `${status === 'active' ?  'var(--color-main)' :'var(--color-inActive)'}`
   };
   const { userProfile: { rol } } = useContext(LoginContext);
-  const { setPollList } = useContext(PollListContext);
-  const { handleClose, handleDelete, handePollList } = crud;
-  
-  const { token='' } = nookies.get();
-  const optionClose = async () =>{
-    await handleClose(id, token);
-    const { polls: pollList } = await handePollList(token);
-    setPollList(pollList);
-    window?
-      window.location.href='/polls':
-      Router.push('/polls');
-    
-  };
-  const optionDelete = async () =>{
-    await handleDelete(id, token);
-    const { polls: pollList } = await handePollList(token);
-    console.log('after delete polllist', pollList);
-    setPollList(pollList);
-    window?
-      window.location.href='/polls':
-      Router.push('/polls');
-  };
-  const optionResult = () =>{
-    Router.push(`/result?id=${id}`);
-  };
+
+
   
   return ( 
     <div className={`list ${status ==='closed' ? 'closed' : ''}`}>
@@ -71,16 +46,7 @@ const List = (props) =>{
         </a>
       </Link>
       {rol === 'Admin' &&(
-        <div className="options-dots">
-          <span className="dot" />
-          <span className="dot" />
-          <span className="dot" />
-          <div className="options">
-            <span onClick={optionClose}>close</span>
-            <span onClick={optionResult}>result</span>
-            <span onClick={optionDelete}>delete</span>
-          </div>
-        </div>
+        <DotMenu id={id} />
       )
       }
       
@@ -127,62 +93,6 @@ const List = (props) =>{
             }
             .list-content:hover:after{
                 width:100%;
-            }
-            .options-dots{
-               position:absolute;
-               right:0;
-               top:50%;
-               display:inline-block;
-               transform:translate(100%,-50%);
-              font-size:0;
-              padding:10px 0;
-            }
-            .options-dots:hover .options{
-              display:flex;
-              opacity:1;
-            }
-            .dot{
-              display:inline-block;
-              width:3px;
-              height:3px;
-              background:var(--color-main);
-              border-radius:100%;
-              margin-left:3px;
-            }
-            .options{
-              display:flex;
-              flex-direction:column;
-              background:var(--color-background);
-              padding:10px;
-              position:absolute;
-              left:-8px;
-              top:10px;
-              transform:translate(-100%,-50%);
-              border-radius:4px;
-             z-index:2;
-             display:none;
-             opacity:0;
-            }
-            .options:after{
-              content:'';
-              display:block;
-              width:0;
-              heght:0;
-              border-left:10px solid var(--color-background);
-              border-top:10px solid transparent;
-              border-bottom:10px solid transparent;
-              position:absolute;
-              top:50%;
-              right:1px;
-              transform:translate(100%,-50%);
-            }
-            .options span{
-              font-size:16px;
-              margin-bottom:5px;
-              color:#fff;
-            }
-            .options span:last-child{
-              margin-bottom:0;
             }
 
             .date{

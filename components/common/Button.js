@@ -17,6 +17,7 @@ const Button = ({ name, margin=0, ...props }) =>(
             cursor:pointer;
             min-width:100px;
             margin-right:${margin}px;
+            transition:all 0.3s;
         }
       `}
     </style>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, List, Tag, Card } from '../../common';
+import { Layout, Tag, Card } from '../../common';
 
 const PollLists = (props) => {
   const { polls=[] } = props;
@@ -33,11 +33,6 @@ const PollLists = (props) => {
     setStatus(status);
   };
   
-  const renderPollList = (status) =>(
-    pollObj[status].map(poll => (
-      <List {...poll} key={poll.id} />
-    ))
-  );
 
   const renderPollCard = (status) => (
     pollObj[status].map(poll => (
@@ -52,9 +47,7 @@ const PollLists = (props) => {
           <Tag name={tag} status={tag} onClick={() => handleFilter(tag)} active={tag === status} key={tag} style={{ width: '86px' }} />
         )}
       </div>
-      <div className="lists">
-        {renderPollList(status)}
-      </div>
+      
       <div className="cards">
         {renderPollCard(status)}
       </div>
@@ -70,8 +63,9 @@ const PollLists = (props) => {
             }
             .cards{
               display:grid;
-              grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+              grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
               grid-column-gap:25px;
+              grid-row-gap:25px;
             }
           `}
 

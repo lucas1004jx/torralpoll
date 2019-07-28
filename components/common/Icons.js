@@ -142,21 +142,23 @@ const Close = ({
 );
 
 const Clock = ({
-  width = '14',
-  height = '14',
+  width = '18',
+  height = '18',
   viewBox = '0 0 12 12',
+  stroke='#17AD8D',
   ...props
 }) => (
   <svg 
     width={width}
     height={height}
     viewBox={viewBox}
+    stroke={stroke}
     {...props}
   >
     <title>clock</title>
     <desc>Created with Sketch.</desc>
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g id="poll-list" transform="translate(-43.000000, -573.000000)" stroke="#17AD8D">
+      <g id="poll-list" transform="translate(-43.000000, -573.000000)" stroke={stroke}>
         <g id="card" transform="translate(29.000000, 253.000000)">
           <g id="date" transform="translate(15.000000, 320.000000)">
             <g id="clock" transform="translate(0.000000, 1.000000)">

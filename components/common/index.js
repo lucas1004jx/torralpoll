@@ -9,6 +9,7 @@ import Tag from './Tag';
 import InfoCard from './InfoCard';
 import Card from './Card';
 import DotMenu from './DotMenu';
+import SEO from './SEO';
 
 export {
   Button,
@@ -21,5 +22,6 @@ export {
   Tag,
   InfoCard,
   Card,
-  DotMenu
+  DotMenu,
+  SEO
 };

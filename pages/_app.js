@@ -2,6 +2,7 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import nookies from 'nookies';
 import { CombinedCtxProvider } from '../context';
+import { SEO } from '../components/common';
 
 class MyApp extends App {
 
@@ -25,6 +26,7 @@ class MyApp extends App {
     return (
       <Container>
         <CombinedCtxProvider token={token}>
+          <SEO />
           <Component {...pageProps} />
         </CombinedCtxProvider>
         <style jsx global>

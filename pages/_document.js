@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
         <Head>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
           <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
-          <meta name="description" content="a voting page" />
+          <meta name="description" content="GuideSmiths Voting page" />
           <meta charSet="utf-8 " />
           <meta name="robots" content="noindex nofollow" />
           <meta name="viewport" content="width=device-width" />

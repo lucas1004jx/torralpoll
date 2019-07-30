@@ -7,6 +7,7 @@ import { Icons } from './index';
 
 const DotMenu = (props) => {
   const [hover, setHover] = useState(false);
+  
   const { setPollList } = useContext(PollListContext);
 
   const { handleClose, handleDelete, handePollList } = crud;
@@ -37,8 +38,7 @@ const DotMenu = (props) => {
   };
 
   const IconStyle = {
-    opacity: hover ? '1' : '0',
-
+    opacity: hover ? '1' : '0'
   };
   return ( 
      
@@ -47,15 +47,15 @@ const DotMenu = (props) => {
       onMouseEnter={()=>setHover(true)}
       onMouseLeave={()=>setHover(false)}
     >
-      <span className="dot" onClick={optionResult}>
+      <span className="dot result" onClick={optionResult} data-tooltip="see result">
         result
         <Icons name="result" style={IconStyle} />
       </span>
-      <span className="dot" onClick={optionClose}>
+      <span className="dot close" onClick={optionClose} data-tooltip="close poll">
         close poll
         <Icons name="powerOff" style={IconStyle} />
       </span>
-      <span className="dot" onClick={optionDelete}>
+      <span className="dot delete" onClick={optionDelete} data-tooltip="delete poll">
         delete
         <Icons name="delete" style={IconStyle} />
       </span>
@@ -78,8 +78,9 @@ const DotMenu = (props) => {
               opacity:1;
             }
             .options-dots:hover .dot{
-              width:25px;
-              height:25px;
+              width:30px;
+              height:30px;
+              margin-left:5px;
             }
             .dot{
               display:flex;
@@ -91,10 +92,47 @@ const DotMenu = (props) => {
               background:#fff;
               border-radius:100%;
               margin-left:3px;
-              transition:width 0.2s ease-out, height 0.2s ease-out;
+              transition:all 0.2s ease-out;
+              position:relative;
+            }
+            .dot:hover:before{
+              content:attr(data-tooltip);
+              display:block;
+              font-size:16px;
+              color:#fff;
+              background:var(--color-text);
+              position:absolute;
+              top:0;
+              left:50%;
+              transform: translate(-50%, -120%);
+              white-space:nowrap;
+              padding:5px 10px;
+              border-radius:5px;
+              animation: fadeIn 0.5s forwards;
+            }
+           @keyframes fadeIn {
+             0%{transform: translate(-100%, -120%);opacity:0;}
+             100%{transform: translate(-50%, -120%);opacity:1;}
+           }
+            .result:hover{
+              background:var(--color-main);
+            }
+            .close:hover{
+              background:var(--color-highlight);
+            }
+            .delete:hover{
+              background:var(--tag-closed);
             }
             
             `}
+      </style>
+      <style jsx global>
+        {`
+          .dot:hover svg{
+              fill:#fff;
+              transform:scale(1.5);
+            }
+      `}
       </style>
     </div>
   );

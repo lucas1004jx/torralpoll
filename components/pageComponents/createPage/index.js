@@ -30,7 +30,7 @@ const CreatePollPage = () => {
 
 
   const addOptionItems = (index) => {
-    setOptionitems(optionItems + 1);
+    setOptionitems((optionItems)=>optionItems + 1);
     setOptions({ ...options, [`option${index}`]: '' });
   };
 

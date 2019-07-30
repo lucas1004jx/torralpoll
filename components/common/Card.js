@@ -8,7 +8,7 @@ const Card = (props) => {
   const { name, description,  id, timestampCreation, active, userHasVoted, createdBy } = props;
   const { name: creater, picture } = createdBy;
   const status = active ? 'active' : 'closed';
-  const statusColor = status === 'active' ? 'var(--color-main)' : 'var(--tag-closed)';
+  const statusColor = status === 'active' ? 'var(--color-link)' : 'var(--tag-closed)';
   const handleHref = () => {
     if(userHasVoted) {
       return active ? `/option?id=${id}` : `/result?id=${id}`;
@@ -43,7 +43,7 @@ const Card = (props) => {
           <div className='dotMenu'>
             <DotMenu id={id} />
           </div>
-          <div className="status">{status}</div>
+          <div className="status">{status === 'active' ? 'in progress' : status}</div>
           <div className="creater">
             <figure>
               <img src={picture} alt="profile" />

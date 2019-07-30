@@ -1,10 +1,12 @@
-import React, {  useContext } from 'react';
+import React, {  useContext, useState } from 'react';
 import nookies from 'nookies';
 import Router from 'next/router';
 import { PollListContext  } from '../../context';
 import { crud } from '../../lib';
+import { Icons } from './index';
 
 const DotMenu = (props) => {
+  const [hover, setHover] = useState(false);
   const { setPollList } = useContext(PollListContext);
 
   const { handleClose, handleDelete, handePollList } = crud;
@@ -34,17 +36,29 @@ const DotMenu = (props) => {
     Router.push(`/result?id=${id}`);
   };
 
+  const IconStyle = {
+    opacity: hover ? '1' : '0',
+
+  };
   return ( 
      
-    <div className="options-dots">
-      <span className="dot" />
-      <span className="dot" />
-      <span className="dot" />
-      <div className="options">
-        <span onClick={optionClose}>close</span>
-        <span onClick={optionResult}>result</span>
-        <span onClick={optionDelete}>delete</span>
-      </div>
+    <div
+      className="options-dots" 
+      onMouseEnter={()=>setHover(true)}
+      onMouseLeave={()=>setHover(false)}
+    >
+      <span className="dot" onClick={optionResult}>
+        result
+        <Icons name="result" style={IconStyle} />
+      </span>
+      <span className="dot" onClick={optionClose}>
+        close poll
+        <Icons name="powerOff" style={IconStyle} />
+      </span>
+      <span className="dot" onClick={optionDelete}>
+        delete
+        <Icons name="delete" style={IconStyle} />
+      </span>
        
       <style jsx>
         {`
@@ -63,50 +77,24 @@ const DotMenu = (props) => {
               display:flex;
               opacity:1;
             }
+            .options-dots:hover .dot{
+              width:25px;
+              height:25px;
+            }
             .dot{
-              display:inline-block;
-              width:5px;
-              height:5px;
-              background:var(--color-main);
+              display:flex;
+              justify-content:center;
+              align-items:center;
+              cursor:pointer;
+              width:8px;
+              height:8px;
+              background:#fff;
               border-radius:100%;
               margin-left:3px;
+              transition:width 0.2s ease-out, height 0.2s ease-out;
             }
-            .options{
-              display:flex;
-              flex-direction:column;
-              background:var(--color-background);
-              padding:10px;
-              position:absolute;
-              right:-8px;
-              top:10px;
-              transform:translate(100%,-50%);
-              border-radius:4px;
-             z-index:2;
-             display:none;
-             opacity:0;
-             cursor:pointer;
-            }
-            .options:after{
-              content:'';
-              display:block;
-              width:0;
-              heght:0;
-              border-right:10px solid var(--color-background);
-              border-top:10px solid transparent;
-              border-bottom:10px solid transparent;
-              position:absolute;
-              top:50%;
-              left:1px;
-              transform:translate(-100%,-50%);
-            }
-            .options span{
-              font-size:16px;
-              margin-bottom:5px;
-              color:#fff;
-            }
-            .options span:last-child{
-              margin-bottom:0;
-            }`}
+            
+            `}
       </style>
     </div>
   );

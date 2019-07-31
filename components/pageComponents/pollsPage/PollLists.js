@@ -41,7 +41,10 @@ const PollLists = (props) => {
   );
 
   return (
-    <Layout title='Poll list' pageTile='TorralPoll - poll List' className="poll-list-page">
+    <Layout
+      pageTitle='Poll List'
+      className="poll-list-page"
+    >
       <div className="filter">
         {Tags.map(tag =>
           <Tag name={tag} status={tag} onClick={() => handleFilter(tag)} active={tag === status} key={tag} style={{ width: '86px' }} />

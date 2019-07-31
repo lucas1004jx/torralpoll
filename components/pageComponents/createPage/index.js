@@ -70,7 +70,7 @@ const CreatePollPage = () => {
     transform: 'translate(100%,-50%)'
   };
   return (
-    <Layout className="create-polling-page" pageTitle='TorralPoll-Create'>
+    <Layout className="create-polling-page" pageTitle='Create Poll'>
       <div className="page-inner">
         <div className="input-area">
           <h2>Question</h2>

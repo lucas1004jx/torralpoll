@@ -5,7 +5,7 @@ import { Layout, Button, Icons } from '../../common';
 const HomePage = () => {
 
   return (
-    <Layout className='home-page' pageTitle='TorralPoll-Home' title="TorralPoll!" hideHeader>
+    <Layout className='home-page' pageTitle='Home' hideHeader>
       <div className="home-page-inner">
         <div className="intro-section">
           <h1 className="title"><span>Torral</span>Poll</h1>

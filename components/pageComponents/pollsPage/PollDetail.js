@@ -47,7 +47,7 @@ const PollDetail = (props) => {
   if (voteSent) return <VoteSent id={id} />;
 
   return (
-    <Layout title={name} className="poll-detail-page" author={createdBy.name} pageTitle='TorralPoll || Poll Detail'>
+    <Layout className="poll-detail-page" author={createdBy.name} pageTitle={name}>
       <div className="page-inner">
         <p className="description">
           {description}

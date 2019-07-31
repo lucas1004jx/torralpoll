@@ -1,10 +1,11 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
 
-const SEO = () => (
+const SEO = ({ title }) => (
   <>
     <NextSeo
-      title="TorralPoll"
+      title={title}
+      titleTemplate='TorralPoll || %s'
       description="A voting page from GuideSmiths"
       canonical="https://torralpoll.lucas1004jx.now.sh/"
       openGraph={{

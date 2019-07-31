@@ -17,7 +17,7 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
   return (
     <main className={className}>
       <Head>
-        <title>{pageTitle}</title>
+        <title>{`TorralPoll || ${pageTitle}`}</title>
       </Head>
       <Nav />
       {!hideHeader && (
@@ -41,7 +41,9 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
               margin:20px 0;
               position:relative;
           }
-
+          .seo-title{
+            text-transform:capitalize;
+          }
           
         .error-page{
           display:flex;

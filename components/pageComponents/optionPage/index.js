@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Layout, Checkbox, Button } from '../../common';
 
 const OptionPage = (props) => {
-  const { name, description, options, votedOption, createdBy } = props;
+  const { description, options, votedOption, createdBy } = props;
   return (
-    <Layout title={name} className="poll-detail-page" author={createdBy.name} pageTitle='TorralPoll || User Option  '>
+    <Layout className="poll-detail-page" author={createdBy.name} pageTitle='User Option '>
       <div className="page-inner">
         <p className="description">
           {description}

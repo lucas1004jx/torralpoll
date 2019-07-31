@@ -4,7 +4,7 @@ import { Layout, InfoCard } from '../../common';
 const InfoPage = (props) =>{
   const { pageTitle, img, message, btn1, href1, btn2, href2 } = props;
   return (
-    <Layout className="info-page" hideHeader pageTitle={`TorralPoll || ${pageTitle}`}>
+    <Layout className="info-page" hideHeader pageTitle={pageTitle}>
       <div className="page-inner">
         <InfoCard 
           img={img}

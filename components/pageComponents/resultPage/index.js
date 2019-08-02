@@ -73,7 +73,7 @@ const ResultPage = (props) => {
       .attr('fill', '#263C47');
   };
   return (
-    <Layout pageTitle='Results' className='result-page'>
+    <Layout pageTitle='Results' className='result-page' title="Result">
       <h2>{name}</h2>
       <p>{description}</p>
       <div id="graphic" />

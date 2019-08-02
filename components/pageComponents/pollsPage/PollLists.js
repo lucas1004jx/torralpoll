@@ -42,6 +42,7 @@ const PollLists = (props) => {
 
   return (
     <Layout
+      title="Poll List"
       pageTitle='Poll List'
       className="poll-list-page"
     >

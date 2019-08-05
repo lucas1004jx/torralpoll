@@ -68,7 +68,7 @@ const Card = (props) => {
 
               <div className="extra-info">
                 <div className="date">
-                  <Icons name="clock" style={{ 'marginRight': '5px' }} stroke={statusColor} />
+                  <Icons name="clock" style={{ 'marginRight': '5px' }} stroke={statusColor} className={status} />
                   <Moment format="DD.MM.YYYY">
                     {timestampCreation}
                   </Moment>

@@ -49,6 +49,7 @@ class MyApp extends App {
                 --color-text:#4a4a4a;
                 --color-highlight:#FAC314;
                 --color-link:#079AE0;
+                --color-warning:#F54444;
                 --color-shadow:rgba(0,0,0,0.3);
                  --color-gradient:linear-gradient(90deg, rgba(23,173,141,1) 0%, rgba(84,198,255,1) 100%);
                 --tag-all:#FAC314;
@@ -89,18 +90,16 @@ class MyApp extends App {
                 font-family:var(--font-fantasy);
                 font-weight:normal;
             }
+            h2{
+              font-size:28px;
+              text-transform:capitalize;
+            }
             .author{
                 align-self:flex-end;
                 margin-left:15px;
                 font-size:14px;
+                color:var(--color-text);
             }
-           
-            
-          .poll-detail-page h1{
-            font-size:28px; 
-          }
-
-          
           
             `}
         </style>

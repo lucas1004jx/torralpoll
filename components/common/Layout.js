@@ -53,6 +53,12 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
         .poll-list-page .title{
           color:var(--color-link);
         }
+        .poll-detail-page .title{
+          color:var(--color-link);
+        }
+        .result-page .title{
+          color:var(--color-warning);
+        }
       `}
       </style>
     </main>

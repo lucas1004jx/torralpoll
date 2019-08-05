@@ -162,20 +162,34 @@ const Clock = ({
     {...props}
   >
     <title>clock</title>
-    <desc>Created with Sketch.</desc>
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="poll-list" transform="translate(-43.000000, -573.000000)" stroke={stroke}>
         <g id="card" transform="translate(29.000000, 253.000000)">
           <g id="date" transform="translate(15.000000, 320.000000)">
             <g id="clock" transform="translate(0.000000, 1.000000)">
               <circle id="椭圆形" cx="5" cy="5" r="5" />
-              <path d="M4.5,3 C4.5,4.12781913 4.5,4.87379542 4.5,5.23792887 C4.5,5.60206232 4.5,5.85608603 4.5,6" id="直线-2" strokeLinecap="square" />
-              <path d="M6,5 C6,5.75187942 6,6.24919695 6,6.49195258 C6,6.73470822 6,6.90405736 6,7" id="直线-2备份" strokeLinecap="square" transform="translate(6.000000, 6.000000) rotate(-270.000000) translate(-6.000000, -6.000000) " />
+              <path d="M4.5,3 C4.5,4.12781913 4.5,4.87379542 4.5,5.23792887 C4.5,5.60206232 4.5,5.85608603 4.5,6" id="aguja" strokeLinecap="square" />
+              <path d="M6,5 C6,5.75187942 6,6.24919695 6,6.49195258 C6,6.73470822 6,6.90405736 6,7" id="aguja_2" strokeLinecap="square" transform="translate(6.000000, 6.000000) rotate(-270.000000) translate(-6.000000, -6.000000) " />
             </g>
           </g>
         </g>
       </g>
     </g>
+    <style>
+      {`
+    // .active #aguja{
+    //   animation:rotate 6s linear infinite forwards;
+    // }
+    // #aguja_2{
+    //   animation:rotateSlow 10s linear infinite forwards;
+    // }
+    // @keyframes rotate{
+    //   0%{transform:tran rotate(0deg);transform-origin: 37% 46%;}
+    //   100%{transform:rotate(360deg);transform-origin: 37% 46%;}
+    // }
+    
+    `}
+    </style>
   </svg>
 );
 

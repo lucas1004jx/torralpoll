@@ -98,6 +98,7 @@ const Card = (props) => {
        .card-inner{
            display:grid;
            grid-template-rows:178px auto;
+           grid-template-columns:100%;
            height:100%;
            box-sizing:border-box;
        }
@@ -156,6 +157,7 @@ const Card = (props) => {
         }
         .description{
           margin:0;
+          word-break:break-all;
         }
         .long-text:after{
             content:'...';

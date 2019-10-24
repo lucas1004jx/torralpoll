@@ -207,8 +207,8 @@ const Group = ({
   >
     <title>group</title>
     <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g id="poll-list" transform="translate(-134.000000, -573.000000)" stroke="#079AE0">
+    <g id="Page-1" strokeWidth="1" fill="none" fillRule="evenodd">
+      <g id="poll-list" transform="translate(-134.000000, -573.000000)">
         <g id="card" transform="translate(29.000000, 253.000000)">
           <g id="participants" transform="translate(106.000000, 319.000000)">
             <g id="group" transform="translate(0.000000, 2.000000)">

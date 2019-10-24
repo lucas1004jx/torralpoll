@@ -5,7 +5,7 @@ import { Icons, Button, DotMenu } from './index';
 
 const Card = (props) => {
   const [cardHover, setCardHover] = useState(false);
-  const { name, description,  id, timestampCreation, active, userHasVoted, createdBy } = props;
+  const { name, description,  id, timestampCreation, active, userHasVoted, createdBy, participants } = props;
   const { name: creater, picture } = createdBy;
   const status = active ? 'active' : 'closed';
   const statusColor = status === 'active' ? 'var(--color-link)' : 'var(--tag-closed)';
@@ -62,8 +62,12 @@ const Card = (props) => {
                 }
               </div>
             </div>
+           
             <div className="button-area">
-          
+              <div className='participants'>
+                <Icons name='group' stroke='#17AD8D' />
+                <span>{participants}</span>
+              </div>
               <Button name={handleBtnName()} style={btnStyle} className='button' />
 
               <div className="extra-info">
@@ -87,7 +91,7 @@ const Card = (props) => {
             background:#fff;
             box-shadow: 2px 2px 10px var(--color-shadow);
             position:relative;
-            padding-bottom:70px;
+            padding-bottom:90px;
             transition:outline .2s ease-out, transform 0.3s ease-out;
         }
         .card:hover{
@@ -187,6 +191,19 @@ const Card = (props) => {
           right:0;
           bottom:0;
           padding: 15px 20px;
+          padding-top:10px;
+        }
+        .participants{
+          position:absolute;
+          top:0;
+          transform:translateY(-100%);
+          display:flex;
+          align-items:center;
+        }
+        .participants span{
+          font-size:15px;
+          color:var(--color-text);
+          margin-left:5px;
         }
       `}
       </style>

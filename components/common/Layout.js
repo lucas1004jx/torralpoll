@@ -13,11 +13,14 @@ Router.onChangeError = () => NProgress.done();
 
 
 const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'TorralPoll' }) => {
-  
+  const seoTitle = `TorralPoll || ${pageTitle}` ;
+  const seoDescription = 'See the poll list';
   return (
     <main className={className}>
       <Head>
-        <title>{`TorralPoll || ${pageTitle}`}</title>
+        <title>{seoTitle}</title>
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDescription} />
       </Head>
       <Nav />
       {!hideHeader && (

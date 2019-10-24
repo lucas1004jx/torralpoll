@@ -5,7 +5,7 @@ import { Icons, Button, DotMenu } from './index';
 
 const Card = (props) => {
   const [cardHover, setCardHover] = useState(false);
-  const { name, description,  id, timestampCreation, active, userHasVoted, createdBy, participants } = props;
+  const { name, description,  id, timestampCreation, active, userHasVoted, createdBy, participants = 0 } = props;
   const { name: creater, picture } = createdBy;
   const status = active ? 'active' : 'closed';
   const statusColor = status === 'active' ? 'var(--color-link)' : 'var(--tag-closed)';

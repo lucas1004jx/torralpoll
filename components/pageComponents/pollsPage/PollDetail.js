@@ -4,24 +4,24 @@ import axios from 'axios';
 import nookies from 'nookies';
 import { api } from '../../../config';
 import { Layout, Button, Checkbox } from '../../common';
-import VoteSent from './VoteSent'; 
+import VoteSent from './VoteSent';
 
 const PollDetail = (props) => {
-  
-  const { id, options, name, description, createdBy } = props;
-  
-  const [ voteSent, setVoteSent ] = useState(false);
+
+  const { id, options, name, description, createdBy, preview, closePreview, createPoll } = props;
+
+  const [voteSent, setVoteSent] = useState(false);
   // eslint-disable-next-line no-unused-vars
-  
+
   const [selectedOption, setSelectedOption] = useState('');
 
   const onSubmit = () => {
     console.log('submit');
-    const { token }  = nookies.get();
+    const { token } = nookies.get();
     if (!selectedOption) {
       alert('You should choose at least one option');
       return;
-    } 
+    }
 
     axios({
       method: 'post',
@@ -35,11 +35,11 @@ const PollDetail = (props) => {
       .then(response => {
         console.log('voteeeeeeee');
         setVoteSent(true);
-       
+
       })
       .catch(err => console.log('submit error-------->', err));
   };
-  
+
   const onSelect = (value) => {
     setSelectedOption(value);
   };
@@ -47,7 +47,13 @@ const PollDetail = (props) => {
   if (voteSent) return <VoteSent id={id} />;
 
   return (
-    <Layout className="poll-detail-page" author={createdBy.name} title='poll' pageTitle={name}>
+    <Layout
+      className="poll-detail-page"
+      author={createdBy.name}
+      title={preview ? 'preview' : 'poll'}
+      pageTitle={name}
+      preview={preview}
+    >
       <div className="page-inner">
         <h2>{name}</h2>
         <p className="description">
@@ -66,15 +72,23 @@ const PollDetail = (props) => {
             ))}
           </ul>
         </div>
-        <div className="submit-button">
-          <Button name='submit' onClick={onSubmit} margin="25" />
-          <Link href="/polls">
-            <a>
-              <Button name='back to list' />
-            </a>
-          </Link>
-
-        </div>
+        {!preview && (
+          <div className="submit-button">
+            <Button name='submit' onClick={onSubmit} margin="25" />
+            <Link href="/polls">
+              <a>
+                <Button name='back to list' />
+              </a>
+            </Link>
+          </div>
+        )}
+        {preview && (
+          <div className="submit-button">
+            <Button name='cancel' onClick={closePreview} margin="25" />
+            <Button name='create' onClick={createPoll} margin="25" />
+          </div>
+        )
+        }
       </div>
       <style jsx>
         {`

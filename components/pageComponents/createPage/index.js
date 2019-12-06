@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Link from 'next/link';
 import nookies from 'nookies';
-import { Input, Button, Checkbox, Layout, Icons } from '../../common';
-import { crud } from '../../../lib';
-
-
+import { Input, Button, Checkbox, Layout, Icons, Modal } from '../../common';
+import PollDetail from '../pollsPage/PollDetail';
+import { crud, utils } from '../../../lib';
+import { LoginContext } from '../../../context';
 
 const CreatePollPage = () => {
 
@@ -15,14 +15,16 @@ const CreatePollPage = () => {
     option4: ''
 
   };
-  
+
 
   const [singleOption, setSingleOption] = useState(true);
   const [question, setQuestion] = useState('');
   const [description, setDescription] = useState('');
   const [optionItems, setOptionitems] = useState(Object.keys(defaultOptions).length);
   const [options, setOptions] = useState(defaultOptions);
-
+  const [preview, setPreview] = useState(false);
+  const { userProfile } = useContext(LoginContext);
+  const { objectToArray } = utils;
 
   const handleOption = () => {
     setSingleOption(!singleOption);
@@ -30,7 +32,7 @@ const CreatePollPage = () => {
 
 
   const addOptionItems = (index) => {
-    setOptionitems((optionItems)=>optionItems + 1);
+    setOptionitems((optionItems) => optionItems + 1);
     setOptions({ ...options, [`option${index}`]: '' });
   };
 
@@ -52,13 +54,27 @@ const CreatePollPage = () => {
   };
 
 
-  
-  const createPoll = (question = 'question', description='', options=[]) => {
-  
-    const { token='' }  = nookies.get();
+  const createPoll = (question = 'question', description = '', options = []) => {
+    const { token = '' } = nookies.get();
     const { handleCreate } = crud;
-    const optionsArray = Object.keys(options).map(key => options[key]).filter(option=> !!option);
-    handleCreate(token, question, description, optionsArray);
+    handleCreate(token, question, description, objectToArray(options));
+  };
+
+  const previewContent = () => {
+    const formatOption = objectToArray(options).map(opt => ({ name: opt }));
+    return (
+      <Modal>
+        <PollDetail
+          options={formatOption}
+          name={question}
+          description={description}
+          createdBy={userProfile}
+          preview
+          closePreview={() => setPreview(false)}
+          createPoll={() => createPoll(question, description, options)}
+        />
+      </Modal>
+    );
   };
 
   const closeStyle = {
@@ -78,7 +94,12 @@ const CreatePollPage = () => {
         </div>
         <div className="input-area">
           <h2>Description</h2>
-          <Input onChange={e => setDescription(e.target.value)} value={description} placeholder='Describe your question' type='textarea' />
+          <Input
+            onChange={e => setDescription(e.target.value)}
+            value={description}
+            placeholder='Describe your question'
+            type='textarea'
+          />
         </div>
 
         <div className="input-area">
@@ -86,8 +107,14 @@ const CreatePollPage = () => {
           {
             Object.keys(options).map((option, index) => (
               <div style={{ position: 'relative' }} key={option}>
-                <Input onChange={(e) => addOptions(option, e.target.value)} value={options[option]} placeholder={`option${index + 1}`} id={option} />
-                {Object.keys(options).length > 1 ? <Icons name='close' style={closeStyle} onClick={() => removeOptionItems(option)} /> : null}
+                <Input
+                  onChange={(e) => addOptions(option, e.target.value)}
+                  value={options[option]}
+                  placeholder={`option${index + 1}`}
+                  id={option}
+                />
+                {Object.keys(options).length > 1 ?
+                  <Icons name='close' style={closeStyle} onClick={() => removeOptionItems(option)} /> : null}
               </div>
             ))
           }
@@ -123,10 +150,10 @@ const CreatePollPage = () => {
               <Button name='see list' margin="25" />
             </a>
           </Link>
-          {/* <Button name='preview' /> */}
+          <Button name='preview' margin="25" onClick={() => setPreview(true)} />
           <Button name='create' onClick={() => createPoll(question, description, options)} />
-
         </div>
+        {preview && previewContent()}
       </div>
 
       <style jsx>

@@ -4,9 +4,10 @@ const withCSS = require('@zeit/next-css');
 module.exports = withCSS({
   target: 'serverless',
   env: {
-    local: 'https://torralbot-back.herokuapp.com',
+    local: 'http://localhost:4000',
     server: 'https://torralbot-back.herokuapp.com',
-    client_id: '239251067475-v53f5pav2r3uior978bbga3vmseotimv.apps.googleusercontent.com'
+    client_id: '239251067475-v53f5pav2r3uior978bbga3vmseotimv.apps.googleusercontent.com',
+    environment: 'development'
   },
   webpack: function (config) {
     config.module.rules.push({

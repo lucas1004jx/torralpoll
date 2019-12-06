@@ -10,6 +10,7 @@ import InfoCard from './InfoCard';
 import Card from './Card';
 import DotMenu from './DotMenu';
 import SEO from './SEO';
+import Modal from './Modal';
 
 export {
   Button,
@@ -23,5 +24,6 @@ export {
   InfoCard,
   Card,
   DotMenu,
-  SEO
+  SEO,
+  Modal
 };

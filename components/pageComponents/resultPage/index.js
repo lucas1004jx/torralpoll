@@ -7,20 +7,20 @@ import Error from '../../../pages/_error';
 
 const ResultPage = (props) => {
   const { name = '', description = '', options = [], active } = props;
-  const { userProfile: { rol='' } } = useContext(LoginContext);
+  const { userProfile: { rol = '' } } = useContext(LoginContext);
   console.log('rol', rol);
-  if(active && rol === 'User') return <Error statusCode='401' />;
+  if (active && rol === 'User') return <Error statusCode='401'/>;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if(rol) {
-      if(!active || (active && rol=== 'Admin')) {
+    if (rol) {
+      if (!active || (active && rol === 'Admin')) {
         drawResult();
       }
     }
-    
-  }, [rol]);
-  
 
+  }, [rol]);
+
+  const brandColor = '#17AD8D';
   const getRandomColor = () => {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -29,20 +29,27 @@ const ResultPage = (props) => {
     }
     return color;
   };
+
+  const formatLongText = (text) => {
+    const limit = 80;
+    const longText = text.length >= limit;
+    return longText ? `${text.substr(0, limit)}...` : text;
+  };
+
   const drawResult = () => {
     let data = [];
 
-    options.map(({ name, votesCount }) => data.push({
+    options.sort((a, b) => b.votesCount - a.votesCount).map(({ name, votesCount }) => data.push({
       name,
       votesCount,
       'fill': getRandomColor()
     }));
 
-    const height = 50 * data.length*1.4;
-    const width = '80%';
-    const factorX = 0;
+    const height = 60 * (data.length + 1);
+    const factorX = 50;
     const GfactorY = 30;
     const TfactorY = 15;
+    const radius = 20;
 
     const calcPercetage = (votesCount) => {
       const total = options.reduce((total, option) => total + option.votesCount, 0);
@@ -50,40 +57,99 @@ const ResultPage = (props) => {
       return total !== 0 ? (votesCount / total).toFixed(2) * 100 : 0;
     };
 
-    const svg = d3.select('#graphic').append('svg').attr('width', width).attr('height', height);
+    const svg = d3
+      .select('#graphic')
+      .append('svg')
+      .attr('height', height)
+      .style('background', '#fff');
+
     svg
+      .append('g')
+      .attr('class', 'bars')
       .selectAll('rect')
       .data(data)
       .enter()
       .append('rect')
+      .attr('class', 'bar')
       .attr('x', factorX)
-      .attr('y', (d, i) => GfactorY * (i+i) + 25)
-      .attr('width', (d) => `${calcPercetage(d.votesCount)}%`)
-      .attr('height', 25)
-      .attr('fill', (d) => d.fill);
+      .attr('y', (d, i) => GfactorY * (i + i) + 25)
+      .style('height', 25)
+      .style('fill', '#fff')
+      .transition()
+      .duration(2000)
+      .delay((d, i) => i * 100)
+      .style('width', (d) => `${calcPercetage(d.votesCount) !== 0 ? calcPercetage(d.votesCount) : 100}%`)
+      .style('fill', (d) => calcPercetage(d.votesCount) !== 0 ? d.fill : '#F1F1F1')
+      .style('cursor', 'pointer');
 
     svg
+      .selectAll('.bar')
+      .selectAll('title')
+      .data(data)
+      .enter()
+      .append('title')
+      .text(d => d.name);
+
+
+    svg
+      .append('g')
+      .attr('class', 'votes')
       .selectAll('text')
       .data(data)
       .enter()
       .append('text')
-      .text((d) => `${d.name} ${d.votesCount} votes`)
-      .attr('x', 10)
-      .attr('y', (d, i) => TfactorY * (i+i+i+i) + 20)
-      .attr('fill', '#263C47');
+      .text((d) => `${d.votesCount} votes:  ${formatLongText(d.name)}`)
+      .attr('x', factorX)
+      .attr('y', (d, i) => TfactorY * (i + i + i + i) + 20)
+      .style('fill', '#263C47')
+      .style('font-weight', 'bolder');
+
+    svg
+      .append('g')
+      .attr('class', 'circles')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr('r', radius)
+      .attr('cx', radius)
+      .attr('cy', (d, i) => TfactorY * (i + i + i + i) + 40)
+      .style('transform', `translateY(-${radius / 2}px)`)
+      .style('fill', brandColor);
+
+    svg
+      .append('g')
+      .attr('class', 'positions')
+      .selectAll('text')
+      .data(data)
+      .enter()
+      .append('text')
+      .text((d, i) => i + 1)
+      .style('fill', '#fff')
+      .attr('x', radius)
+      .attr('y', (d, i) => TfactorY * (i + i + i + i) + 40)
+      .style('transform', `translateY(-${radius / 2}px)`)
+      .style('transform', `translateX(-${radius / 2}px)`)
+      .style('font-size', '30px')
+      .style('font-family', 'Chalkduster');
+
   };
+
+
   return (
     <Layout pageTitle='Results' className='result-page' title="Result">
       <h2>{name}</h2>
       <p>{description}</p>
-      <div id="graphic" />
+      <div id="graphic"/>
       <Link href="/polls">
         <a>
-          <Button name="Back to list" className="button" />
+          <Button name="Back to list" className="button"/>
         </a>
       </Link>
-      <style jsx>{`
-        
+      <style jsx global>{`
+          #graphic svg{
+          width:calc(100% - 10px);
+          }
       `}
       </style>
     </Layout>

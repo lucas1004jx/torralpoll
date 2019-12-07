@@ -3,22 +3,23 @@ import Head from 'next/head';
 
 
 
-const SEO = ({ 
+const SEO = ({
   seoTitle = 'TorralPoll',
   seoDescription = 'A voting page from GuideSmiths. It helps you make better team decisions, and get fair results.',
   seoImgSrc = 'https://torralpoll.s3.eu-west-2.amazonaws.com/openGraphic.jpg'
 }) => {
- 
+
   return (
     <Head>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
       <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
       <link rel="canonical" href="https://torralpoll.lucas1004jx.now.sh/" />
+      <link rel="shortcut icon" href="/static/favicon.ico" />
       <meta name="description" content={seoDescription} />
       <meta charSet="utf-8 " />
       <meta name="robots" content="noindex nofollow" />
       <meta name="viewport" content="width=device-width" />
-      {/* social media seo tag */} 
+      {/* social media seo tag */}
       <meta property="og:title" content={seoTitle} />
       <meta property="og:description" content={seoDescription} />
       <meta property="og:image" content={seoImgSrc} />

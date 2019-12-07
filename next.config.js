@@ -9,6 +9,7 @@ module.exports = withCSS({
     client_id: '239251067475-v53f5pav2r3uior978bbga3vmseotimv.apps.googleusercontent.com',
   },
   webpack: function (config) {
+    config.node = { fs: 'empty' };
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
       use: {

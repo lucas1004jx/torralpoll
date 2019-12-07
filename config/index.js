@@ -1,4 +1,6 @@
-const env = process.env.environment;
+require('dotenv').config();
+
+const env = process.env.ENVIRONMENT;
 
 module.exports.server = env === 'development' ? process.env.local : process.env.server;
 module.exports.clientId = process.env.client_id;

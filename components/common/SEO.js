@@ -14,7 +14,6 @@ const SEO = ({
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
       <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
       <link rel="canonical" href="https://torralpoll.lucas1004jx.now.sh/" />
-      <link rel="shortcut icon" href="/static/favicon.ico" />
       <meta name="description" content={seoDescription} />
       <meta charSet="utf-8 " />
       <meta name="robots" content="noindex nofollow" />

@@ -99,8 +99,13 @@ const ResultPage = (props) => {
       .enter()
       .append('text')
       .text((d) => `${d.votesCount} votes:  ${formatLongText(d.name)}`)
-      .attr('x', factorX)
       .attr('y', (d, i) => TfactorY * (i + i + i + i) + 20)
+      .style('opacity',0)
+      .transition()
+      .duration(2000)
+      .delay((d,i)=> i * 400)
+      .attr('x', factorX)
+      .style('opacity',1)
       .style('fill', '#263C47')
       .style('font-weight', 'bolder');
 
@@ -111,11 +116,15 @@ const ResultPage = (props) => {
       .data(data)
       .enter()
       .append('circle')
-      .attr('r', radius)
       .attr('cx', radius)
       .attr('cy', (d, i) => TfactorY * (i + i + i + i) + 40)
       .style('transform', `translateY(-${radius / 2}px)`)
-      .style('fill', brandColor);
+      .style('fill', brandColor)
+      .transition()
+      .duration(2000)
+      .delay((d, i) => i * 100)
+      .attr('r', radius);
+
 
     svg
       .append('g')

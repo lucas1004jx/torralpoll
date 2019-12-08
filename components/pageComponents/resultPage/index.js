@@ -9,7 +9,7 @@ const ResultPage = (props) => {
   const { name = '', description = '', options = [], active } = props;
   const { userProfile: { rol = '' } } = useContext(LoginContext);
   console.log('rol', rol);
-  if (active && rol === 'User') return <Error statusCode='401'/>;
+  if (active && rol === 'User') return <Error statusCode='401' />;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (rol) {
@@ -100,12 +100,12 @@ const ResultPage = (props) => {
       .append('text')
       .text((d) => `${d.votesCount} votes:  ${formatLongText(d.name)}`)
       .attr('y', (d, i) => TfactorY * (i + i + i + i) + 20)
-      .style('opacity',0)
+      .style('opacity', 0)
       .transition()
       .duration(2000)
-      .delay((d,i)=> i * 400)
+      .delay((d, i) => i * 400)
       .attr('x', factorX)
-      .style('opacity',1)
+      .style('opacity', 1)
       .style('fill', '#263C47')
       .style('font-weight', 'bolder');
 
@@ -149,10 +149,10 @@ const ResultPage = (props) => {
     <Layout pageTitle='Results' className='result-page' title="Result">
       <h2>{name}</h2>
       <p>{description}</p>
-      <div id="graphic"/>
+      <div id="graphic" />
       <Link href="/polls">
         <a>
-          <Button name="Back to list" className="button"/>
+          <Button name="Back to list" className="button" />
         </a>
       </Link>
       <style jsx global>{`

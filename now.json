@@ -1,7 +1,6 @@
 {
   "version":2,
   "name":"torralpoll",
-  "alias": ["https://torralpoll.lucas1004jx.now.sh"],
   "builds":[
     {
       "src":"package.json",

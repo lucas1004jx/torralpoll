@@ -1,43 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Moment from 'react-moment';
 import { Icons, Button, DotMenu } from './index';
 
 const Card = (props) => {
   const [cardHover, setCardHover] = useState(false);
-  const { name, description,  id, timestampCreation, active, userHasVoted, createdBy, participants = 0 } = props;
+  const { name, description, id, timestampCreation, active, userHasVoted, createdBy, participants = 0 } = props;
   const { name: creater, picture } = createdBy;
   const status = active ? 'active' : 'closed';
   const statusColor = status === 'active' ? 'var(--color-link)' : 'var(--tag-closed)';
   const handleHref = () => {
-    if(userHasVoted) {
+    if (userHasVoted) {
       return active ? `/option?id=${id}` : `/result?id=${id}`;
-    }else{
+    } else {
       return active ? `/polls?id=${id}` : `/result?id=${id}`;
     }
-  }; 
+  };
 
   const handleBtnName = () => {
-    if(userHasVoted) {
+    if (userHasVoted) {
       return active ? 'your option' : 'see result';
-    }else{
+    } else {
       return active ? 'see detail' : 'see result';
     }
-  }; 
+  };
 
 
   const btnStyle = {
-    background: `${cardHover ? statusColor :  '#fff' }`,
-    color: `${cardHover ? '#fff' :  statusColor }`,
+    background: `${cardHover ? statusColor : '#fff'}`,
+    color: `${cardHover ? '#fff' : statusColor}`,
     border: `1px solid ${statusColor}`
   };
-  return(
+
+  const randomNum = (range) => Math.floor(Math.random() * range) + 1;
+  const memoNum = useMemo(() => randomNum(5), []);
+  const bcgUrl = `/static/images/restaurant_${memoNum}.jpg`;
+
+  return (
     <div
-      className="card" 
-      onMouseEnter={()=>setCardHover(true)}
-      onMouseLeave={()=>setCardHover(false)}
+      className="card"
+      onMouseEnter={() => setCardHover(true)}
+      onMouseLeave={() => setCardHover(false)}
     >
-     
+
       <div className="card-inner">
         <div className="upper">
           <div className='dotMenu'>
@@ -48,7 +53,7 @@ const Card = (props) => {
             <figure>
               <img src={picture} alt="profile" />
             </figure>
-            <i>{creater}</i> 
+            <i>{creater}</i>
           </div>
         </div>
         <Link href={handleHref()}>
@@ -57,12 +62,12 @@ const Card = (props) => {
               <div className="text-info">
                 <h3 className="title">{name}</h3>
                 {description.length > 250 ?
-                  <p className="description long-text">{description.substring(0, 250)}</p>:
+                  <p className="description long-text">{description.substring(0, 250)}</p> :
                   <p className="description">{description}</p>
                 }
               </div>
             </div>
-           
+
             <div className="button-area">
               <div className='participants'>
                 <Icons name='group' stroke='#17AD8D' />
@@ -77,14 +82,14 @@ const Card = (props) => {
                     {timestampCreation}
                   </Moment>
                 </div>
-                
+
               </div>
             </div>
           </a>
         </Link>
       </div>
-          
-       
+
+
       <style jsx>
         {`
         .card{
@@ -107,7 +112,7 @@ const Card = (props) => {
            box-sizing:border-box;
        }
         .upper{
-            background:url('/static/images/restaurant.jpg') no-repeat center center;
+            background:url(${bcgUrl}) no-repeat center center;
             background-size:cover;
             position:relative;
         }
@@ -181,7 +186,7 @@ const Card = (props) => {
           display: flex;
           align-items: center
         }
-        
+
         .button-area{
           position: absolute;
           display:flex;

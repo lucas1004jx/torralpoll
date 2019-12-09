@@ -54,10 +54,10 @@ const CreatePollPage = () => {
   };
 
 
-  const createPoll = (question = 'question', description = '', options = []) => {
+  const createPoll = (question = 'question', description = '', category = '', options = []) => {
     const { token = '' } = nookies.get();
     const { handleCreate } = crud;
-    handleCreate(token, question, description, objectToArray(options));
+    handleCreate(token, question, description, category, objectToArray(options));
   };
 
   const previewContent = () => {

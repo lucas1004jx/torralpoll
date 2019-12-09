@@ -75,21 +75,18 @@ const ResultPage = (props) => {
       .attr('y', (d, i) => GfactorY * (i + i) + 25)
       .style('height', 25)
       .style('fill', '#fff')
+      .style('cursor', 'pointer')
+      .append('title')
+      .text(d => d.name);
+
+    svg
+      .selectAll('.bar')
+      .data(data)
       .transition()
       .duration(2000)
       .delay((d, i) => i * 100)
       .style('width', (d) => `${calcPercetage(d.votesCount) !== 0 ? calcPercetage(d.votesCount) : 100}%`)
-      .style('fill', (d) => calcPercetage(d.votesCount) !== 0 ? d.fill : '#F1F1F1')
-      .style('cursor', 'pointer');
-
-    svg
-      .selectAll('.bar')
-      .selectAll('title')
-      .data(data)
-      .enter()
-      .append('title')
-      .text(d => d.name);
-
+      .style('fill', (d) => calcPercetage(d.votesCount) !== 0 ? d.fill : '#F1F1F1');
 
     svg
       .append('g')

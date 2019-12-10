@@ -5,6 +5,7 @@ import ResultPage from './resultPage';
 import LoginPage from './loginPage';
 import OptionPage from './optionPage';
 import InfoPage from './infoPage';
+import EditPage from './editPage';
 
 
 export {
@@ -14,5 +15,6 @@ export {
   ResultPage,
   LoginPage,
   OptionPage,
-  InfoPage
+  InfoPage,
+  EditPage
 };

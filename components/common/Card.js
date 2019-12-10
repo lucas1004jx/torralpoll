@@ -5,7 +5,7 @@ import { Icons, Button, DotMenu } from './index';
 
 const Card = (props) => {
   const [cardHover, setCardHover] = useState(false);
-  const { name, description, id, timestampCreation, active, userHasVoted, createdBy, participants = 0 } = props;
+  const { name, description, id, timestampCreation, active, userHasVoted, createdBy, participants = 0, category = 'restaurant' } = props;
   const { name: creater, picture } = createdBy;
   const status = active ? 'active' : 'closed';
   const statusColor = status === 'active' ? 'var(--color-link)' : 'var(--tag-closed)';
@@ -34,8 +34,8 @@ const Card = (props) => {
 
   const randomNum = (range) => Math.floor(Math.random() * range) + 1;
   const memoNum = useMemo(() => randomNum(5), []);
-  const bcgUrl = `/static/images/restaurant_${memoNum}.jpg`;
-
+  const formatCategory = (category) => category.split(' ').join('_');
+  const bcgUrl = category ? `/static/images/${formatCategory(category)}/${memoNum}.jpg` : '/static/images/noCategory.jpg';
   return (
     <div
       className="card"
@@ -48,6 +48,7 @@ const Card = (props) => {
           <div className='dotMenu'>
             <DotMenu id={id} />
           </div>
+          <div className='category'>{category ? category : 'no category'}</div>
           <div className="status">{status === 'active' ? 'in progress' : status}</div>
           <div className="creater">
             <figure>
@@ -122,6 +123,18 @@ const Card = (props) => {
             top:0;left:0;right:0;bottom:0;
             background:rgba(0,0,0,0.5);
         }
+        .category{
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+          color:var(--color-main);
+          padding:5px 15px;
+          background:var(--color-shadow);
+          border:1px solid #fff;
+          text-transform:uppercase;
+          font-size:10px;
+        }
         .dotMenu{
           position:absolute;
           left:20px;
@@ -134,7 +147,7 @@ const Card = (props) => {
             background:#fff;
             position:absolute;
             right:-4px;
-            top:35px;
+            top:15px;
             padding:5px 10px;
             font-size:12px;
             border-right: 4px solid ${statusColor};

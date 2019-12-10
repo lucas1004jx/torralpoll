@@ -8,7 +8,7 @@ import VoteSent from './VoteSent';
 
 const PollDetail = (props) => {
 
-  const { id, options, name, description, createdBy, preview, closePreview, createPoll } = props;
+  const { id, options, name, description, createdBy, preview, closePreview, createPoll, editView, savePoll } = props;
 
   const [voteSent, setVoteSent] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -85,7 +85,8 @@ const PollDetail = (props) => {
         {preview && (
           <div className="submit-button">
             <Button name='cancel' onClick={closePreview} margin="25" />
-            <Button name='create' onClick={createPoll} margin="25" />
+            {!editView && <Button name='create' onClick={createPoll} margin="25" />}
+            {editView && <Button name='save' onClick={savePoll} margin="25" />}
           </div>
         )
         }

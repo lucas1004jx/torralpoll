@@ -48,6 +48,7 @@ const Layout = ({ title, children, author, className, hideHeader, pageTitle = 'T
           height:calc(100vh - 80px);
           box-shadow:2px 2px 10px var(--color-shadow);
           background:#fff;
+          overflow:auto;
         }
         .title{
         font-family: var(--font-header);

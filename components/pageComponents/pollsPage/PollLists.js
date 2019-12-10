@@ -3,7 +3,6 @@ import { Layout, Tag, Card } from '../../common';
 
 const PollLists = (props) => {
   const { polls=[] } = props;
-  
   const dateToInteger = (date) => new Date(date).getTime();
 
   const sortedPolls = polls.sort(({ timestampCreation: date1 }, { timestampCreation: date2 }) =>
@@ -16,7 +15,7 @@ const PollLists = (props) => {
     'closed': []
   });
   const Tags = ['all', 'active', 'closed'];
- 
+
   useEffect(()=>{
     const activePolls = sortedPolls.filter(poll => poll.active);
     const closedPolls = sortedPolls.filter(poll => !poll.active);
@@ -25,14 +24,14 @@ const PollLists = (props) => {
       'active': activePolls,
       'closed': closedPolls
     });
-  
+
   }, [props]);
-  
+
 
   const handleFilter = (status) => {
     setStatus(status);
   };
-  
+
 
   const renderPollCard = (status) => (
     pollObj[status].map(poll => (
@@ -51,7 +50,7 @@ const PollLists = (props) => {
           <Tag name={tag} status={tag} onClick={() => handleFilter(tag)} active={tag === status} key={tag} style={{ width: '86px' }} />
         )}
       </div>
-      
+
       <div className="cards">
         {renderPollCard(status)}
       </div>

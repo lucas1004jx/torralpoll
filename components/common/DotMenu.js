@@ -1,65 +1,73 @@
-import React, {  useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import nookies from 'nookies';
 import Router from 'next/router';
-import { PollListContext  } from '../../context';
+import { PollListContext } from '../../context';
 import { crud } from '../../lib';
 import { Icons } from './index';
 
 const DotMenu = (props) => {
   const [hover, setHover] = useState(false);
-  
+
   const { setPollList } = useContext(PollListContext);
 
   const { handleClose, handleDelete, handePollList } = crud;
 
   const { id } = props;
-  const { token='' } = nookies.get();
-  
-  const optionClose = async () =>{
+  const { token = '' } = nookies.get();
+
+  const optionClose = async () => {
     await handleClose(id, token);
     const { polls: pollList } = await handePollList(token);
     setPollList(pollList);
-    window?
-      window.location.href='/polls':
+    window ?
+      window.location.href = '/polls' :
       Router.push('/polls');
-    
+
   };
-  const optionDelete = async () =>{
+  const optionDelete = async () => {
     await handleDelete(id, token);
     const { polls: pollList } = await handePollList(token);
     console.log('after delete polllist', pollList);
     setPollList(pollList);
-    window?
-      window.location.href='/polls':
+    window ?
+      window.location.href = '/polls' :
       Router.push('/polls');
   };
-  const optionResult = () =>{
+  const optionResult = () => {
     Router.push(`/result?id=${id}`);
+  };
+
+  const editPoll = () => {
+    Router.push(`/edit?id=${id}`);
   };
 
   const IconStyle = {
     opacity: hover ? '1' : '0'
   };
-  return ( 
-     
+  return (
+
     <div
-      className="options-dots" 
-      onMouseEnter={()=>setHover(true)}
-      onMouseLeave={()=>setHover(false)}
+      className="options-dots"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
-      <span className="dot result" onClick={optionResult} data-tooltip="see result">
+      <span className="dot result" onClick={editPoll} data-tooltip="Edit">
+        Edit
+        <Icons name="file" style={IconStyle} width='10' />
+      </span>
+      <span className="dot result" onClick={optionResult} data-tooltip="See result">
         result
         <Icons name="result" style={IconStyle} />
       </span>
-      <span className="dot close" onClick={optionClose} data-tooltip="close poll">
+      <span className="dot close" onClick={optionClose} data-tooltip="Close poll">
         close poll
         <Icons name="powerOff" style={IconStyle} />
       </span>
-      <span className="dot delete" onClick={optionDelete} data-tooltip="delete poll">
+      <span className="dot delete" onClick={optionDelete} data-tooltip="Delete poll">
         delete
         <Icons name="delete" style={IconStyle} />
       </span>
-       
+
       <style jsx>
         {`
             .options-dots{

@@ -3,7 +3,7 @@ import CreateForm from '../createPage/createForm';
 
 const EditPage = (props) => {
   const { id, name, description, category, options } = props;
-  const formattedOptions = options.map(option => option.name);
+  const formattedOptions = options.map(option => ({ name: option.name, votes: option.votes }));
   const pageInfo = {
     id,
     singleOption: true,

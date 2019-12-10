@@ -9,11 +9,28 @@ import { LoginContext } from '../../../context';
 
 const CreateForm = (props) => {
 
-  const defaultOptions = ['', '', '', ''];
+  const defaultOptions = [
+    {
+      name: '',
+      votes: []
+    },
+    {
+      name: '',
+      votes: []
+    },
+    {
+      name: '',
+      votes: []
+    },
+    {
+      name: '',
+      votes: []
+    }
+  ];
 
   const formatOptions = (options) => options.reduce((total, option, i) => ({
     ...total,
-    [`option${i + 1}`]: option
+    [`option${i + 1}`]: { name: option.name, votes: option.votes }
   })
   , {}
   );
@@ -52,7 +69,7 @@ const CreateForm = (props) => {
   const handleOption = () => {
     setSingleOption(!singleOption);
   };
-
+  const updatedOptions = (options) => Object.keys(options).map(option => ({ ...options[option] }));
 
   const addOptionItems = (index) => {
     setOptionitems((optionItems) => optionItems + 1);
@@ -71,7 +88,7 @@ const CreateForm = (props) => {
   const addOptions = (option, value) => {
     //for support safari object keys order
     setOptions(() => {
-      options[option] = value;
+      options[option]['name'] = value;
       return { ...options };
     });
   };
@@ -82,13 +99,14 @@ const CreateForm = (props) => {
     handleCreate(token, question, description, category, objectToArray(options));
   };
 
+
   const updatePoll = (question = 'question', description = '', category = '', options = []) => {
     const { handleUpdate } = crud;
-    handleUpdate(id, token, question, description, category, objectToArray(options));
+    handleUpdate(id, token, question, description, category, updatedOptions(options));
   };
 
   const previewContent = () => {
-    const formatOption = objectToArray(options).map(opt => ({ name: opt }));
+    const formatOption = objectToArray(options).map(opt => ({ name: opt.name }));
     return (
       <Modal>
         <PollDetail
@@ -101,7 +119,7 @@ const CreateForm = (props) => {
           closePreview={() => setPreview(false)}
           createPoll={() => createPoll(question, description, category, options)}
           editView={!!edit}
-          savePoll={() => updatePoll(question, description, category, options)}
+          savePoll={() => updatePoll(question, description, category, updatedOptions(options))}
         />
       </Modal>
     );
@@ -158,7 +176,7 @@ const CreateForm = (props) => {
               <div style={{ position: 'relative' }} key={option}>
                 <Input
                   onChange={(e) => addOptions(option, e.target.value)}
-                  value={options[option]}
+                  value={options[option]['name']}
                   placeholder={`option${index + 1}`}
                   id={option}
                 />

@@ -28,12 +28,16 @@ const CreateForm = (props) => {
     }
   ];
 
-  const formatOptions = (options) => options.reduce((total, option, i) => ({
+  const formatOptionsToObj = (options) => options.reduce((total, option, i) => ({
     ...total,
     [`option${i + 1}`]: { name: option.name, votes: option.votes }
   })
   , {}
   );
+
+  const updatedOptions = (options) => Object.keys(options).map(option => ({ ...options[option] }));
+  const formatOptionToArray = (options) => objectToArray(options).map(opt => ({ name: opt.name })).filter(option => !!option.name);
+  const formatOptionToSimpleArray = (options) => objectToArray(options).map(opt => ({ name: opt.name })).map(option => option.name);
 
   const {
     id,
@@ -52,7 +56,7 @@ const CreateForm = (props) => {
   const [category, setCategory] = useState(categoryProp);
   const [categoryList, setCategorList] = useState([]);
   const [optionItems, setOptionitems] = useState(Object.keys(defaultOptions).length);
-  const [options, setOptions] = useState(formatOptions(optionsProp));
+  const [options, setOptions] = useState(formatOptionsToObj(optionsProp));
   const [preview, setPreview] = useState(false);
   const { userProfile } = useContext(LoginContext);
   const { objectToArray } = utils;
@@ -69,7 +73,6 @@ const CreateForm = (props) => {
   const handleOption = () => {
     setSingleOption(!singleOption);
   };
-  const updatedOptions = (options) => Object.keys(options).map(option => ({ ...options[option] }));
 
   const addOptionItems = (index) => {
     setOptionitems((optionItems) => optionItems + 1);
@@ -106,18 +109,17 @@ const CreateForm = (props) => {
   };
 
   const previewContent = () => {
-    const formatOption = objectToArray(options).map(opt => ({ name: opt.name }));
     return (
       <Modal>
         <PollDetail
-          options={formatOption}
+          options={formatOptionToArray(options)}
           name={question}
           description={description}
           createdBy={userProfile}
           category={category}
           preview
           closePreview={() => setPreview(false)}
-          createPoll={() => createPoll(question, description, category, options)}
+          createPoll={() => createPoll(question, description, category, formatOptionToSimpleArray(options))}
           editView={!!edit}
           savePoll={() => updatePoll(question, description, category, updatedOptions(options))}
         />
@@ -218,7 +220,12 @@ const CreateForm = (props) => {
             </a>
           </Link>
           <Button name='preview' margin="25" onClick={() => setPreview(true)} />
-          {create && <Button name='create' onClick={() => createPoll(question, description, category, options)} />}
+          {create && (
+            <Button
+              name='create'
+              onClick={() => createPoll(question, description, category, formatOptionToSimpleArray(options))}
+            />
+          )}
           {edit && <Button name='save' onClick={() => updatePoll(question, description, category, options)} />}
         </div>
         {preview && previewContent()}

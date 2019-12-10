@@ -51,7 +51,7 @@ const DotMenu = (props) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <span className="dot result" onClick={editPoll} data-tooltip="Edit">
+      <span className="dot edit" onClick={editPoll} data-tooltip="Edit">
         Edit
         <Icons name="file" style={IconStyle} width='10' />
       </span>
@@ -130,6 +130,9 @@ const DotMenu = (props) => {
             }
             .delete:hover{
               background:var(--tag-closed);
+            }
+            .edit:hover{
+              background:var(--color-edit);
             }
             
             `}

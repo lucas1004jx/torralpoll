@@ -76,7 +76,7 @@ const CreateForm = (props) => {
 
   const addOptionItems = (index) => {
     setOptionitems((optionItems) => optionItems + 1);
-    setOptions({ ...options, [`option${index}`]: '' });
+    setOptions({ ...options, [`option${index + 1}`]: { name: '', votes: [] } });
   };
 
   const removeOptionItems = (id) => {

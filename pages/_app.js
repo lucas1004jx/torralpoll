@@ -52,6 +52,7 @@ class MyApp extends App {
                 --color-highlight:#FAC314;
                 --color-link:#079AE0;
                 --color-warning:#F54444;
+                --color-edit:#c37ced;
                 --color-shadow:rgba(0,0,0,0.3);
                  --color-gradient:linear-gradient(90deg, rgba(23,173,141,1) 0%, rgba(84,198,255,1) 100%);
                 --tag-all:#FAC314;

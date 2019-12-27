@@ -200,7 +200,6 @@ const ResultPage = (props) => {
             left:50%;
             top:0;
             padding:20px;
-            max-height:calc(100% - 120px);
             overflow:auto;
           }
       `}

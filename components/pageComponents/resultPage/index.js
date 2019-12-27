@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import * as d3 from 'd3';
 import Link from 'next/link';
 import { Layout, Button } from '../../common';
@@ -11,6 +11,8 @@ const ResultPage = (props) => {
   const { name = '', description = '', options = [], active, createdBy } = props;
   const { userProfile } = useContext(LoginContext);
   const { rol } = userProfile;
+  const [ showDetail, setShowDetail ] = useState(false);
+  const [ barData, setBarData ] = useState(null);
   const creater = isCreater(userProfile.email, createdBy.email);
   if (active && rol !== 'Admin' && !creater) return <Error statusCode='401' />;
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -39,10 +41,26 @@ const ResultPage = (props) => {
     return longText ? `${text.substr(0, limit)}...` : text;
   };
 
-  const clickBar = () => {
-    console.log('click bar');
+  const clickBar = (data) => {
+    setShowDetail(true);
+    setBarData(data);
   };
 
+  const renderDetail = (data) => {
+    if(!data) return;
+    const style = {
+      'borderColor': [data.fill]
+    };
+    return (
+      <div className="detail" style={style}>
+        <h3>Option: {data.name}</h3>
+        <p><b>Total votes:</b> {data.votesCount}</p>
+        {(rol === 'Admin' || creater) && (
+          <p><b>Voters:</b> {data.voters.join(', ')}</p>
+        ) }  
+      </div>
+    );
+  };
 
   const drawResult = () => {
     let data = [];
@@ -158,15 +176,32 @@ const ResultPage = (props) => {
     <Layout pageTitle='Results' className='result-page' title="Result">
       <h2>{name}</h2>
       <p>{description}</p>
-      <div id="graphic" />
+      <div id="graphic">
+        {showDetail && renderDetail(barData)}
+      </div>
+      
       <Link href="/polls">
         <a>
           <Button name="Back to list" className="button" />
         </a>
       </Link>
       <style jsx global>{`
+          #graphic{
+            position:relative;
+          }
           #graphic svg{
           width:calc(50% - 10px);
+          }
+          .detail{
+            border-width:2px;
+            border-style:solid;
+            position:absolute;
+            right:0;
+            left:50%;
+            top:0;
+            padding:20px;
+            max-height:calc(100% - 120px);
+            overflow:auto;
           }
       `}
       </style>

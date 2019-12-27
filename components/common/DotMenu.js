@@ -9,7 +9,7 @@ const DotMenu = (props) => {
   const [hover, setHover] = useState(false);
 
   const { setPollList } = useContext(PollListContext);
-
+ 
   const { handleClose, handleDelete, handePollList } = crud;
 
   const { id } = props;
@@ -27,7 +27,6 @@ const DotMenu = (props) => {
   const optionDelete = async () => {
     await handleDelete(id, token);
     const { polls: pollList } = await handePollList(token);
-    console.log('after delete polllist', pollList);
     setPollList(pollList);
     window ?
       window.location.href = '/polls' :
@@ -37,9 +36,9 @@ const DotMenu = (props) => {
     Router.push(`/result?id=${id}`);
   };
 
-  const editPoll = () => {
-    Router.push(`/edit?id=${id}`);
-  };
+  // const editPoll = () => {
+  //   Router.push(`/edit?id=${id}`);
+  // };
 
   const IconStyle = {
     opacity: hover ? '1' : '0'
@@ -51,10 +50,10 @@ const DotMenu = (props) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <span className="dot edit" onClick={editPoll} data-tooltip="Edit">
+      {/* <span className="dot edit" onClick={editPoll} data-tooltip="Edit">
         Edit
         <Icons name="file" style={IconStyle} width='10' />
-      </span>
+      </span> */}
       <span className="dot result" onClick={optionResult} data-tooltip="See result">
         result
         <Icons name="result" style={IconStyle} />
@@ -131,9 +130,9 @@ const DotMenu = (props) => {
             .delete:hover{
               background:var(--tag-closed);
             }
-            .edit:hover{
-              background:var(--color-edit);
-            }
+            // .edit:hover{
+            //   background:var(--color-edit);
+            // }
             
             `}
       </style>

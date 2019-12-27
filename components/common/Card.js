@@ -1,11 +1,17 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import Link from 'next/link';
 import Moment from 'react-moment';
+import { LoginContext } from '../../context';
+import { utils } from '../../lib';
 import { Icons, Button, DotMenu } from './index';
 
 const Card = (props) => {
+  const { isCreater } = utils;
+  const { userProfile } = useContext(LoginContext);
+  const { rol } = userProfile;
   const [cardHover, setCardHover] = useState(false);
   const { name, description, id, timestampCreation, active, userHasVoted, createdBy, participants = 0, category = 'restaurant' } = props;
+  
   const { name: creater, picture } = createdBy;
   const status = active ? 'active' : 'closed';
   const statusColor = status === 'active' ? 'var(--color-link)' : 'var(--tag-closed)';
@@ -24,7 +30,6 @@ const Card = (props) => {
       return active ? 'see detail' : 'see result';
     }
   };
-
 
   const btnStyle = {
     background: `${cardHover ? statusColor : '#fff'}`,
@@ -46,7 +51,10 @@ const Card = (props) => {
       <div className="card-inner">
         <div className="upper">
           <div className='dotMenu'>
-            <DotMenu id={id} />
+            {
+              (rol === 'Admin' || isCreater(userProfile.email, createdBy.email)) 
+            && <DotMenu id={id} />
+            }
           </div>
           <div className='category'>{category ? category : 'no category'}</div>
           <div className="status">{status === 'active' ? 'in progress' : status}</div>

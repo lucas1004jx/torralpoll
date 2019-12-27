@@ -4,16 +4,19 @@ import Link from 'next/link';
 import { Layout, Button } from '../../common';
 import { LoginContext } from '../../../context';
 import Error from '../../../pages/_error';
+import { utils } from '../../../lib';
 
 const ResultPage = (props) => {
-  const { name = '', description = '', options = [], active } = props;
-  const { userProfile: { rol = '' } } = useContext(LoginContext);
-  console.log('rol', rol);
-  if (active && rol === 'User') return <Error statusCode='401' />;
+  const { isCreater } = utils;
+  const { name = '', description = '', options = [], active, createdBy } = props;
+  const { userProfile } = useContext(LoginContext);
+  const { rol } = userProfile;
+  const creater = isCreater(userProfile.email, createdBy.email);
+  if (active && rol !== 'Admin' && !creater) return <Error statusCode='401' />;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (rol) {
-      if (!active || (active && rol === 'Admin')) {
+      if (!active || (active && (rol === 'Admin' || creater))) {
         drawResult();
       }
     }
@@ -36,15 +39,21 @@ const ResultPage = (props) => {
     return longText ? `${text.substr(0, limit)}...` : text;
   };
 
+  const clickBar = () => {
+    console.log('click bar');
+  };
+
+
   const drawResult = () => {
     let data = [];
-
-    options.sort((a, b) => b.votesCount - a.votesCount).map(({ name, votesCount }) => data.push({
+    
+    options.sort((a, b) => b.votesCount - a.votesCount).map(({ name, votesCount, votes = [] }) => data.push({
       name,
       votesCount,
-      'fill': getRandomColor()
+      'fill': getRandomColor(),
+      voters: votes.map(vote => vote.name)
     }));
-
+    
     const height = 60 * (data.length + 1);
     const factorX = 50;
     const GfactorY = 30;
@@ -56,7 +65,7 @@ const ResultPage = (props) => {
 
       return total !== 0 ? (votesCount / total).toFixed(2) * 100 : 0;
     };
-
+    
     const svg = d3
       .select('#graphic')
       .append('svg')
@@ -82,11 +91,13 @@ const ResultPage = (props) => {
     svg
       .selectAll('.bar')
       .data(data)
+      .on('click', clickBar)
       .transition()
       .duration(2000)
       .delay((d, i) => i * 100)
       .style('width', (d) => `${calcPercetage(d.votesCount) !== 0 ? calcPercetage(d.votesCount) : 100}%`)
       .style('fill', (d) => calcPercetage(d.votesCount) !== 0 ? d.fill : '#F1F1F1');
+
 
     svg
       .append('g')
@@ -95,7 +106,7 @@ const ResultPage = (props) => {
       .data(data)
       .enter()
       .append('text')
-      .text((d) => `${d.votesCount} votes:  ${formatLongText(d.name)}`)
+      .text((d) =>  `${d.votesCount} votes:  ${formatLongText(d.name)}`)
       .attr('y', (d, i) => TfactorY * (i + i + i + i) + 20)
       .style('opacity', 0)
       .transition()
@@ -142,6 +153,7 @@ const ResultPage = (props) => {
   };
 
 
+
   return (
     <Layout pageTitle='Results' className='result-page' title="Result">
       <h2>{name}</h2>
@@ -154,7 +166,7 @@ const ResultPage = (props) => {
       </Link>
       <style jsx global>{`
           #graphic svg{
-          width:calc(100% - 10px);
+          width:calc(50% - 10px);
           }
       `}
       </style>

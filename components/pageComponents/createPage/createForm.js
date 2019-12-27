@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import Link from 'next/link';
 import nookies from 'nookies';
 import Select from 'react-select';
-import { Input, Button, Checkbox, Layout, Icons, Modal } from '../../common';
+import { Input, Button, Layout, Icons, Modal } from '../../common';
 import PollDetail from '../pollsPage/PollDetail';
 import { crud, utils } from '../../../lib';
 import { LoginContext } from '../../../context';
@@ -41,7 +41,6 @@ const CreateForm = (props) => {
 
   const {
     id,
-    singleOption: singleOptionProp = true,
     question: questionProp = '',
     description: descriptionProp = '',
     category: categoryProp = '',
@@ -50,7 +49,7 @@ const CreateForm = (props) => {
     edit = false
   } = props;
 
-  const [singleOption, setSingleOption] = useState(singleOptionProp);
+
   const [question, setQuestion] = useState(questionProp);
   const [description, setDescription] = useState(descriptionProp);
   const [category, setCategory] = useState(categoryProp);
@@ -69,10 +68,6 @@ const CreateForm = (props) => {
     };
     getCategoryList();
   }, []);
-
-  const handleOption = () => {
-    setSingleOption(!singleOption);
-  };
 
   const addOptionItems = (index) => {
     setOptionitems((optionItems) => optionItems + 1);
@@ -133,8 +128,8 @@ const CreateForm = (props) => {
 
   const categoryOptions = categoryList.map(category => (
     {
-      value: category.name,
-      label: category.name
+      value: category,
+      label: category
     }
   ));
 
@@ -192,27 +187,7 @@ const CreateForm = (props) => {
         <div className="add-button button-container">
           <Button name='add more choice' onClick={() => addOptionItems(optionItems + 1)} />
         </div>
-        <div className="config">
-          <h3>Configurations</h3>
-          <div className="option-section">
-            <div className="divider" />
-            <Checkbox
-              option='Single Choice'
-              checked={singleOption}
-              onSelect={() => handleOption()}
-            />
-            <Checkbox
-              option='Multiple Choice'
-              checked={!singleOption}
-              onSelect={() => handleOption()}
-            />
-          </div>
-
-          <div className="option-section">
-            <div className="divider" />
-            <Checkbox option='set active time' />
-          </div>
-        </div>
+       
         <div className="create-preview-button button-container">
           <Link href="/polls">
             <a>

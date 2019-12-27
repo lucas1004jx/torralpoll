@@ -11,5 +11,5 @@ module.exports = {
   result: (id) => `${server}/${id}/details`,
   close: (id) => `${server}/${id}/close`,
   delete: (id) => `${server}/${id}/delete`,
-  categoryList: `${server}/categoryList`,
+  categoryList: `${server}/categories`,
 };

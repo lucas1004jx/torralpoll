@@ -4,10 +4,8 @@ import { LoginContext } from '../context';
 import Error from './_error';
 
 const CreatePoll = () => {
-  const { userProfile, error } = useContext(LoginContext);
-  const { rol } = userProfile;
+  const { error } = useContext(LoginContext);
   if(error) return <Error statusCode={error} />;
-  if(rol !== 'Admin') return <Error statusCode={401} />;
   return <CreatePollPage />;
  
 };

@@ -10,9 +10,7 @@ const Navbar = () => {
   const navbar_padding = 5;
 
   const { loginState, userProfile, userLogout } = useContext(LoginContext);
-  //console.log('navbar-----userProfile----->', userProfile);
-  const { rol } = userProfile;
-  //console.log('role', rol);
+
   const logout = () => {
     console.log('logout');
     userLogout();
@@ -32,14 +30,14 @@ const Navbar = () => {
             </a>
           </Link>
         )}
-        {
-          rol === 'Admin' && (
-            <Link href='/createpoll'>
-              <a className="create">
+       
+        {loginState && ( 
+          <Link href='/createpoll'>
+            <a className="create">
             Create poll
-              </a>
-            </Link>
-          )}
+            </a>
+          </Link>
+        )}
        
         {loginState && (
           <div className="profile-container">

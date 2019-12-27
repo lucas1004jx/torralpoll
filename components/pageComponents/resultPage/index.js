@@ -11,7 +11,6 @@ const ResultPage = (props) => {
   const { name = '', description = '', options = [], active, createdBy } = props;
   const { userProfile } = useContext(LoginContext);
   const { rol } = userProfile;
-  const [ showDetail, setShowDetail ] = useState(false);
   const [ barData, setBarData ] = useState(null);
   const creater = isCreater(userProfile.email, createdBy.email);
   if (active && rol !== 'Admin' && !creater) return <Error statusCode='401' />;
@@ -36,18 +35,17 @@ const ResultPage = (props) => {
   };
 
   const formatLongText = (text) => {
-    const limit = 80;
+    const limit = 50;
     const longText = text.length >= limit;
     return longText ? `${text.substr(0, limit)}...` : text;
   };
 
   const clickBar = (data) => {
-    setShowDetail(true);
     setBarData(data);
   };
 
   const renderDetail = (data) => {
-    if(!data) return;
+    if(!data) return <div className="detail">Click result bar to see details</div>;
     const style = {
       'borderColor': [data.fill]
     };
@@ -177,7 +175,7 @@ const ResultPage = (props) => {
       <h2>{name}</h2>
       <p>{description}</p>
       <div id="graphic">
-        {showDetail && renderDetail(barData)}
+        {renderDetail(barData)}
       </div>
       
       <Link href="/polls">

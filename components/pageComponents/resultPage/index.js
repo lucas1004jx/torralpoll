@@ -54,7 +54,16 @@ const ResultPage = (props) => {
         <h3>Option: {data.name}</h3>
         <p><b>Total votes:</b> {data.votesCount}</p>
         {(rol === 'Admin' || creater) && (
-          <p><b>Voters:</b> {data.voters.join(', ')}</p>
+          <div className="voters">
+            <p><b>Voters:</b> </p>
+            <ul className="votersList">
+              {
+                data.voters.map(voter => 
+                  <li key={voter} className="voter">{voter}</li>
+                )
+              }
+            </ul>
+          </div>
         ) }  
       </div>
     );
@@ -122,7 +131,7 @@ const ResultPage = (props) => {
       .data(data)
       .enter()
       .append('text')
-      .text((d) =>  `${d.votesCount} votes:  ${formatLongText(d.name)}`)
+      .text((d) => formatLongText(d.name))
       .attr('y', (d, i) => TfactorY * (i + i + i + i) + 20)
       .style('opacity', 0)
       .transition()
@@ -199,6 +208,17 @@ const ResultPage = (props) => {
             top:0;
             padding:20px;
             overflow:auto;
+            border-radius:10px;
+          }
+          .votersList{
+            margin:0;
+            padding:0;
+          }
+          .voter{
+            list-style:none;
+          }
+          .voters p {
+            margin-bottom:5px;
           }
       `}
       </style>

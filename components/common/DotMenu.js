@@ -12,7 +12,7 @@ const DotMenu = (props) => {
  
   const { handleClose, handleDelete, handePollList } = crud;
 
-  const { id } = props;
+  const { id, active } = props;
   const { token = '' } = nookies.get();
 
   const optionClose = async () => {
@@ -54,14 +54,19 @@ const DotMenu = (props) => {
         Edit
         <Icons name="file" style={IconStyle} width='10' />
       </span> */}
-      <span className="dot result" onClick={optionResult} data-tooltip="See result">
+      
+      {active && (
+        <>
+          <span className="dot result" onClick={optionResult} data-tooltip="See result">
         result
-        <Icons name="result" style={IconStyle} />
-      </span>
-      <span className="dot close" onClick={optionClose} data-tooltip="Close poll">
+            <Icons name="result" style={IconStyle} />
+          </span>
+          <span className="dot close" onClick={optionClose} data-tooltip="Close poll">
         close poll
-        <Icons name="powerOff" style={IconStyle} />
-      </span>
+            <Icons name="powerOff" style={IconStyle} />
+          </span>
+        </>
+      )}
       <span className="dot delete" onClick={optionDelete} data-tooltip="Delete poll">
         delete
         <Icons name="delete" style={IconStyle} />

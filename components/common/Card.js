@@ -53,7 +53,7 @@ const Card = (props) => {
           <div className='dotMenu'>
             {
               (rol === 'Admin' || isCreater(userProfile.email, createdBy.email)) 
-            && <DotMenu id={id} />
+            && <DotMenu id={id} active={active} />
             }
           </div>
           <div className='category'>{category ? category : 'no category'}</div>

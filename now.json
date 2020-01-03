@@ -1,4 +1,9 @@
 {
   "version":2,
-  "name":"torralpoll"
+  "name":"torralpoll",
+  "build": {
+    "env": {
+      "CLIENT_ID": "@client_id"
+    }
+  }
 }

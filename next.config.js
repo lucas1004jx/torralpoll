@@ -6,7 +6,7 @@ module.exports = withCSS({
   env: {
     local: 'http://localhost:4000',
     server: 'https://torralbot-back.herokuapp.com',
-    client_id: process.env.client_id,
+    client_id: process.env.CLIENT_ID,
     ENVIRONMENT: 'prod'
   },
   webpack: function (config) {
